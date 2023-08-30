@@ -1,8 +1,13 @@
-function App() {
+import styles from "./style";
+import { NavBar } from "./components";
+
+const App = () => {
   return (
-    <>
-      <h1 className="text-orange-600 font-black">a</h1>
-    </>
+    <div className="bg-green-600 w-full overflow-hidden">
+      <div className={`${styles.paddingX} ${styles.flexCenter}`}>
+        <NavBar />
+      </div>
+    </div>
   )
 }
 
