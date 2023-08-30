@@ -3,7 +3,7 @@ import { NavBar } from "./components";
 
 const App = () => {
   return (
-    <div className="bg-gradient-to-r from-lime-400 to-lime-500 w-full overflow-hidden">
+    <div className="bg-gradient-to-r from-lime-500 to-green-500 w-full overflow-hidden">
       <div className={`${styles.paddingX} ${styles.flexCenter}`}>
         <NavBar />
       </div>
