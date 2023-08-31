@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { logo, menu, close } from "../assets/svg"
+import { logo, menu, close } from "../assets"
 import { navLinks } from "../constants";
 
 function NavBar() {
