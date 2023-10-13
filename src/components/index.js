@@ -1,3 +1,5 @@
 import NavBar from "./NavBar";
 import Welcome from "./Welcome";
-export { NavBar, Welcome };
+import About from "./about";
+import ButtonsLinks from "./ButtonsLinks";
+export { NavBar, Welcome,About,ButtonsLinks };
