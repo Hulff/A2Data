@@ -1,10 +1,9 @@
 const ButtonsLinks = () => {
     return (<>
-        <div className="div_buttons">
-            <button>Pelo oque lutamos ?</button>
-            <button>A²Database</button>
-            <button style={{ backgroundImage: `url("https://s2-g1.glbimg.com/v48XBGXCLRSuaHUsUAKuEVQ7d_0=/0x0:1040x780/1008x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2020/A/H/AcDMmMSHirwwgF6vZw0g/incendio-fogo.jpeg")` }}>
-                <img></img>
+        <div className=" w-full h-20 flex flex-row mt-5 items-stretch justify-evenly">
+            <button className="transition-all text-white bg-gradient-to-r from-purple-800 to-blue-800 font-medium  md:w-1/6 w-1/4 justify-center text-center items-center px-2 py-4 rounded-md flex  sm:text-base text-sm hover:brightness-50 hover:w-1/3 md:hover:w-1/5  ">Pelo oque lutamos?</button>
+            <button className="transition-all text-white bg-gradient-to-r from-blue-800 to-emerald-500 font-medium md:w-1/6 w-1/4 justify-center text-center items-center px-2 py-4 rounded-md flex  sm:text-base text-sm hover:brightness-50 hover:w-1/3 md:hover:w-1/5  ">A²Database</button>
+            <button className="transition-all text-white bg-gradient-to-r from-emerald-500 to-green-400 font-medium md:w-1/6 w-1/4 justify-center text-center items-center px-2 py-4 rounded-md flex  sm:text-base text-sm hover:brightness-50 hover:w-1/3 md:hover:w-1/5  "  >
                 <p>O Araripe está em chamas!</p>
             </button>
         </div>

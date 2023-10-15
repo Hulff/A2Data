@@ -4,6 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  overflow-x: hidden;
+}
 :root {
   --black-gradient: linear-gradient(144.39deg,
       #ffffff -278.56%,
@@ -128,26 +131,4 @@
 .white__gradient {
   background: rgba(255, 255, 255, 0.6);
   filter: blur(750px);
-}
-
-/* hugo que fez */
-.div_buttons {
-  margin-top: 5vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: stretch;
-}
-
-.div_buttons>button {
-      background: #0029ff;
-    color: white;
-    font-weight: BOLD;
-    padding: 5%;
-    border-radius: 1vh;
-    width: 25%;
-}
-.div_buttons>button:nth-child(3) {
-  background-size: cover;
-  background-position: center;
 }

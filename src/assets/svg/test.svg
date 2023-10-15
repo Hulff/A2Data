@@ -1,0 +1,38 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 200C0 89.5431 89.5431 0 200 0C310.457 0 400 89.5431 400 200C400 310.457 310.457 400 200 400C89.5431 400 0 310.457 0 200Z" fill="url(#paint0_linear_0_1)"/>
+<path d="M0 200C0 89.5431 89.5431 0 200 0C310.457 0 400 89.5431 400 200C400 310.457 310.457 400 200 400C89.5431 400 0 310.457 0 200Z" fill="url(#paint1_linear_0_1)"/>
+<path d="M0 200C0 89.5431 89.5431 0 200 0C310.457 0 400 89.5431 400 200C400 310.457 310.457 400 200 400C89.5431 400 0 310.457 0 200Z" fill="url(#paint2_linear_0_1)"/>
+<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Karla" font-size="128" font-weight="500" letter-spacing="0em"><tspan x="42" y="229.56">A&#xb2;D</tspan></text>
+<rect x="296.5" y="217.5" width="14" height="14" rx="3.5" stroke="white"/>
+<rect x="326.5" y="224.5" width="36" height="35" rx="5.5" stroke="white"/>
+<rect x="358.5" y="190.5" width="22" height="22" rx="3.5" stroke="white"/>
+<rect x="264.5" y="232.5" width="18" height="18" rx="4.5" stroke="white"/>
+<rect x="292.5" y="247.5" width="22" height="22" rx="5.5" stroke="white"/>
+<rect x="318.5" y="189.5" width="19" height="19" rx="3.5" stroke="white"/>
+<path d="M137.5 305L140.79 317.009L154 320L140.79 322.991L137.5 335L134.21 322.991L121 320L134.21 317.009L137.5 305Z" fill="#D9D9D9"/>
+<path d="M192.5 332L195.79 344.009L209 347L195.79 349.991L192.5 362L189.21 349.991L176 347L189.21 344.009L192.5 332Z" fill="#D9D9D9"/>
+<path d="M231.5 262L234.79 274.009L248 277L234.79 279.991L231.5 292L228.21 279.991L215 277L228.21 274.009L231.5 262Z" fill="#09B12F"/>
+<path d="M176.5 270L179.79 282.009L193 285L179.79 287.991L176.5 300L173.21 287.991L160 285L173.21 282.009L176.5 270Z" fill="#09B12F"/>
+<rect x="132" y="100" width="16" height="16" rx="8" stroke="white" stroke-width="2"/>
+<rect x="179" y="61" width="16" height="16" rx="8" stroke="white" stroke-width="2"/>
+<rect x="225" y="100" width="15" height="16" rx="7.5" stroke="white" stroke-width="2"/>
+<rect x="273" y="64" width="16" height="15" rx="7.5" stroke="white" stroke-width="2"/>
+<line y1="-1" x2="46.2153" y2="-1" transform="matrix(0.787215 -0.616679 0.6112 0.791477 145.822 103.429)" stroke="white" stroke-width="2"/>
+<line y1="-1" x2="44.1251" y2="-1" transform="matrix(0.76343 0.645891 -0.640489 0.767967 191.636 74.9286)" stroke="white" stroke-width="2"/>
+<line y1="-1" x2="46.2153" y2="-1" transform="matrix(0.787215 -0.616679 0.6112 0.791477 240.144 106.143)" stroke="white" stroke-width="2"/>
+<defs>
+<linearGradient id="paint0_linear_0_1" x1="193" y1="-3" x2="193" y2="397" gradientUnits="userSpaceOnUse">
+<stop stop-color="#040EFF"/>
+<stop offset="1" stop-color="#300E4B"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_1" x1="196" y1="168.5" x2="193" y2="401" gradientUnits="userSpaceOnUse">
+<stop stop-color="#1400FF"/>
+<stop offset="1" stop-color="#9800FF" stop-opacity="0.046875"/>
+<stop offset="1" stop-color="#5B358B"/>
+</linearGradient>
+<linearGradient id="paint2_linear_0_1" x1="193" y1="-3" x2="193" y2="170.5" gradientUnits="userSpaceOnUse">
+<stop stop-color="#05FF00"/>
+<stop offset="1" stop-color="#52FF00" stop-opacity="0"/>
+</linearGradient>
+</defs>
+</svg>
