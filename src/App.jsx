@@ -8,14 +8,12 @@ import {
 } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa"
 import { styles, layout } from "./style";
-import { NavBar, Welcome, About, ButtonsLinks } from "./components";
-import { getData, dbListener } from "./services/firebase";
+import { NavBar, Welcome, About, ButtonsLinks,A2data } from "./components";
 const App = () => {
   const navigate = useNavigate();
   const [btnFunc, setBtnFunc] = useState([]);
 
   useEffect(() => {
-    dbListener("bdsHF");
     setBtnFunc([
       () => navigate("/Nossa_missão"),
       () => navigate("/A2Data"),
@@ -132,6 +130,7 @@ const App = () => {
                   </div>
                 </div>
               </div>
+                <A2data></A2data>
             </div>
           </>
         }
