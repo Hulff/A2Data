@@ -7,6 +7,22 @@
 body {
   overflow-x: hidden;
 }
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #616161;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: #00000000;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
 :root {
   --black-gradient: linear-gradient(144.39deg,
       #ffffff -278.56%,
