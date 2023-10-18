@@ -23,7 +23,7 @@ export async function getData(serial) {
         data = [...data, doc.data()]
     });
     console.log(data);
-
+    return data
 
 }
 export async function dbListener(serial) {
