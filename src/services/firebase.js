@@ -16,16 +16,21 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 
 export async function getData(serial) {
-    const querySnapshot = await getDocs(collection(db, "sensors", "data", serial));
-    let data = [];
-    querySnapshot.forEach((doc) => {
-        console.log(doc.data());
-        data = [...data, doc.data()]
-    });
-    console.log(data);
-    return data
+    try {
+        const querySnapshot = await getDocs(collection(db, "sensors", "data", serial));
+        const data = querySnapshot.docs.map((doc) => doc.data());
 
+        if (data.length > 0) {
+            return data;
+        } else {
+            return null;
+        }
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return null;
+    }
 }
+
 export async function dbListener(serial) {
     const unsubscribe = onSnapshot(collection(db, "sensors", "data", serial), (snapshot) => {
         let data = [];
