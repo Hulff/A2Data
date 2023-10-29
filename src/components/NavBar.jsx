@@ -8,7 +8,9 @@ function NavBar() {
     const [toggle, settoggle] = useState(false);
     return (
         <nav className="w-full flex items-center pt-2 navbar">
-            <img src={test} alt="logo" className="w-auto h-16 " />
+            <img onClick={() => {
+                navigate("/")
+            }} src={test} alt="logo" className="w-auto h-16 " />
             <h1 className=" w-auto font-poppins px-2 text-sm sm:text-base text-white font-medium">Araripe Atmospheric Database</h1>
             <ul className="list-none sm:flex hidden justify-end items-center flex-1">
                 {/* {navLinks.map((nav, index) => (

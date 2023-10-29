@@ -82,8 +82,20 @@ const App = () => {
                   <p className='text-xs text-center px-5'>Ludmila de Oliveira Agra, aluna do 2° ano do curso técnico integrado em eletrotécnica do IFCE - Campus Juazeiro do Norte. Bolsista de Astronomia e Astrofísica e participante do Comitê Olímpico, ambos do Instituto IFCE e medalhista em olimpaidas voltadas as matérias de ciências.</p>
                 </div>
               </div>
-              <footer className="mt-10 bg-gradient-to-r from-purple-700 via-blue-700 to-emerald-500 h-20 w-full overflow-hidden">
-                <h2 className='w-full text-center text-white font-medium text-xl'>Contatos</h2>
+              <footer className="mt-10 flex flex-wrap items-stretch justify-center flex-col sm:justify-start sm:flex-row bg-gradient-to-r from-purple-700 via-blue-700 to-emerald-500 h-fit w-full overflow-hidden">
+                <h2 className='w-full py-2 text-center text-white font-medium text-xl'>Contatos</h2>
+                <ul className='sm:w-auto w-full h-fit mb-5 px-7  text-center sm:text-start sm:grid-rows-4 sm:grid-cols-1 grid-rows-2 grid-cols-2  sm:gap-1 text-white grid h-10'>
+                  <li className='mb-2'>(88) 98814-6230</li>
+                  <li className='mb-2'>(88) 99362-8012</li>
+                  <li className='mb-2'>(85) 99649-7276</li>
+                  <li className='mb-2'>(88) 99676-2171</li>
+                </ul>
+                <ul className='sm:w-auto h-max mb-5 px-7  text-start sm:grid-rows-4 sm:grid-cols-1 grid-rows-4 grid-cols-1  sm:gap-1 text-white grid h-10'>
+                  <li className='mb-2'>natanael.jose62@aluno.ifce.edu.br</li>
+                  <li className='mb-2'>oliveira.agra08@aluno.ifce.edu.br</li>
+                  <li className='mb-2'>rodrigo.almeida@ifce.edu.br</li>
+                  <li className='mb-2'>pedro.hugo@aluno.ufca.edu.br</li>
+                </ul>
               </footer>
             </div>
           </>
@@ -109,7 +121,7 @@ const App = () => {
               </div>
               <div className=' mt-5 flex flex-col items-center justify-center'>
                 <div className='mb-5 w-full flex justify-start'>
-                  <h2 className='xl:ml-12 ml-5 xl:w-1/6  sm:text-xl text-md md:w-1/4 sm:w-1/3 w-3/5 sm:px-0.5  py-2 rounded-2xl text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-medium'>Pelo oque Lutamos</h2>
+                  <h2 className='xl:ml-12 ml-5 xl:w-1/6  sm:text-xl text-md md:w-1/4 sm:w-1/3 w-3/5 sm:px-0.5  py-2 rounded-2xl text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-medium'>Pelo oque Lutamos !</h2>
                 </div>
                 <p className=' med:xl sm:text-lg text-xs w-4/5 px-2 text-justify'>Somos todos responsáveis por frear e, consequentemente, reduzir as mudanças climáticas em nosso planeta. Mudanças essas que são um dos maiores desafios enfrentados pela nossa geração e por todo o século 21. É consenso entre cientistas do clima que os maiores responsáveis pelas mudanças climáticas são os gases de efeito estufa emitidos principalmente em decorrência da queima de combustíveis fósseis e o desmatamento. A destruição da cobertura vegetal por queimadas, resulta na liberação de dióxido de carbono (CO2) e Compostos Orgânicos Voláteis (VOCs - Volatile Organic Compounds) para atmosfera, reduzindo a absorção do CO2, e assim aumentando o efeito estufa.
                   A Floresta Nacional do Araripe-Apodi, que completou 70 anos em 2016, foi uma das primeiras áreas protegidas do Brasil e a primeira Floresta Nacional do país. Sua criação se deve ao fato de ser fundamental para a manutenção de espécies nativas, pela necessidade de manter as fontes de água do semiárido e impedir o avanço da desertificação no Nordeste.
