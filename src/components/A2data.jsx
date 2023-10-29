@@ -22,64 +22,18 @@ const A2Data = ({ }) => {
             <div className='backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] transition-all flex-col flex items-center h-fit min-h-[20em] w-3/5 flex justify-start text-white bg-gradient-to-r from-purple-800 to-blue-800  rounded-xl pt-4 py-2 pb-6 '>
                 {data ? (
                     <>
-                        {/* {Object.keys(data).map((key) => (
-                            <label className='w-1/2 mb-2 flex items-center text-white bg-gradient-to-r from-purple-800 to-blue-800 rounded-md py-1 pl-3' key={key}>
-                                <h3>{key}</h3>
-                                <input
-                                    value={data[key]}
-                                    className='font-medium bg-transparent focus-visible:outline-0 w-full placeholder:text-white text-white pl-2 py-1 text-md'
-                                />
-                            </label>
-                        ))} */}
-                        <label className='w-4/5 mb-2 flex items-center text-white bg-gradient-to-r from-purple-900 to-blue-900 rounded-md py-1 pl-3'>
-                            <h3>Altitude</h3>
-                            <input
-                                value={"391.91 m"}
-                                className='font-medium bg-transparent focus-visible:outline-0 w-full placeholder:text-white text-white pl-2 py-1 text-md'
-                            />
-                        </label>
-                        <label className='w-4/5 mb-2 flex items-center text-white bg-gradient-to-r from-purple-900 to-blue-900 rounded-md py-1 pl-3'>
-                            <h3>Bateria</h3>
-                            <input
-                                value={"90%"}
-                                className='font-medium bg-transparent focus-visible:outline-0 w-full placeholder:text-white text-white pl-2 py-1 text-md'
-                            />
-                        </label>
-                        <label className='w-4/5 mb-2 flex items-center text-white bg-gradient-to-r from-purple-900 to-blue-900 rounded-md py-1 pl-3'>
-                            <h3>Co²</h3>
-                            <input
-                                value={"384.43 ppm"}
-                                className='font-medium bg-transparent focus-visible:outline-0 w-full placeholder:text-white text-white pl-2 py-1 text-md'
-                            />
-                        </label>
-                        <label className='w-4/5 mb-2 flex items-center text-white bg-gradient-to-r from-purple-900 to-blue-900 rounded-md py-1 pl-3'>
-                            <h3>Pressão</h3>
-                            <input
-                                value={"96708.31 Kpa"}
-                                className='font-medium bg-transparent focus-visible:outline-0 w-full placeholder:text-white text-white pl-2 py-1 text-md'
-                            />
-                        </label>
-                        <label className='w-4/5 mb-2 flex items-center text-white bg-gradient-to-r from-purple-900 to-blue-900 rounded-md py-1 pl-3'>
-                            <h3>Temperatura</h3>
-                            <input
-                                value={"19.64 °C"}
-                                className='font-medium bg-transparent focus-visible:outline-0 w-full placeholder:text-white text-white pl-2 py-1 text-md'
-                            />
-                        </label>
-                        <label className='w-4/5 mb-2 flex items-center text-white bg-gradient-to-r from-purple-900 to-blue-900 rounded-md py-1 pl-3'>
-                            <h3>Umidade</h3>
-                            <input
-                                value={"52.83%"}
-                                className='font-medium bg-transparent focus-visible:outline-0 w-full placeholder:text-white text-white pl-2 py-1 text-md'
-                            />
-                        </label>
-                        <label className='w-4/5 mb-2 flex items-center text-white bg-gradient-to-r from-purple-900 to-blue-900 rounded-md py-1 pl-3'>
-                            <h3>Voc's</h3>
-                            <input
-                                value={"0.0 ppm"}
-                                className='font-medium bg-transparent focus-visible:outline-0 w-full placeholder:text-white text-white pl-2 py-1 text-md'
-                            />
-                        </label>
+                        {
+                            Object.keys(data)
+                                .sort()
+                                .filter(key => key !== "serverTime")
+                                .map(key => (
+                                    <div key={key}>
+                                        <h1>{key}</h1>
+                                        <h1>{data[key]}</h1>
+                                    </div>
+                                ))
+                        }
+
                     </>
                 ) : (
                     <>
