@@ -1,19 +1,61 @@
-import { useState } from 'react';
-import { getData, dbListener } from "../services/firebase";
+import { useEffect, useRef, useState } from 'react';
+import { getData, db, createEndOfDayDate, createStartOfDayDate, getOptions } from "../services/firebase";
+import { collection, onSnapshot, orderBy, limit, query, where } from "firebase/firestore";
+
 import { AiOutlineSearch } from "react-icons/ai"
-const A2Data = ({ }) => {
-    const [id, setId] = useState("")
-    const [data, setData] = useState([])
-    const submit = async () => {
-        console.log(id);
-        let d = await getData(id);
-        if (d) {
-            setData(d);
-        } else {
-            console.log("não existe")
-        }
-    
+import { BiLoaderAlt } from "react-icons/bi"
+
+const A2Data = () => {
+    const [state, setState] = useState(null)
+    const [id, setId] = useState('0');
+    const [histId, setHistId] = useState('');
+    const [data, setData] = useState(null);
+    const [histData, setHistData] = useState([]);
+    const endDate = useRef(null)
+    const removeListener = useRef(null)
+    const startDate = useRef(null)
+    const [years, setY] = useState(null)
+    const [months, setM] = useState(null)
+
+    const handleDataReceived = (newData) => {
+        console.log("Dados atualizados");
+        const attData = { ...newData }
+        setData(attData)
     };
+
+    useEffect(() => {
+        if (years) {
+
+            console.log(Object.keys(years))
+        }
+    }, [years])
+
+
+    const getYOptions = async () => {
+        const options = await getOptions(histId);
+        setY(options);
+    }
+
+
+    const histListener = () => {
+        const q = query(collection(db, "sensors", "data", id), where("serverTime", "<=", `${endDate}`), where("serverTime", ">=", `${startDate}`), orderBy("serverTime", "desc"), limit(1));
+
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            let dbData = null;
+            snapshot.forEach((doc) => {
+                dbData = doc.data();
+            });
+
+            if (dbData) {
+                console.log("data");
+                handleDataReceived(dbData);
+            } else {
+                console.log("Nenhum dado encontrado.");
+            }
+        });
+
+        return unsubscribe;
+    }
 
 
 
@@ -27,10 +69,14 @@ const A2Data = ({ }) => {
                                 .sort()
                                 .filter(key => key !== "serverTime")
                                 .map(key => (
-                                    <div key={key}>
-                                        <h1>{key}</h1>
-                                        <h1>{data[key]}</h1>
-                                    </div>
+                                    <label key={key} className='w-4/5 mb-2 flex items-center text-white bg-gradient-to-r from-purple-900 to-blue-900 rounded-md py-1 pl-3'>
+                                        <h3>{key}</h3>
+                                        <input
+                                            onChange={() => { }}
+                                            value={data[key]}
+                                            className='font-medium bg-transparent focus-visible:outline-0 w-full placeholder:text-white text-white pl-2 py-1 text-md'
+                                        />
+                                    </label>
                                 ))
                         }
 
@@ -38,11 +84,11 @@ const A2Data = ({ }) => {
                 ) : (
                     <>
                         <h2 className='font-medium'>Inicie uma busca</h2>
-                        <input className='pl-2 my-3 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
-                        <input className='pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
-                        <input className='pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
-                        <input className='pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
-                        <input className='pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
+                        <input className='animate-pulse pl-2 my-3 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
+                        <input className='animate-pulse pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
+                        <input className='animate-pulse pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
+                        <input className='animate-pulse pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
+                        <input className='animate-pulse pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
                     </>
                 )}
             </div>
@@ -55,31 +101,95 @@ const A2Data = ({ }) => {
                     className='  font-medium bg-transparent focus-visible:outline-0 w-full placeholder:text-white text-white pl-2 py-1  text-md '
                     onChange={(e) => { setId(e.currentTarget.value) }} />
             </label>
-            <button
-                className='backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-1/3 font-medium text-white rounded-md bg-gradient-to-r from-purple-800 to-blue-800 py-1'
-                onClick={submit}>Buscar</button>
+            {
+                state ? (
+                    <>
+                        <button className=' grid-cols-5 backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-1/3 font-medium text-white rounded-md bg-gradient-to-r from-purple-800 to-blue-800 py-1'
+                            onClick={() => {
+                                if (removeListener.current) {
+                                    removeListener.current(); // Call the function to unsubscribe
+                                    removeListener.current = null; // Reset the ref
+                                }
+                                setState(null);
+                            }}><BiLoaderAlt className='text-xl font-medium align-self-center ml-2 animate-spin col-span-2 ' /><p className=''>Parar</p></button>
+                    </>
+                ) : (
+                    <>
+                        <button className='backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-1/3 font-medium text-white rounded-md bg-gradient-to-r from-purple-800 to-blue-800 py-1'
+                            onClick={() => {
+                                const unsubscribe = onSnapshot(query(collection(db, "sensors", "data", id), orderBy("serverTime", "desc"), limit(1)), (snapshot) => {
+                                    let dbData = null;
+                                    snapshot.forEach((doc) => {
+                                        dbData = doc.data();
+                                    });
+
+                                    if (dbData) {
+                                        setData(dbData);
+                                    } else {
+                                        console.log("Nenhum dado encontrado.");
+                                    }
+
+                                });
+                                removeListener.current = unsubscribe
+                                setState(true)
+                            }}>Buscar</button>
+                    </>
+                )
+            }
+
         </div>
 
         <div className=' my-6 w-full flex flex-col items-center'>
             <div className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] transition-all flex-col flex items-center h-fit min-h-[20em] w-3/5 flex justify-start text-white bg-gradient-to-r from-purple-800 to-blue-800  rounded-xl pt-4 py-2 pb-6 '>
-                {data ? (
+                {histData.length > 0 ? (
                     <>
                     </>
                 ) : (
                     <>
-                        <h2 className='font-medium'>Acessar Historico</h2>
-                        <input placeholder='Insira o Id do sensor' className='placeholder:text-white py-1 pl-2 my-3 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
-                        <input placeholder='Insira o mês' className='placeholder:text-white py-1 pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
-                        <input placeholder='Insira o dia' className='placeholder:text-white py-1 pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
-                        <input placeholder='Insira o ano' className='placeholder:text-white py-1 pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
+                        <h2 className='font-medium'>Histórico</h2>
+                        <input className='animate-pulse pl-2 my-3 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
+                        <input className='animate-pulse pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
+                        <input className='animate-pulse pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
+                        <input className='animate-pulse pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
+                        <input className='animate-pulse pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
                     </>
                 )}
             </div>
         </div>
         <div className='mb-20 w-full flex items-center flex-col '>
+            {data ? (
+                <>
+                </>
+            ) : (
+                <>
+                    <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-1/2 mb-2 flex items-center text-white bg-gradient-to-r from-purple-800 to-blue-800  rounded-md py-1 pl-3 '>
+                        <AiOutlineSearch className='text-xl' />
+                        <input placeholder='Insira o Id do sensor'
+                            className='  font-medium bg-transparent focus-visible:outline-0 w-full placeholder:text-white text-white pl-2 py-1  text-md '
+                            onChange={(e) => { setHistId(e.currentTarget.value) }} />
+                    </label>
+                    {
+                        years ? (
+                            <>
+                                <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-1/2 mb-2 flex items-center text-white bg-gradient-to-r from-purple-800 to-blue-800  rounded-md py-1 pl-3 '>
+                                    <select className='font-medium bg-transparent focus-visible:outline-0 w-11/12 placeholder:text-white text-white px-2 py-1 text-md'>
+                                            <option defaultValue="" disabled selected hidden>Escolha um ano</option>
+                                        {Object.keys(years).map((key) => (
+                                            <option value={key} key={key}>{key}</option>
+                                        ))}
+                                    </select>
+                                </label>
+                            </>
+                        ) : (
+                            <></>
+                        )
+                    }
+                </>
+            )}
             <button
                 className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-1/3 font-medium text-white rounded-md bg-gradient-to-r from-purple-800 to-blue-800 py-1'
-                onClick={submit}>Buscar</button>
+                onClick={getYOptions}
+            >Iniciar busca</button>
         </div>
 
     </>
