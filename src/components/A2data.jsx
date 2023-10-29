@@ -4,6 +4,7 @@ import { collection, onSnapshot, orderBy, limit, query, where } from "firebase/f
 
 import { AiOutlineSearch } from "react-icons/ai"
 import { BiLoaderAlt } from "react-icons/bi"
+import { TbFileExport } from "react-icons/tb"
 
 const A2Data = () => {
     const [state, setState] = useState(null)
@@ -16,6 +17,7 @@ const A2Data = () => {
     const startDate = useRef(null)
     const [years, setY] = useState(null)
     const [months, setM] = useState(null)
+    const yearOpt = useRef(null)
 
     const handleDataReceived = (newData) => {
         console.log("Dados atualizados");
@@ -104,14 +106,14 @@ const A2Data = () => {
             {
                 state ? (
                     <>
-                        <button className=' grid-cols-5 backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-1/3 font-medium text-white rounded-md bg-gradient-to-r from-purple-800 to-blue-800 py-1'
+                        <button className=' grid-cols-3 grid backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-1/3 font-medium text-white rounded-md bg-gradient-to-r from-purple-800 to-blue-800 py-1'
                             onClick={() => {
                                 if (removeListener.current) {
                                     removeListener.current(); // Call the function to unsubscribe
                                     removeListener.current = null; // Reset the ref
                                 }
                                 setState(null);
-                            }}><BiLoaderAlt className='text-xl font-medium align-self-center ml-2 animate-spin col-span-2 ' /><p className=''>Parar</p></button>
+                            }}><BiLoaderAlt className='text-xl font-medium align-self-center ml-5 animate-spin cols-span-3 ' /><p className=''>Parar</p></button>
                     </>
                 ) : (
                     <>
@@ -172,24 +174,54 @@ const A2Data = () => {
                         years ? (
                             <>
                                 <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-1/2 mb-2 flex items-center text-white bg-gradient-to-r from-purple-800 to-blue-800  rounded-md py-1 pl-3 '>
-                                    <select className='font-medium bg-transparent focus-visible:outline-0 w-11/12 placeholder:text-white text-white px-2 py-1 text-md'>
-                                            <option defaultValue="" disabled selected hidden>Escolha um ano</option>
+                                    <select onChange={(e) => {
+                                        console.log(e.target.value)
+                                        yearOpt.current = e.target.value
+                                    }} className='font-medium bg-transparent focus-visible:outline-0 w-11/12 placeholder:text-white text-white px-2 py-1 text-md'>
+                                        <option defaultValue="" disabled selected hidden>Escolha um ano</option>
                                         {Object.keys(years).map((key) => (
                                             <option value={key} key={key}>{key}</option>
                                         ))}
                                     </select>
                                 </label>
+                                {yearOpt ? (
+                                    <>
+                                        <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-1/2 mb-2 flex items-center text-white bg-gradient-to-r from-purple-800 to-blue-800  rounded-md py-1 pl-3 '>
+                                            <select onChange={(e) => {
+                                                // console.log(e.target.value)
+                                                // yearOpt.current = e.target.value
+                                            }} className='font-medium bg-transparent focus-visible:outline-0 w-11/12 placeholder:text-white text-white px-2 py-1 text-md'>
+                                                <option defaultValue="" disabled selected hidden>Escolha um mês</option>
+                                                {Object.keys(years[`${yearOpt.current}`]).map((key) => (
+                                                    <option value={key} key={key}>{key}</option>
+                                                ))}
+                                            </select>
+                                        </label>
+                                    </>
+                                ) : (
+                                    <></>
+                                )
+
+                                }
                             </>
                         ) : (
                             <></>
                         )
                     }
+
                 </>
             )}
-            <button
-                className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-1/3 font-medium text-white rounded-md bg-gradient-to-r from-purple-800 to-blue-800 py-1'
-                onClick={getYOptions}
-            >Iniciar busca</button>
+            <div className='w-full flex items-center justify-center'>
+
+                <button
+                    className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-1/3 font-medium text-white rounded-md bg-gradient-to-r from-purple-800 to-blue-800 py-1'
+                    onClick={getYOptions}
+                >Iniciar busca</button>
+                <button
+                    className='ml-4 my-2 py-2 flex items-center justify-center backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-10 font-medium text-white rounded-md bg-gradient-to-r from-blue-800 to-purple-800 py-1'
+                ><TbFileExport className='text-md font-medium' /></button>
+            </div>
+
         </div>
 
     </>
