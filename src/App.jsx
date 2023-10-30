@@ -176,14 +176,14 @@ const App = () => {
                 <div className='mb-5 w-full flex justify-start'>
                   <h2 className='ml-5 xl:ml-12 sm:text-xl text-md xl:w-1/6 md:w-1/4 sm:w-1/3 w-3/5 sm:px-0.5  py-2 rounded-2xl text-center bg-gradient-to-r from-emerald-500 to-[#42eb29] text-white font-medium'>O Araripe está em chamas!</h2>
                 </div>
-                <div className=' flex py-3 justify-center w-full bg-black text-white'>
-                  <p className='indent-9 med:xl sm:text-lg md:text-xl text-xs w-4/5 text-justify'> A cada dia se torna mais alarmante a situação ambiental da Chapada do Araripe, aqui estão algumas das mais preocupantes e recentes notícias deploráveis do estado em que esta floresta se encontra.</p>
+                <div className=' flex py-3 justify-center w-full bg-red-700 text-white'>
+                  <p className='indent-2 med:xl sm:text-lg md:text-xl text-xs w-4/5 text-justify'> A situação ambiental da Chapada do Araripe torna-se mais alarmante a cada dia que se passa , aqui estão algumas das mais preocupantes e recentes notícias deploráveis do estado de  nossa floresta.</p>
                 </div>
                 <div className='mb-5 sm:flex-row justify-center w-full flex flex-col items-center'>
                   <img className=' xl:w-1/3 rounded-lg pt-2 md:w-1/4 sm:w-1/2 sm:px-3  w-11/12' src='
                   https://s2-g1.glbimg.com/v48XBGXCLRSuaHUsUAKuEVQ7d_0=/0x0:1040x780/1008x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2020/A/H/AcDMmMSHirwwgF6vZw0g/incendio-fogo.jpeg'></img>
                   <div className='md:w-1/3 sm:w-1/2 w-full flex flex-col items-center'>
-                    <p className='mb-3 w-11/12 sm:text-xl align-start text-lg font-medium text-black'>
+                    <p className='mb-3 mt-2 w-11/12 sm:text-xl align-start text-lg font-medium text-black'>
                       Área atingida por incêndio na Floresta Nacional do Araripe pode levar até 30 anos para ser recuperada no Ceará <br />
                     </p>
                     <p className='mb-3 w-11/12 sm:text-lg align-start text-sm text-black'>
@@ -191,7 +191,7 @@ const App = () => {
                     </p>
                   </div>
                 </div>
-                <a className='font-medium sm:text-lg text-md' target='blank' href='https://g1.globo.com/ce/ceara/noticia/2020/01/04/area-atingida-por-incendio-na-floresta-nacional-do-araripe-pode-levar-ate-30-anos-para-ser-recuperada-no-ceara.ghtml'>
+                <a className='animate-bounce font-medium sm:text-lg text-md' target='blank' href='https://g1.globo.com/ce/ceara/noticia/2020/01/04/area-atingida-por-incendio-na-floresta-nacional-do-araripe-pode-levar-ate-30-anos-para-ser-recuperada-no-ceara.ghtml'>
                   clique aqui para acessar a noticia
                 </a>
               </div>

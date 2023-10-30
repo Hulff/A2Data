@@ -11,7 +11,9 @@ function NavBar() {
             <img onClick={() => {
                 navigate("/")
             }} src={test} alt="logo" className="w-auto h-16 " />
-            <h1 className=" w-auto font-poppins px-2 text-sm sm:text-base text-white font-medium">Araripe Atmospheric Database</h1>
+            <h1 onClick={() => {
+                navigate("/")
+            }}  className=" w-auto font-poppins px-2 text-sm sm:text-base text-white font-medium">Araripe Atmospheric Database</h1>
             <ul className="list-none sm:flex hidden justify-end items-center flex-1">
                 {/* {navLinks.map((nav, index) => (
                     <li key={nav.id} className={`font-poppins font-normal cursor-pointer text-[16px] text-white ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}>
