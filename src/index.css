@@ -23,6 +23,13 @@ body {
 ::-webkit-scrollbar-button {
   display: none;
 }
+.hist::-webkit-scrollbar {
+  width:4px;
+}
+.hist::-webkit-scrollbar-thumb {
+  background: #00000093;
+  border-radius: 3px;
+}
 :root {
   --black-gradient: linear-gradient(144.39deg,
       #ffffff -278.56%,

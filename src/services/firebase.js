@@ -6,11 +6,12 @@ import { getFirestore, collection, getDocs, onSnapshot, orderBy, limit, query } 
 const firebaseConfig = {
     apiKey: "AIzaSyAkV7_nu0LT2Ya8GQzsSYP5mITLGKEuCTo",
     authDomain: "a2dataapi.firebaseapp.com",
+    databaseURL: "https://a2dataapi-default-rtdb.firebaseio.com",
     projectId: "a2dataapi",
     storageBucket: "a2dataapi.appspot.com",
     messagingSenderId: "17389564071",
     appId: "1:17389564071:web:f227c75e8bbfe1be5beb82",
-    measurementId: "G-YRM4GW93B5",
+    measurementId: "G-YRM4GW93B5"
 };
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app)

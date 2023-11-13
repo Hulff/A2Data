@@ -16,8 +16,10 @@ const A2Data = () => {
     const removeListener = useRef(null)
     const startDate = useRef(null)
     const [years, setY] = useState(null)
-    const [months, setM] = useState(null)
-    const yearOpt = useRef(null)
+    const [monthOpt, setMOp] = useState(null)
+    const [yearOpt, setYOp] = useState(null)
+    const [sDay, setSday] = useState(null)
+    const [eDay, setEday] = useState(null)
 
     const handleDataReceived = (newData) => {
         console.log("Dados atualizados");
@@ -27,8 +29,8 @@ const A2Data = () => {
 
     useEffect(() => {
         if (years) {
-
             console.log(Object.keys(years))
+            years["2023"]
         }
     }, [years])
 
@@ -38,26 +40,6 @@ const A2Data = () => {
         setY(options);
     }
 
-
-    const histListener = () => {
-        const q = query(collection(db, "sensors", "data", id), where("serverTime", "<=", `${endDate}`), where("serverTime", ">=", `${startDate}`), orderBy("serverTime", "desc"), limit(1));
-
-        const unsubscribe = onSnapshot(q, (snapshot) => {
-            let dbData = null;
-            snapshot.forEach((doc) => {
-                dbData = doc.data();
-            });
-
-            if (dbData) {
-                console.log("data");
-                handleDataReceived(dbData);
-            } else {
-                console.log("Nenhum dado encontrado.");
-            }
-        });
-
-        return unsubscribe;
-    }
 
 
 
@@ -129,6 +111,7 @@ const A2Data = () => {
                                         setData(dbData);
                                     } else {
                                         console.log("Nenhum dado encontrado.");
+                                        unsubscribe()
                                     }
 
                                 });
@@ -142,7 +125,7 @@ const A2Data = () => {
         </div>
 
         <div className=' my-6 w-full flex flex-col items-center'>
-            <div className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] transition-all flex-col flex items-center h-fit min-h-[20em] w-3/5 flex justify-start text-white bg-gradient-to-r from-purple-800 to-blue-800  rounded-xl pt-4 py-2 pb-6 '>
+            <div className='hist backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] transition-all flex-col flex items-center max-h-20 min-h-[20em] w-3/5 flex justify-start text-white bg-gradient-to-r from-purple-800 to-blue-800  rounded-xl pt-4 py-2 pb-6 overflow-y-scroll '>
                 {histData.length > 0 ? (
                     <>
                     </>
@@ -154,6 +137,7 @@ const A2Data = () => {
                         <input className='animate-pulse pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
                         <input className='animate-pulse pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
                         <input className='animate-pulse pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
+
                     </>
                 )}
             </div>
@@ -176,27 +160,67 @@ const A2Data = () => {
                                 <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-1/2 mb-2 flex items-center text-white bg-gradient-to-r from-purple-800 to-blue-800  rounded-md py-1 pl-3 '>
                                     <select onChange={(e) => {
                                         console.log(e.target.value)
-                                        yearOpt.current = e.target.value
+                                        setYOp(e.target.value)
                                     }} className='font-medium bg-transparent focus-visible:outline-0 w-11/12 placeholder:text-white text-white px-2 py-1 text-md'>
-                                        <option defaultValue="" disabled selected hidden>Escolha um ano</option>
+                                        <option className='text-black' defaultValue="" disabled selected hidden>Escolha um ano</option>
                                         {Object.keys(years).map((key) => (
-                                            <option value={key} key={key}>{key}</option>
+                                            <option className='text-black' value={key} key={key}>{key}</option>
                                         ))}
                                     </select>
                                 </label>
+
                                 {yearOpt ? (
                                     <>
                                         <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-1/2 mb-2 flex items-center text-white bg-gradient-to-r from-purple-800 to-blue-800  rounded-md py-1 pl-3 '>
                                             <select onChange={(e) => {
-                                                // console.log(e.target.value)
-                                                // yearOpt.current = e.target.value
+                                                console.log(e.target.value)
+                                                setMOp(e.target.value)
                                             }} className='font-medium bg-transparent focus-visible:outline-0 w-11/12 placeholder:text-white text-white px-2 py-1 text-md'>
-                                                <option defaultValue="" disabled selected hidden>Escolha um mês</option>
-                                                {Object.keys(years[`${yearOpt.current}`]).map((key) => (
-                                                    <option value={key} key={key}>{key}</option>
+                                                <option className='text-black' defaultValue="" disabled selected hidden>Escolha um mês</option>
+                                                {Object.keys(years[`${yearOpt}`]).map((key) => (
+                                                    <option className='text-black' value={key} key={key}>{key}</option>
                                                 ))}
                                             </select>
                                         </label>
+                                        {monthOpt ? (
+                                            <>
+                                                <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-1/2 mb-2 flex items-center text-white bg-gradient-to-r from-purple-800 to-blue-800  rounded-md py-1 pl-3 '>
+                                                    <select onChange={(e) => {
+                                                        console.log(e.target.value)
+                                                        setSday(e.target.value)
+                                                    }} className='font-medium bg-transparent focus-visible:outline-0 w-11/12 placeholder:text-white text-white px-2 py-1 text-md'>
+                                                        <option className='text-black' defaultValue="" disabled selected hidden>Dia de Inicio</option>
+                                                        {Object.keys(years[`${yearOpt}`][`${monthOpt}`]).map((key) => (
+                                                            <option className='text-black' value={key} key={key}>{key}</option>
+                                                        ))}
+                                                    </select>
+                                                </label>
+                                                {sDay ? (
+                                                    <>
+                                                        <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-1/2 mb-2 flex items-center text-white bg-gradient-to-r from-purple-800 to-blue-800  rounded-md py-1 pl-3 '>
+                                                            <select onChange={(e) => {
+                                                                console.log(e.target.value)
+                                                                setEday(e.target.value)
+                                                            }} className='font-medium bg-transparent focus-visible:outline-0 w-11/12 placeholder:text-white text-white px-2 py-1 text-md'>
+                                                                <option className='text-black' defaultValue="" disabled selected hidden>Dia final</option>
+                                                                {Object.keys(years[`${yearOpt}`][`${monthOpt}`]).filter(key => parseFloat(key) >= parseFloat(sDay)).map((key) => (
+                                                                    <option className='text-black' value={key} key={key}>{key}</option>
+                                                                ))}
+                                                            </select>
+                                                        </label>
+                                                    </>
+                                                ) : (
+                                                    <></>
+                                                )
+
+                                                }
+
+                                            </>
+                                        ) : (
+                                            <></>
+                                        )
+
+                                        }
                                     </>
                                 ) : (
                                     <></>
@@ -212,11 +236,22 @@ const A2Data = () => {
                 </>
             )}
             <div className='w-full flex items-center justify-center'>
-
-                <button
-                    className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-1/3 font-medium text-white rounded-md bg-gradient-to-r from-purple-800 to-blue-800 py-1'
-                    onClick={getYOptions}
-                >Iniciar busca</button>
+                {eDay && sDay ? (
+                    <>
+                        <button
+                            className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-1/3 font-medium text-white rounded-md bg-gradient-to-r from-purple-800 to-blue-800 py-1'
+                            onClick={getYOptions}
+                        >Concluir busca</button>
+                    </>
+                ) : (
+                    <>
+                        <button
+                            className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-1/3 font-medium text-white rounded-md bg-gradient-to-r from-purple-800 to-blue-800 py-1'
+                            onClick={getYOptions}
+                        >Iniciar busca</button>
+                    </>
+                )
+                }
                 <button
                     className='ml-4 my-2 py-2 flex items-center justify-center backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-10 font-medium text-white rounded-md bg-gradient-to-r from-blue-800 to-purple-800 py-1'
                 ><TbFileExport className='text-md font-medium' /></button>

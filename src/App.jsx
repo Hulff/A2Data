@@ -19,7 +19,7 @@ const App = () => {
       () => navigate("/A2Data"),
       () => navigate("/O_Araripe_esta_em_chamas")
     ]);
-  }, []); // Empt
+  }, []); 
   return (
 
     <Routes>
@@ -53,7 +53,7 @@ const App = () => {
                 <iframe className="w-4/5 h-64 sm:w-1/2 sm:h-80 md:w-1/3 " src="https://www.youtube.com/embed/mDkcXrNBXLE?si=1BENys8BQdy2f59_" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
               </div>
               {/* contatos */}
-              <div className='h-1/2  flex sm:flex-row flex-wrap flex-col items-center justify-center  '>
+              <div className='h-1/2  flex sm:flex-row flex-wrap flex-col items-start justify-center  '>
                 <div className='flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
                   <h3>Orientador</h3>
                   <img src='https://i.ibb.co/WkMLxHg/download.png' className="w-1/3 h-30 rounded-full mb-2" />
@@ -121,7 +121,7 @@ const App = () => {
               </div>
               <div className=' mt-5 flex flex-col items-center justify-center'>
                 <div className='mb-5 w-full flex justify-start'>
-                  <h2 className='xl:ml-12 ml-5 xl:w-1/6  sm:text-xl text-md md:w-1/4 sm:w-1/3 w-3/5 sm:px-0.5  py-2 rounded-2xl text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-medium'>Pelo oque Lutamos !</h2>
+                  <h2 className='xl:ml-12 ml-5 xl:w-1/6  sm:text-xl text-md md:w-1/4 sm:w-1/3 w-3/5 sm:px-0.5  py-2 rounded-2xl text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-medium'>Pelo o que Lutamos !</h2>
                 </div>
                 <p className=' med:xl sm:text-lg text-xs w-4/5 px-2 text-justify'>Somos todos responsáveis por frear e, consequentemente, reduzir as mudanças climáticas em nosso planeta. Mudanças essas que são um dos maiores desafios enfrentados pela nossa geração e por todo o século 21. É consenso entre cientistas do clima que os maiores responsáveis pelas mudanças climáticas são os gases de efeito estufa emitidos principalmente em decorrência da queima de combustíveis fósseis e o desmatamento. A destruição da cobertura vegetal por queimadas, resulta na liberação de dióxido de carbono (CO2) e Compostos Orgânicos Voláteis (VOCs - Volatile Organic Compounds) para atmosfera, reduzindo a absorção do CO2, e assim aumentando o efeito estufa.
                   A Floresta Nacional do Araripe-Apodi, que completou 70 anos em 2016, foi uma das primeiras áreas protegidas do Brasil e a primeira Floresta Nacional do país. Sua criação se deve ao fato de ser fundamental para a manutenção de espécies nativas, pela necessidade de manter as fontes de água do semiárido e impedir o avanço da desertificação no Nordeste.
