@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { getData, db, createEndOfDayDate, createStartOfDayDate, getOptions } from "../services/firebase";
+import { getData, db,getHistData, getOptions } from "../services/firebase";
 import { collection, onSnapshot, orderBy, limit, query, where } from "firebase/firestore";
 
 import { AiOutlineSearch } from "react-icons/ai"
@@ -21,16 +21,10 @@ const A2Data = () => {
     const [sDay, setSday] = useState(null)
     const [eDay, setEday] = useState(null)
 
-    const handleDataReceived = (newData) => {
-        console.log("Dados atualizados");
-        const attData = { ...newData }
-        setData(attData)
-    };
 
     useEffect(() => {
         if (years) {
             console.log(Object.keys(years))
-            years["2023"]
         }
     }, [years])
 
@@ -38,6 +32,11 @@ const A2Data = () => {
     const getYOptions = async () => {
         const options = await getOptions(histId);
         setY(options);
+    }
+    const getHist = async () => {
+        console.log(eDay,sDay, monthOpt, yearOpt)
+        const histData1 = await getHistData(histId,sDay,eDay,monthOpt,yearOpt)
+        console.log(histData1)
     }
 
 
@@ -240,7 +239,7 @@ const A2Data = () => {
                     <>
                         <button
                             className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] w-1/3 font-medium text-white rounded-md bg-gradient-to-r from-purple-800 to-blue-800 py-1'
-                            onClick={getYOptions}
+                            onClick={getHist}
                         >Concluir busca</button>
                     </>
                 ) : (

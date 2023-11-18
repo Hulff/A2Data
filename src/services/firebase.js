@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, onSnapshot, orderBy, limit, query } from "firebase/firestore";
+import { getFirestore, collection, getDocs, onSnapshot, where, orderBy, limit, query } from "firebase/firestore";
 
 // Add a new document in collection "cities"
 
@@ -31,22 +31,6 @@ export async function getData(serial) {
         console.error("Error fetching data:", error);
         return null;
     }
-}
-export function createStartOfDayDate(day, month, year) {
-    const date = new Date(Date.UTC(year, month - 1, day));
-    if (!isNaN(date)) {
-        date.setMinutes(date.getMinutes());
-        return date;
-    }
-    return null;
-}
-export function createEndOfDayDate(day, month, year) {
-    const date = new Date(Date.UTC(year, month - 1, day, 23, 59, 59, 999));
-    if (!isNaN(date)) {
-        date.setMinutes(date.getMinutes());
-        return date;
-    }
-    return null;
 }
 // acessar possibilidade de anos,meses e dias
 
@@ -114,5 +98,37 @@ export async function getOptions(serial) {
         return anos
     } catch (error) {
         console.error("Erro ao acessar o Firebase: " + error);
+    }
+}
+
+export async function getHistData(serial, startDate, endDate,m,y) {
+    try {
+        console.log(serial)
+        // Definir o primeiro dia e o último dia do mês para o ano e mês especificados
+        const firstDay = new Date(Date.UTC(y, m - 1, startDate, 0, 0, 0, 0));
+        const lastDay = new Date(Date.UTC(y, m - 1, endDate, 23, 59, 59, 999));
+
+        // Criar uma consulta para obter dados para o serial e dentro do intervalo de datas,
+        // ordenando-os pelo campo serverTime
+        const q = query(
+            collection(db, "sensors", "data", serial),
+            where("serverTime", ">=", firstDay),
+            where("serverTime", "<=", lastDay),
+            orderBy("serverTime", "asc") // ou "desc" para ordenação descendente, dependendo das suas necessidades
+        );
+
+        const querySnapshot = await getDocs(q);
+        const data = querySnapshot.docs.map((doc) => doc.data());
+
+        console.log("Fetched Data by Year and Month:", data);
+
+        if (data.length > 0) {
+            return data;
+        } else {
+            return null;
+        }
+    } catch (error) {
+        console.error("Error fetching data by year and month:", error);
+        return null;
     }
 }
