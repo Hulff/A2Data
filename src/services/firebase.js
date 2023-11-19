@@ -125,7 +125,7 @@ export async function getHistData(serial, startDate, endDate,m,y) {
         if (data.length > 0) {
             return data;
         } else {
-            return null;
+            return [];
         }
     } catch (error) {
         console.error("Error fetching data by year and month:", error);
