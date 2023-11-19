@@ -12,6 +12,7 @@ const A2Data = () => {
     const [histId, setHistId] = useState('');
     const [data, setData] = useState(null);
     const [histData, setHistData] = useState([]);
+    const [histState, setHistState] = useState(null)
     const removeListener = useRef(null)
     const [years, setY] = useState(null)
     const [monthOpt, setMOp] = useState(null)
@@ -23,11 +24,11 @@ const A2Data = () => {
 
     useEffect(() => {
         console.log(histData)
-
     }, [histData])
 
 
     const getYOptions = async () => {
+        setHistState(true)
         const options = await getOptions(histId);
         setY(options);
     }
@@ -37,8 +38,33 @@ const A2Data = () => {
         const histData1 = await getHistData(histId, sDay, eDay, monthOpt, yearOpt)
         setHistData(histData1)
     }
+    const resetHist = () => {
+        setHistState(null)
+        setY(null)
+        setYOp(null)
+        setMOp(null)
+        setSday(null)
+        setEday(null)
+        setHistData([])
+    }
 
+    const convertServerTime = (serverTimeSeconds, serverTimeNanoseconds) => {
+        const timestamp = serverTimeSeconds + serverTimeNanoseconds / 1e9;
+        const date = new Date(timestamp * 1000);
 
+        const options = {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            timeZone: 'America/Sao_Paulo', // ajuste conforme necessário
+        };
+
+        const formattedDate = date.toLocaleString('pt-BR', options);
+        return formattedDate;
+    };
 
 
     return (<>
@@ -46,22 +72,29 @@ const A2Data = () => {
             <div className='backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] transition-all flex-col flex items-center h-fit min-h-[20em] md:w-3/12 sm:w-4/12 w-3/4 flex justify-start text-white bg-gradient-to-r from-purple-800 to-blue-800  rounded-xl pt-4 py-2 pb-6 '>
                 {data ? (
                     <>
-                        {
-                            Object.keys(data)
-                                .sort()
-                                .filter(key => key !== "serverTime")
-                                .map(key => (
-                                    <label key={key} className='w-4/5 mb-2 flex items-center text-white bg-gradient-to-r from-purple-900 to-blue-900 rounded-md py-1 pl-3'>
-                                        <h3>{key}</h3>
-                                        <input
-                                            onChange={() => { }}
-                                            value={data[key]}
-                                            className='font-medium bg-transparent focus-visible:outline-0 w-full placeholder:text-white text-white pl-2 py-1 text-md'
-                                        />
-                                    </label>
-                                ))
-                        }
+                        {Object.keys(data)
+                            .filter((key) => key !== "serverTime") // Filtra todas as chaves, exceto "serverTime"
+                            .map((key) => (
+                                <label key={key} className='w-4/5 mb-2 flex items-center text-white bg-gradient-to-r from-purple-900 to-blue-900 rounded-md py-1 pl-3'>
+                                    <h3>{key}</h3>
+                                    <input
+                                        onChange={() => { }}
+                                        value={data[key]}
+                                        className='font-medium bg-transparent focus-visible:outline-0 w-full placeholder:text-white text-white pl-2 py-1 text-md'
+                                    />
+                                </label>
+                            ))}
+                        {/* Adiciona "serverTime" por último se existir */}
+                        {data.serverTime && (
+                            <label className='w-4/5 mb-2 flex items-center text-white bg-gradient-to-r from-purple-900 to-blue-900 rounded-md py-1 pl-3'>
 
+                                <input
+                                    onChange={() => { }}
+                                    value={convertServerTime(data.serverTime.seconds, data.serverTime.nanoseconds)}
+                                    className='font-medium bg-transparent focus-visible:outline-0 w-full placeholder:text-white text-white pl-2 py-1 text-sm'
+                                />
+                            </label>
+                        )}
                     </>
                 ) : (
                     <>
@@ -131,7 +164,7 @@ const A2Data = () => {
         </div>
 
         <div className=' my-6 w-full flex flex-col items-center'>
-            <div className='hist backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] transition-all flex-col flex items-center max-h-20 min-h-[20em] md:w-3/12 sm:w-4/12 w-3/4 flex justify-start text-white bg-gradient-to-r from-purple-800 to-blue-800  rounded-xl pt-4 py-2 pb-6 overflow-y-scroll '>
+            <div className='hist backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] transition-all flex-col flex items-center max-h-20 min-h-[30em] md:w-3/12 sm:w-4/12 w-3/4 flex justify-start text-white bg-gradient-to-r from-purple-800 to-blue-800  rounded-xl pt-4 py-2 pb-6 overflow-y-scroll '>
                 {histData.length > 0 ? (
                     <>
                         {
@@ -160,8 +193,11 @@ const A2Data = () => {
                     </>
                 ) : (
                     <>
-                        <h2 className='font-medium'>Histórico</h2>
+                        <h2 className='font-medium my-4' >Histórico</h2>
                         <input className='animate-pulse pl-2 my-3 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
+                        <input className='animate-pulse pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
+                        <input className='animate-pulse pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
+                        <input className='animate-pulse pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
                         <input className='animate-pulse pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
                         <input className='animate-pulse pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
                         <input className='animate-pulse pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
@@ -177,7 +213,10 @@ const A2Data = () => {
                     <AiOutlineSearch className='text-xl' />
                     <input placeholder='Insira o Id do sensor'
                         className='  font-medium bg-transparent focus-visible:outline-0 w-fit placeholder:text-white text-white pl-2 py-1  text-md '
-                        onChange={(e) => { setHistId(e.currentTarget.value) }} />
+                        onChange={(e) => {
+                            setHistId(e.currentTarget.value)
+                            resetHist()
+                        }} />
                 </label>
                 {
                     years ? (
@@ -265,17 +304,33 @@ const A2Data = () => {
                 {eDay && sDay ? (
                     <>
                         <button
-                            className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)]  md:w-2/12 sm:w-1/5 w-1/2 font-medium text-white rounded-md bg-gradient-to-r from-purple-800 to-blue-800 py-1'
+                            className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)]  md:w-2/12 sm:w-1/5 w-1/2 font-medium text-white rounded-md bg-gradient-to-r from-purple-800 to-blue-800 py-2'
                             onClick={getHist}
                         >Concluir busca</button>
                     </>
                 ) : (
                     <>
-                        <button
-                            className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] md:w-2/12 sm:w-1/5 w-1/2 font-medium text-white rounded-md bg-gradient-to-r from-purple-800 to-blue-800 py-1'
-                            onClick={getYOptions}
-                        >Iniciar busca</button>
+                        {
+                            histState ? (<>
+                                <>
+
+                                    <button
+                                        className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] md:w-2/12 flex flex-col items-center sm:w-1/5 w-1/2 font-medium text-white rounded-md bg-gradient-to-r from-purple-800 to-blue-800 py-2'
+
+                                    ><BiLoaderAlt className='text-xl font-medium animate-spin cols-span-3 ' /></button>
+                                </>
+                            </>) : (
+                                <>
+
+                                    <button
+                                        className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] md:w-2/12 sm:w-1/5 w-1/2 font-medium text-white rounded-md bg-gradient-to-r from-purple-800 to-blue-800 py-2'
+                                        onClick={getYOptions}
+                                    >Iniciar busca</button>
+                                </>
+                            )
+                        }
                     </>
+
                 )
                 }
                 <button

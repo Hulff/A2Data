@@ -114,14 +114,11 @@ export async function getHistData(serial, startDate, endDate,m,y) {
             collection(db, "sensors", "data", serial),
             where("serverTime", ">=", firstDay),
             where("serverTime", "<=", lastDay),
-            orderBy("serverTime", "asc") // ou "desc" para ordenação descendente, dependendo das suas necessidades
+            orderBy("serverTime", "desc") // ou "desc" para ordenação descendente, dependendo das suas necessidades
         );
 
         const querySnapshot = await getDocs(q);
         const data = querySnapshot.docs.map((doc) => doc.data());
-
-        console.log("Fetched Data by Year and Month:", data);
-
         if (data.length > 0) {
             return data;
         } else {
