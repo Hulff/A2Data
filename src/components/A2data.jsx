@@ -20,6 +20,7 @@ const A2Data = () => {
     const [sDay, setSday] = useState(null)
     const [eDay, setEday] = useState(null)
     const eDaySelect = useRef(null)
+    const sDaySelect = useRef(null)
 
 
     useEffect(() => {
@@ -90,7 +91,7 @@ const A2Data = () => {
         <div className='w-full flex sm:items-start sm:flex-row flex-col items-center'>
             <div className='w-full sm:w-1/2'>
                 <div className=' my-6 w-full flex flex-col items-center'>
-                    <div className='backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] transition-all flex-col flex items-center h-fit min-h-[30em] md:w-3/12 sm:w-9/12 w-3/4 flex justify-start text-white bg-gradient-to-r from-purple-800 to-blue-800  rounded-xl pt-4 py-2 pb-6 '>
+                    <div className='backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] transition-all flex-col flex items-center h-fit min-h-[30em] md:w-6/12 sm:w-9/12 w-3/4 flex justify-start text-white bg-gradient-to-r from-purple-800 to-blue-800  rounded-xl pt-4 py-2 pb-6 '>
                         {data ? (
                             <>
                                 {Object.keys(data)
@@ -133,7 +134,6 @@ const A2Data = () => {
                         )}
                     </div>
                 </div>
-
                 <div className='mb-10 w-full flex items-center flex-col '>
                     <label className='min-h-fit backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)]  mb-2 flex items-center text-white bg-gradient-to-r from-purple-800 to-blue-800  rounded-md py-1 pl-3 '>
                         <AiOutlineSearch className='text-xl' />
@@ -191,7 +191,7 @@ const A2Data = () => {
             <div className='w-full sm:w-1/2'>
 
                 <div className=' my-6 w-full flex flex-col items-center'>
-                    <div className='hist backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] transition-all flex-col flex items-center max-h-20 min-h-[30em] md:w-3/12 sm:w-9/12 w-3/4 flex justify-start text-white bg-gradient-to-r from-blue-800 to-purple-800  rounded-xl pt-4 py-2 pb-6 overflow-y-scroll '>
+                    <div className='hist backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] transition-all flex-col flex items-center max-h-20 min-h-[30em] md:w-6/12 sm:w-9/12 w-3/4 flex justify-start text-white bg-gradient-to-r from-blue-800 to-purple-800  rounded-xl pt-4 py-2 pb-6 overflow-y-scroll '>
                         {histData.length > 0 ? (
                             <>
                                 {
@@ -244,9 +244,8 @@ const A2Data = () => {
                         )}
                     </div>
                 </div>
-                <div className='mb-20 w-full flex items-center flex-col '>
-                    <>
-                        <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] mb-2 flex items-center text-white bg-gradient-to-r from-blue-800 to-purple-800  rounded-md py-1 pl-3 '>
+                <div className='mb-20 w-full flex items-center md:justify-evenly md:flex-row flex-wrap flex-col '>
+                        <label className=' md:mx-[25%] backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] mb-2 flex items-center text-white bg-gradient-to-r from-blue-800 to-purple-800  rounded-md py-1 pl-3 '>
                             <AiOutlineSearch className='text-xl' />
                             <input placeholder='Insira o Id do sensor'
                                 className='  font-medium bg-transparent focus-visible:outline-0 w-fit placeholder:text-white text-white pl-2 py-1  text-md '
@@ -255,10 +254,11 @@ const A2Data = () => {
                                     resetHist()
                                 }} />
                         </label>
+                    <>
                         {
                             years ? (
                                 <>
-                                    <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)]  md:w-2/12 w-7/12 mb-2 flex items-center text-white bg-gradient-to-r from-blue-800 to-purple-800  rounded-md py-1 pl-3 '>
+                                    <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)]  md:w-5/12 w-7/12 mb-2 flex items-center text-white bg-gradient-to-r from-blue-800 to-purple-800  rounded-md py-1 pl-3 '>
                                         <select onChange={(e) => {
                                             console.log(e.target.value)
                                             setYOp(e.target.value)
@@ -272,10 +272,14 @@ const A2Data = () => {
 
                                     {yearOpt ? (
                                         <>
-                                            <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)]  md:w-2/12 w-7/12  mb-2 flex items-center text-white bg-gradient-to-r from-blue-800 to-purple-800  rounded-md py-1 pl-3 '>
+                                            <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)]  md:w-5/12 w-7/12  mb-2 flex items-center text-white bg-gradient-to-r from-blue-800 to-purple-800  rounded-md py-1 pl-3 '>
                                                 <select onChange={(e) => {
                                                     console.log(e.target.value)
                                                     setMOp(e.target.value)
+                                                    setSday(null)
+                                                    setEday(null)
+                                                    eDaySelect.current.selectedIndex = 0 
+                                                    sDaySelect.current.selectedIndex = 0
                                                 }} className='font-medium bg-transparent focus-visible:outline-0 w-11/12  placeholder:text-white text-white px-2 py-1 text-md'>
                                                     <option className='text-black' defaultValue="" disabled selected hidden>Escolha um mês</option>
                                                     {Object.keys(years[`${yearOpt}`]).map((key) => (
@@ -285,8 +289,8 @@ const A2Data = () => {
                                             </label>
                                             {monthOpt ? (
                                                 <>
-                                                    <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)]  md:w-2/12 w-7/12  mb-2 flex items-center text-white bg-gradient-to-r from-blue-800 to-purple-800  rounded-md py-1 pl-3 '>
-                                                        <select onChange={(e) => {
+                                                    <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)]  md:w-5/12 w-7/12  mb-2 flex items-center text-white bg-gradient-to-r from-blue-800 to-purple-800  rounded-md py-1 pl-3 '>
+                                                        <select ref={sDaySelect} onChange={(e) => {
                                                             console.log(e.target.value)
                                                             setSday(e.target.value)
                                                             setEday(null)
@@ -300,7 +304,7 @@ const A2Data = () => {
                                                     </label>
                                                     {sDay ? (
                                                         <>
-                                                            <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)]  md:w-2/12 w-7/12 mb-2 flex items-center text-white bg-gradient-to-r from-blue-800 to-purple-800  rounded-md py-1 pl-3 '>
+                                                            <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)]  md:w-5/12 w-7/12 mb-2 flex items-center text-white bg-gradient-to-r from-blue-800 to-purple-800  rounded-md py-1 pl-3 '>
                                                                 <select ref={eDaySelect} onChange={(e) => {
                                                                     console.log(e.target.value)
                                                                     setEday(e.target.value)
@@ -341,7 +345,7 @@ const A2Data = () => {
                         {eDay && sDay ? (
                             <>
                                 <button
-                                    className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)]  md:w-2/12  w-1/2 font-medium text-white rounded-md bg-gradient-to-r from-blue-800 to-purple-800 py-2'
+                                    className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)]  md:w-3/12  w-1/2 font-medium text-white rounded-md bg-gradient-to-r from-blue-800 to-purple-800 py-2'
                                     onClick={getHist}
                                 >Concluir busca</button>
                             </>
@@ -352,7 +356,7 @@ const A2Data = () => {
                                         <>
 
                                             <button
-                                                className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] md:w-2/12 flex flex-col items-center  w-1/2 font-medium text-white rounded-md bg-gradient-to-r from-blue-800 to-purple-800 py-2'
+                                                className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] md:w-3/12 flex flex-col items-center  w-1/2 font-medium text-white rounded-md bg-gradient-to-r from-blue-800 to-purple-800 py-2'
 
                                             ><BiLoaderAlt className='text-xl font-medium animate-spin cols-span-3 ' /></button>
                                         </>
@@ -360,7 +364,7 @@ const A2Data = () => {
                                         <>
 
                                             <button
-                                                className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] md:w-2/12 w-1/2 font-medium text-white rounded-md bg-gradient-to-r from-blue-800 to-purple-800 py-2'
+                                                className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] md:w-3/12 w-1/2 font-medium text-white rounded-md bg-gradient-to-r from-blue-800 to-purple-800 py-2'
                                                 onClick={getYOptions}
                                             >Iniciar busca</button>
                                         </>
