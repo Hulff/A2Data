@@ -272,7 +272,7 @@ const A2Data = () => {
 
                                     {yearOpt ? (
                                         <>
-                                            <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)]  md:w-5/12 w-7/12  mb-2 flex items-center text-white bg-gradient-to-r from-blue-800 to-purple-800  rounded-md py-1 pl-3 '>
+                                            <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)]  md:w-5/12 w-7/12  mb-2 flex items-center text-white  md:from-purple-800 md:to-blue-800  bg-gradient-to-r from-blue-800 to-purple-800  rounded-md py-1 pl-3 '>
                                                 <select onChange={(e) => {
                                                     console.log(e.target.value)
                                                     setMOp(e.target.value)
@@ -289,7 +289,7 @@ const A2Data = () => {
                                             </label>
                                             {monthOpt ? (
                                                 <>
-                                                    <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)]  md:w-5/12 w-7/12  mb-2 flex items-center text-white bg-gradient-to-r from-blue-800 to-purple-800  rounded-md py-1 pl-3 '>
+                                                    <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)]  md:w-5/12 w-7/12  mb-2 flex items-center text-white  bg-gradient-to-r  from-blue-800 to-purple-800  rounded-md py-1 pl-3 '>
                                                         <select ref={sDaySelect} onChange={(e) => {
                                                             console.log(e.target.value)
                                                             setSday(e.target.value)
@@ -304,7 +304,7 @@ const A2Data = () => {
                                                     </label>
                                                     {sDay ? (
                                                         <>
-                                                            <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)]  md:w-5/12 w-7/12 mb-2 flex items-center text-white bg-gradient-to-r from-blue-800 to-purple-800  rounded-md py-1 pl-3 '>
+                                                            <label className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)]  md:w-5/12 w-7/12 mb-2 flex items-center text-white md:from-purple-800 md:to-blue-800 bg-gradient-to-r from-blue-800 to-purple-800  rounded-md py-1 pl-3 '>
                                                                 <select ref={eDaySelect} onChange={(e) => {
                                                                     console.log(e.target.value)
                                                                     setEday(e.target.value)
