@@ -5,12 +5,13 @@ import { collection, onSnapshot, orderBy, limit, query, where } from "firebase/f
 import { AiOutlineSearch } from "react-icons/ai"
 import { BiLoaderAlt } from "react-icons/bi"
 import { TbFileExport } from "react-icons/tb"
-
+import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
 const A2Data = () => {
     const [state, setState] = useState(null)
     const [id, setId] = useState('0');
     const [histId, setHistId] = useState('');
     const [data, setData] = useState(null);
+    const [prevData, setPrevData] = useState(null);
     const [histData, setHistData] = useState([]);
     const [histState, setHistState] = useState(null)
     const removeListener = useRef(null)
@@ -21,12 +22,15 @@ const A2Data = () => {
     const [eDay, setEday] = useState(null)
     const eDaySelect = useRef(null)
     const sDaySelect = useRef(null)
+    const dataRef = useRef(null)
 
-
-    useEffect(() => {
-        console.log(histData)
-    }, [histData])
-
+    const compare = () => {
+        setPrevData(dataRef.current)
+    }
+    const handleData = (data) => {
+        dataRef.current = data
+        setData(data)
+    }
 
     const getYOptions = async () => {
         setHistState(true)
@@ -105,6 +109,22 @@ const A2Data = () => {
                                                 value={`${data[key]} ${getSymbol(key)}`}
                                                 className='font-medium bg-transparent focus-visible:outline-0 w-full placeholder:text-white text-white pl-2 py-1 text-md'
                                             />
+                                            <p className='px-3'>{
+                                                prevData ? (<>
+                                                    {
+                                                        prevData[key] > data[key] ? (<>
+                                                            <FaArrowTrendDown />
+                                                        </>) : (<>
+                                                            {
+                                                                prevData[key] < data[key] ? (<>
+                                                                    <FaArrowTrendUp />
+                                                                </>) : (<></>)
+                                                            }
+
+                                                        </>)
+                                                    }
+                                                </>) : (<></>)
+                                            }</p>
                                         </label>
                                     ))}
                                 {/* Adiciona "serverTime" por último se existir */}
@@ -164,24 +184,28 @@ const A2Data = () => {
                             <>
                                 <button className='backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] md:w-2/12 sm:w-5/12 w-1/3 font-medium text-white rounded-md bg-gradient-to-r from-purple-800 to-blue-800 my-1 py-2'
                                     onClick={() => {
-                                        const unsubscribe = onSnapshot(query(collection(db, "sensors", "data", id), orderBy("serverTime", "desc"), limit(1)), (snapshot) => {
-                                            let dbData = null;
-                                            snapshot.forEach((doc) => {
-                                                dbData = doc.data();
-                                            });
+                                        const unsubscribe = onSnapshot(
+                                            query(collection(db, "sensors", "data", id), orderBy("serverTime", "desc"), limit(1)),
+                                            (snapshot) => {
+                                                let dbData = null;
+                                                compare()
+                                                snapshot.forEach((doc) => {
+                                                    dbData = doc.data();
+                                                });
 
-                                            if (dbData) {
-                                                console.log(dbData)
-                                                setData(dbData);
-                                            } else {
-                                                console.log("Nenhum dado encontrado.");
-                                                unsubscribe()
+                                                if (dbData) {
+                                                    handleData(dbData);
+                                                } else {
+                                                    console.log("Nenhum dado encontrado.");
+                                                    unsubscribe();
+                                                }
                                             }
+                                        );
 
-                                        });
-                                        removeListener.current = unsubscribe
-                                        setState(true)
-                                    }}>Buscar</button>
+                                        removeListener.current = unsubscribe;
+                                        setState(true);
+                                    }}
+                                >Buscar</button>
                             </>
                         )
                     }
@@ -245,15 +269,15 @@ const A2Data = () => {
                     </div>
                 </div>
                 <div className='mb-20 w-full flex items-center md:justify-evenly md:flex-row flex-wrap flex-col '>
-                        <label className=' md:mx-[25%] backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] mb-2 flex items-center text-white bg-gradient-to-r from-blue-800 to-purple-800  rounded-md py-1 pl-3 '>
-                            <AiOutlineSearch className='text-xl' />
-                            <input placeholder='Insira o Id do sensor'
-                                className='  font-medium bg-transparent focus-visible:outline-0 w-fit placeholder:text-white text-white pl-2 py-1  text-md '
-                                onChange={(e) => {
-                                    setHistId(e.currentTarget.value)
-                                    resetHist()
-                                }} />
-                        </label>
+                    <label className=' md:mx-[25%] backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] mb-2 flex items-center text-white bg-gradient-to-r from-blue-800 to-purple-800  rounded-md py-1 pl-3 '>
+                        <AiOutlineSearch className='text-xl' />
+                        <input placeholder='Insira o Id do sensor'
+                            className='  font-medium bg-transparent focus-visible:outline-0 w-fit placeholder:text-white text-white pl-2 py-1  text-md '
+                            onChange={(e) => {
+                                setHistId(e.currentTarget.value)
+                                resetHist()
+                            }} />
+                    </label>
                     <>
                         {
                             years ? (
@@ -278,7 +302,7 @@ const A2Data = () => {
                                                     setMOp(e.target.value)
                                                     setSday(null)
                                                     setEday(null)
-                                                    eDaySelect.current.selectedIndex = 0 
+                                                    eDaySelect.current.selectedIndex = 0
                                                     sDaySelect.current.selectedIndex = 0
                                                 }} className='font-medium bg-transparent focus-visible:outline-0 w-11/12  placeholder:text-white text-white px-2 py-1 text-md'>
                                                     <option className='text-black' defaultValue="" disabled selected hidden>Escolha um mês</option>
@@ -381,7 +405,7 @@ const A2Data = () => {
 
                 </div>
             </div>
-        </div>
+        </div >
 
     </>
     );
