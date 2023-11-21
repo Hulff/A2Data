@@ -78,7 +78,11 @@ const A2Data = () => {
                 return "ppm";
             case "co2":
                 return "ppm";
+            case "co":
+                return "ppm";
             case "temp":
+                return "ºC";
+            case "temperatura":
                 return "ºC";
             case "pressao":
                 return "kpa";
