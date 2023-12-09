@@ -325,9 +325,16 @@ const A2Data = () => {
                                                             eDaySelect.current.selectedIndex = 0
                                                         }} className='font-medium bg-transparent focus-visible:outline-0 w-11/12  placeholder:text-white text-white px-2 py-1 text-md'>
                                                             <option className='text-black' defaultValue="" disabled selected hidden>Dia de Inicio</option>
-                                                            {Object.keys(years[`${yearOpt}`][`${monthOpt}`]).map((key) => (
-                                                                <option className='text-black' value={key} key={key}>{key}</option>
-                                                            ))}
+                                                            {years[`${yearOpt}`][`${monthOpt}`]
+                                                                .map(Number)
+                                                                .sort((a, b) => a - b)
+                                                                .map((key) => (
+                                                                    <option className='text-black' value={key} key={key}>
+                                                                        {key}
+                                                                    </option>
+                                                                ))}
+
+
                                                         </select>
                                                     </label>
                                                     {sDay ? (
@@ -338,9 +345,12 @@ const A2Data = () => {
                                                                     setEday(e.target.value)
                                                                 }} className='font-medium bg-transparent focus-visible:outline-0 w-11/12 placeholder:text-white text-white px-2 py-1 text-md'>
                                                                     <option className='text-black' defaultValue="" disabled selected hidden>Dia final</option>
-                                                                    {Object.keys(years[`${yearOpt}`][`${monthOpt}`]).filter(key => parseFloat(key) >= parseFloat(sDay)).map((key) => (
-                                                                        <option className='text-black' value={key} key={key}>{key}</option>
-                                                                    ))}
+                                                                    {years[`${yearOpt}`][`${monthOpt}`]
+                                                                        .map(Number)
+                                                                        .sort((a, b) => a - b)
+                                                                        .filter(key => parseFloat(key) >= parseFloat(sDay)).map((key) => (
+                                                                            <option className='text-black' value={key} key={key}>{key}</option>
+                                                                        ))}
                                                                 </select>
                                                             </label>
                                                         </>

@@ -36,72 +36,25 @@ export async function getData(serial) {
 
 //primeiro anos
 
-export async function getYearsOption(serial) {
-
-    const q = query(collection(db, "sensors", "data", serial));
-
-    const yearOpt = new Set();
-
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-        const data = doc.data().data;
-
-        if (data) {
-            const ano = data.toDate().getFullYear();
-            yearOpt.add(ano);
-        }
-    });
-
-    const yearsAvail = Array.from(yearOpt);
-
-    return yearsAvail;
-}
 export async function getOptions(serial) {
-    const q = query(collection(db, "sensors", "data", serial));
+    const q = query(collection(db, "sensors", "info", serial));
     // Objeto para armazenar os anos, meses e dias
-    const anos = {};
 
     try {
+        const q = query(
+            collection(db, "sensors", "info", serial),
+        );
         const querySnapshot = await getDocs(q);
-        querySnapshot.forEach(doc => {
-            // Obtenha os campos relevantes do documento
-            const data = doc.data().serverTime.toDate(); // Data do documento
-            const ano = data.getFullYear();
-            const mes = data.getMonth() + 1; // Meses indexados de 0 (janeiro) a 11 (dezembro)
-            const dia = data.getDate();
-
-            // Crie a estrutura de anos, meses e dias conforme necessário
-            if (!anos[ano]) {
-                anos[ano] = {};
-            }
-            if (!anos[ano][mes]) {
-                anos[ano][mes] = {};
-            }
-            if (!anos[ano][mes][dia]) {
-                anos[ano][mes][dia] = [];
-            }
-
-            // Adicione os dados relevantes para o dia
-            // anos[ano][mes][dia].push({
-            //     altitude: doc.data().altitude,
-            //     bateria: doc.data().bateria,
-            //     co2: doc.data().co2,
-            //     pressao: doc.data().pressao,
-            //     temp: doc.data().temp,
-            //     umidade: doc.data().umidade,
-            //     voc: doc.data().voc,
-            // });
-        });
-
-        // Agora, 'anos' contém a estrutura desejada com os dados organizados por ano, mês, dia e campos.
-        console.log(anos);
-        return anos
+        const data = querySnapshot.docs.map((doc) => doc.data());
+        console.log(data[0].years)
+        return data[0].years
     } catch (error) {
-        console.error("Erro ao acessar o Firebase: " + error);
+        console.error("Error fetching data:", error);
+        return null;
     }
 }
 
-export async function getHistData(serial, startDate, endDate,m,y) {
+export async function getHistData(serial, startDate, endDate, m, y) {
     try {
         console.log(serial)
         // Definir o primeiro dia e o último dia do mês para o ano e mês especificados
