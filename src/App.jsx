@@ -6,7 +6,7 @@ import {
   useLocation,
   useParams,
 } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa"
+import { FaPhoneAlt } from "react-icons/fa";
 import { styles, layout } from "./style";
 import { NavBar, Welcome, About, ButtonsLinks, A2data } from "./components";
 const App = () => {
@@ -65,13 +65,13 @@ const App = () => {
                 <ButtonsLinks btnFunctions={btnFunc} />
               </div>
               {/* video */}
-              <div className='h-1/3 my-40 flex sm:flex-row flex-col items-center justify-center'>
-                <h2 className='sm:w-1/4 text-center text-lg font-medium mx-5 mb-6'>Vídeo introdutório do
+              <div className="bg-[url('https://i.ibb.co/rv1NFyg/chapada.png')] bg-cover py-20 text-white  my-40 flex sm:flex-row flex-col items-center justify-center">
+                <h2 className='sm:w-1/4 text-center text-lg font-bold mx-5 mb-6'>Vídeo introdutório do
                   projeto A²Database</h2>
-                <iframe className="w-4/5 h-64 sm:w-1/2 sm:h-80 md:w-1/3 " src="https://www.youtube.com/embed/mDkcXrNBXLE?si=1BENys8BQdy2f59_" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                <iframe className="w-4/5 h-64 sm:w-1/2 sm:h-80 md:w-1/3 " src="https://www.youtube.com/embed/JjqCCSWpVyc?si=87FOTVUbZNRsxMIt" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
               </div>
               {/* contatos */}
-              <div className=' h-1/2  flex sm:flex-row flex-wrap flex-col items-start justify-center  '>
+              <div className=' h-1/2 sm:mb-20  flex sm:flex-row flex-wrap flex-col items-start justify-center  '>
                 <div className=' transition-all duration-700 md:hidden-bottom sm:hidden-left hidden-right flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
                   <h3>Orientador</h3>
                   <img src='https://i.ibb.co/WkMLxHg/download.png' className="w-1/3 h-30 rounded-full mb-2" />
@@ -101,18 +101,19 @@ const App = () => {
                 </div>
               </div>
               <footer className="mt-10 flex flex-wrap items-stretch justify-center flex-col sm:justify-start sm:flex-row bg-gradient-to-r from-purple-700 via-blue-700 to-emerald-500 h-fit w-full overflow-hidden">
-                <h2 className='w-full py-2 text-center text-white font-medium text-xl'>Contatos</h2>
-                <ul className='sm:w-auto w-full h-fit mb-5 px-7  text-center sm:text-start sm:grid-rows-4 sm:grid-cols-1 grid-rows-2 grid-cols-2  sm:gap-1 text-white grid h-10'>
-                  <li className='mb-2'>(88) 98814-6230</li>
-                  <li className='mb-2'>(88) 99362-8012</li>
-                  <li className='mb-2'>(85) 99649-7276</li>
-                  <li className='mb-2'>(88) 99676-2171</li>
+              
+                <h2 className='animate-bounce-s flex items-center justify-center w-full py-2 mt-4 text-center text-white font-medium text-xl'><FaPhoneAlt className="mr-2 rotate-12" />Contatos </h2>
+                <ul className='md:w-full md:grid-cols-4 md:grid-rows-1  sm:w-auto w-full h-fit mb-5 px-7  text-center sm:text-start sm:grid-rows-4 sm:grid-cols-1 grid-rows-2 grid-cols-2  sm:gap-1 text-white grid h-10'>
+                  <li className='mb-2 font-medium'>(88) 98814-6230</li>
+                  <li className='mb-2 font-medium'>(88) 99362-8012</li>
+                  <li className='mb-2 font-medium'>(85) 99649-7276</li>
+                  <li className='mb-2 font-medium'>(88) 99676-2171</li>
                 </ul>
-                <ul className='sm:w-auto h-max mb-5 px-7  text-start sm:grid-rows-4 sm:grid-cols-1 grid-rows-4 grid-cols-1  sm:gap-1 text-white grid h-10'>
-                  <li className='mb-2'>natanael.jose62@aluno.ifce.edu.br</li>
-                  <li className='mb-2'>oliveira.agra08@aluno.ifce.edu.br</li>
-                  <li className='mb-2'>rodrigo.almeida@ifce.edu.br</li>
-                  <li className='mb-2'>pedro.hugo@aluno.ufca.edu.br</li>
+                <ul className='md:w-full md:grid-cols-4 md:grid-rows-1 sm:w-auto h-max mb-5 px-7  text-start sm:grid-rows-4 sm:grid-cols-1 grid-rows-4 grid-cols-1  sm:gap-1 text-white grid h-10'>
+                  <li className='mb-2 font-medium'>natanael.jose62@aluno.ifce.edu.br</li>
+                  <li className='mb-2 font-medium'>oliveira.agra08@aluno.ifce.edu.br</li>
+                  <li className='mb-2 font-medium'>rodrigo.almeida@ifce.edu.br</li>
+                  <li className='mb-2 font-medium'>pedro.hugo@aluno.ufca.edu.br</li>
                 </ul>
               </footer>
             </div>

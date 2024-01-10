@@ -15,6 +15,9 @@ export default {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
       },
+      animation: {
+        'bounce-s': 'bounce 2s infinite',
+      }
     },
     screens: {
       xs: "480px",
