@@ -12,6 +12,24 @@ import { NavBar, Welcome, About, ButtonsLinks, A2data } from "./components";
 const App = () => {
   const navigate = useNavigate();
   const [btnFunc, setBtnFunc] = useState([]);
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      console.log(entry)
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show")
+      } else {
+        entry.target.classList.remove("show")
+      }
+    })
+  })
+  let hiddenElements = [];
+  hiddenElements = hiddenElements.concat(
+    [...document.querySelectorAll(".hidden-bottom")],
+    [...document.querySelectorAll(".hidden-right")],
+    [...document.querySelectorAll(".hidden-left")]
+  );
+  console.log(hiddenElements);
+  hiddenElements.forEach((el)=> observer.observe(el))
 
   useEffect(() => {
     setBtnFunc([
@@ -42,7 +60,7 @@ const App = () => {
                 </div>
               </div>
               {/* botões */}
-              <div className='h-1/3 mt-10'>
+              <div className='h-1/3 pt-10'>
                 <About />
                 <ButtonsLinks btnFunctions={btnFunc} />
               </div>
@@ -53,8 +71,8 @@ const App = () => {
                 <iframe className="w-4/5 h-64 sm:w-1/2 sm:h-80 md:w-1/3 " src="https://www.youtube.com/embed/mDkcXrNBXLE?si=1BENys8BQdy2f59_" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
               </div>
               {/* contatos */}
-              <div className='h-1/2  flex sm:flex-row flex-wrap flex-col items-start justify-center  '>
-                <div className='flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
+              <div className=' h-1/2  flex sm:flex-row flex-wrap flex-col items-start justify-center  '>
+                <div className=' transition-all duration-700 md:hidden-bottom sm:hidden-left hidden-right flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
                   <h3>Orientador</h3>
                   <img src='https://i.ibb.co/WkMLxHg/download.png' className="w-1/3 h-30 rounded-full mb-2" />
                   <p className='text-xs text-center px-5'>
@@ -64,19 +82,19 @@ const App = () => {
                     Institucional do IFCE (COI- IFCE).
                   </p>
                 </div>
-                <div className='flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
+                <div className=' transition-all duration-700 md:hidden-bottom sm:hidden-right hidden-left flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
                   <h3>Co-Orientador</h3>
                   <img src='https://i.ibb.co/Yp6dTcj/Imagem-do-Whats-App-de-2023-10-29-s-19-10-18-00d25fd2.jpg' className="w-1/3 h-30 rounded-full mb-2" />
                   <p className='text-xs text-center px-5'>
                     Pedro Hugo Ursulino Fernandes é um ex-aluno do curso técnico de eletrotécnica do IFCE - Campus Juazeiro do Norte. Atualmente, está cursando Ciências da Computação na UFCA. Durante seus estudos, ele se dedicou à programação, abrangendo tanto o desenvolvimento frontend, com tecnologias como HTML5,CSS e React , quanto o backend, utilizando Javascript e Node.js. Pedro Hugo adquiriu suas habilidades por meio de fóruns, sites e vídeos no YouTube.
                   </p>
                 </div>
-                <div className='flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
+                <div className=' transition-all duration-700 md:hidden-bottom sm:hidden-left hidden-right flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
                   <h3>Estudante</h3>
                   <img src="https://i.ibb.co/rp2Rwjb/image.png" className="w-1/3 h-30 rounded-full mb-2" />
                   <p className='text-xs text-center px-5'>Natanael José Maciel Isidoro é aluno do 3° ano do curso técnico integrado em eletrotécnica do IFCE - Campus Juazeiro do Norte. É bolsista do Comitê Olímpico Institucional do IFCE, sendo medalhista nas mais diversas áreas.</p>
                 </div>
-                <div className='flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
+                <div className=' transition-all duration-700 md:hidden-bottom sm:hidden-right hidden-bottom flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
                   <h3>Estudante</h3>
                   <img src='https://i.ibb.co/7nfx90x/download.png' className="w-1/3 h-30 rounded-full mb-2" />
                   <p className='text-xs text-center px-5'>Ludmila de Oliveira Agra, aluna do 2° ano do curso técnico integrado em eletrotécnica do IFCE - Campus Juazeiro do Norte. Bolsista de Astronomia e Astrofísica e participante do Comitê Olímpico, ambos do Instituto IFCE e medalhista em olimpaidas voltadas as matérias de ciências.</p>

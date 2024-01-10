@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import plugin from 'tailwindcss/plugin';
+
 export default {
   mode: "jit",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -23,5 +25,26 @@ export default {
       xl: "1700px",
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addComponents }) {
+      addComponents({
+        ".hidden-left": {
+          transform: "translateX(-50%)",
+          opacity: "0",
+        },
+        ".hidden-right": {
+          transform: "translateX(50%)",
+          opacity: "0",
+        },
+        ".hidden-bottom": {
+          transform: "translateY(50%)",
+          opacity: "0",
+        },
+        ".show": {
+          transform: "translate3d(0, 0, 0)!important" ,
+          opacity:" 1!important",
+        },
+      });
+    }),
+  ],
 };

@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+html,body {
   overflow-x: hidden;
 }
 ::-webkit-scrollbar {
@@ -155,3 +155,7 @@ body {
   background: rgba(255, 255, 255, 0.6);
   filter: blur(750px);
 }
+.show {
+  transform: translate3d(0px, 0px, 0px);
+  opacity: 1;
+} 
