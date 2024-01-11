@@ -79,21 +79,30 @@ const App = () => {
                 <ButtonsLinks btnFunctions={btnFunc} />
               </div>
               {/* video */}
-              <div className='mt-44 w-full flex justify-center'>
+              <div className='mt-36 w-full flex justify-center'>
                 <h2 className='md:w-1/2 w-full sm:text-xl text-md w-3/5 sm:px-0.5 md:rounded-xl py-2 rounded text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-medium'>Vídeo introdutório do
                   projeto A²Database</h2>
               </div>
-              <div className="bg-[url('https://i.ibb.co/rv1NFyg/chapada.png')] bg-cover py-20 text-white mt-[-8px] mb-36 flex sm:flex-row flex-col items-center justify-center">
+              <div className="bg-[url('https://i.ibb.co/rv1NFyg/chapada.png')] bg-cover py-20 text-white mt-[-8px] md:mt-2 mb-36 flex sm:flex-row flex-col items-center justify-center">
                 <iframe className="w-4/5 h-64 sm:w-1/2 sm:h-80 md:w-1/3 " src="https://www.youtube.com/embed/JjqCCSWpVyc?si=87FOTVUbZNRsxMIt" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
               </div>
               {/*nossa missao*/}
               <div className='w-full flex justify-center'>
                 <h2 className='md:w-1/2 w-full sm:text-xl text-md w-3/5 sm:px-0.5 md:rounded-xl py-2 rounded text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-medium'>Pelo o que Lutamos ?</h2>
               </div>
-              <div className="mt-[-5px] moveBg md:mx-16 bg-[url('https://i.ibb.co/QdyXpX3/2-BFDD731-475-C-4-E2-F-B00-E-3-DB16-AE692-C2.jpg')] pt-2  bg-cover  justify-end w-auto flex flex-col items-start md:h-[80vh] h-[60vh] transition-all mb-36">
+              <div className="mt-[-8px] md:mt-2 moveBg md:mx-16 bg-[url('https://i.ibb.co/QdyXpX3/2-BFDD731-475-C-4-E2-F-B00-E-3-DB16-AE692-C2.jpg')] pt-2  bg-cover  justify-end w-auto flex flex-col items-start md:h-[60vh] h-[40vh] transition-all mb-36">
                 <div className=' mt-5 flex flex-col sm:flex-row flex-wrap sm:items-end items-center justify-center'>
                   <p className=' xl:text-xl md:text-base md:font-semibold sm:text-med text-white font-bold text-xs sm:w-4/5 px-3 py-2 rounded text-justify bg-[#0000007a]'>Somos coletivamente responsáveis por enfrentar e mitigar as mudanças climáticas em nosso planeta, um dos principais desafios do século 21. A destruição da cobertura vegetal, através de queimadas, libera dióxido de carbono (CO2) e Compostos Orgânicos Voláteis (VOCs), diminuindo a absorção de CO2 e intensificando o efeito estufa. A Floresta Nacional do Araripe-Apodi é uma das primeiras áreas protegidas do Brasil, desempenhando papel fundamental na preservação de espécies nativas, na manutenção de fontes de água no semiárido e na prevenção da desertificação no Nordeste.</p>
                 </div>
+              </div>
+              {/*Noticias*/}
+              <div className='md:mb-3 w-full flex justify-center'>
+                <h2 className='md:w-1/2 w-full sm:text-xl text-md w-3/5 sm:px-0.5 md:rounded-xl py-2 rounded text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-medium'>Notícias</h2>
+              </div>
+              <div onClick={() => {
+                navigate('/O_Araripe_esta_em_chamas')
+              }} className="cursor-pointer mt-[-2px] pt-[2px] moveBg md:mx-16 bg-[url('https://imgs.search.brave.com/I5ZRKVhEJE9zCwzf7yhB-CNu1BsQd8HtHgdbZUr0WSw/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/YWxsYWJvdXRiaXJk/cy5vcmcvbmV3cy93/cC1jb250ZW50L3Vw/bG9hZHMvMjAxOC8w/My9maXJlLTEyODB4/ODIxLmpwZw')]  bg-cover  justify-end w-auto flex flex-col items-start md:h-[60vh] h-[50vh] transition-all mb-36">
+                <p className='h-full w-full  md:px-8 md:font-bold sm:text-med text-white md:text-5xl sm:text-5xl font-bold items-end text-3xl px-6 py-6 text-start flex bg-[#00000099]'>Clique aqui para acessar as noticias sobre a Chapada do Araripe</p>
               </div>
               {/* contatos */}
               <div className=' h-1/2 sm:mb-20  flex sm:flex-row flex-wrap flex-col items-start justify-center  '>
@@ -146,29 +155,6 @@ const App = () => {
         }
       />
       <Route
-        path="/Nossa_missão"
-        element={
-          <>
-            <div className='w-screen h-auto'>
-              <div className="bg-gradient-to-r from-purple-700 via-blue-700 to-emerald-500 h-20 w-full overflow-hidden">
-                <div className={`pl-20 ${styles.flexCenter}`}>
-                  <div className={`${styles.boxWidth}`}>
-                    <NavBar />
-                  </div>
-                </div>
-
-                <div className={`${styles.paddingX}`}>
-                  <div className={`${layout.sectionImg}`}>
-                    <Welcome />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </>
-        }
-      />
-      <Route
         path="/A2Data"
         element={
           <>
@@ -212,7 +198,7 @@ const App = () => {
               {/*noticia 1 */}
               <div className=' mt-5 flex flex-col items-center justify-center'>
                 <div className='mb-5 w-full flex justify-start'>
-                  <h2 className='ml-5 xl:ml-12 sm:text-xl text-md xl:w-1/6 md:w-1/4 sm:w-1/3 w-3/5 sm:px-0.5  py-2 rounded-2xl text-center bg-gradient-to-r from-emerald-500 to-[#42eb29] text-white font-medium'>O Araripe está em chamas!</h2>
+                  <h2 className='ml-5 xl:ml-12 sm:text-xl text-md xl:w-1/6 md:w-1/4 sm:w-1/3 w-3/5 sm:px-0.5  py-2 rounded-2xl text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-medium'>O Araripe está em chamas!</h2>
                 </div>
                 <div className=' flex py-3 justify-center w-full bg-red-700 text-white'>
                   <p className='indent-2 med:xl sm:text-lg md:text-xl text-xs w-4/5 text-justify'> A situação ambiental da Chapada do Araripe torna-se mais alarmante a cada dia que se passa , aqui estão algumas das mais preocupantes e recentes notícias deploráveis do estado de  nossa floresta.</p>
@@ -229,7 +215,7 @@ const App = () => {
                     </p>
                   </div>
                 </div>
-                <a className='bg-gradient-to-r from-blue-800 to-emerald-500 text-white px-3 rounded-xl py-2 md:animate-none animate-bounce font-medium sm:text-lg text-md' target='blank' href='https://g1.globo.com/ce/ceara/noticia/2020/01/04/area-atingida-por-incendio-na-floresta-nacional-do-araripe-pode-levar-ate-30-anos-para-ser-recuperada-no-ceara.ghtml'>
+                <a className='bg-gradient-to-r from-purple-800 to-blue-800 text-white px-3 rounded-xl py-2 md:animate-none animate-bounce-s font-medium sm:text-lg text-md' target='blank' href='https://g1.globo.com/ce/ceara/noticia/2020/01/04/area-atingida-por-incendio-na-floresta-nacional-do-araripe-pode-levar-ate-30-anos-para-ser-recuperada-no-ceara.ghtml'>
                   clique aqui para acessar a noticia
                 </a>
               </div>
@@ -247,7 +233,7 @@ const App = () => {
                     </p>
                   </div>
                 </div>
-                <a className='bg-gradient-to-r from-blue-800 to-emerald-500 text-white px-3 rounded-xl py-2 md:animate-none animate-bounce font-medium sm:text-lg text-md' target='blank' href='https://g1.globo.com/ce/ceara/noticia/2023/10/02/incendio-no-ceara-dura-cinco-dias-e-cobre-cidades-de-fumaca.ghtml'>
+                <a className='bg-gradient-to-r from-purple-800 to-blue-800 text-white px-3 rounded-xl py-2 md:animate-none animate-bounce-s font-medium sm:text-lg text-md' target='blank' href='https://g1.globo.com/ce/ceara/noticia/2023/10/02/incendio-no-ceara-dura-cinco-dias-e-cobre-cidades-de-fumaca.ghtml'>
                   clique aqui para acessar a noticia
                 </a>
               </div>
