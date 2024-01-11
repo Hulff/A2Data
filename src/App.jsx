@@ -20,6 +20,7 @@ const App = () => {
           entry.target.classList.add("show");
         } else {
           entry.target.classList.remove("show");
+
         }
       });
     };
@@ -60,7 +61,7 @@ const App = () => {
         element={
           <>
             <div className='w-screen h-auto'>
-              <div className="bg-gradient-to-r from-purple-700 via-blue-700 to-emerald-500 h-20 w-full overflow-hidden">
+              <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
                 <div className={`pl-20 ${styles.flexCenter}`}>
                   <div className={`${styles.boxWidth}`}>
                     <NavBar />
@@ -97,7 +98,7 @@ const App = () => {
               </div>
               {/*Noticias*/}
               <div className='md:mb-3 w-full flex justify-center'>
-                <h2 className='md:w-1/2 w-full sm:text-xl text-md w-3/5 sm:px-0.5 md:rounded-xl py-2 rounded text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-medium'>Notícias</h2>
+                <h2 className='md:w-1/2 w-full sm:text-xl text-md w-3/5 sm:px-0.5 md:rounded-xl py-2 text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-medium'>Notícias</h2>
               </div>
               <div onClick={() => {
                 navigate('/O_Araripe_esta_em_chamas')
@@ -107,7 +108,7 @@ const App = () => {
               {/* contatos */}
               <div className=' h-1/2 sm:mb-20  flex sm:flex-row flex-wrap flex-col items-start justify-center  '>
                 <div className=' transition-all duration-700 md:hidden-bottom sm:hidden-left hidden-right flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
-                  <h3>Orientador</h3>
+                  <h3 className='font-bold'>Orientador</h3>
                   <img src='https://i.ibb.co/WkMLxHg/download.png' className="w-1/3 h-30 rounded-full mb-2" />
                   <p className='text-xs text-center px-5'>
                     Rodrigo Queiros de Almeida é doutor em Física e professor de Física
@@ -117,19 +118,19 @@ const App = () => {
                   </p>
                 </div>
                 <div className=' transition-all duration-700 md:hidden-bottom sm:hidden-right hidden-left flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
-                  <h3>Co-Orientador</h3>
+                  <h3 className='font-bold'>Co-Orientador</h3>
                   <img src='https://i.ibb.co/Yp6dTcj/Imagem-do-Whats-App-de-2023-10-29-s-19-10-18-00d25fd2.jpg' className="w-1/3 h-30 rounded-full mb-2" />
                   <p className='text-xs text-center px-5'>
                     Pedro Hugo Ursulino Fernandes é um ex-aluno do curso técnico de eletrotécnica do IFCE - Campus Juazeiro do Norte. Atualmente, está cursando Ciências da Computação na UFCA. Durante seus estudos, ele se dedicou à programação, abrangendo tanto o desenvolvimento frontend, com tecnologias como HTML5,CSS e React , quanto o backend, utilizando Javascript e Node.js. Pedro Hugo adquiriu suas habilidades por meio de fóruns, sites e vídeos no YouTube.
                   </p>
                 </div>
                 <div className=' transition-all duration-700 md:hidden-bottom sm:hidden-left hidden-right flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
-                  <h3>Estudante</h3>
+                  <h3 className='font-bold'>Estudante</h3>
                   <img src="https://i.ibb.co/rp2Rwjb/image.png" className="w-1/3 h-30 rounded-full mb-2" />
                   <p className='text-xs text-center px-5'>Natanael José Maciel Isidoro é aluno do 3° ano do curso técnico integrado em eletrotécnica do IFCE - Campus Juazeiro do Norte. É bolsista do Comitê Olímpico Institucional do IFCE, sendo medalhista nas mais diversas áreas.</p>
                 </div>
                 <div className=' transition-all duration-700 md:hidden-bottom sm:hidden-right hidden-bottom flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
-                  <h3>Estudante</h3>
+                  <h3 className='font-bold'>Estudante</h3>
                   <img src='https://i.ibb.co/7nfx90x/download.png' className="w-1/3 h-30 rounded-full mb-2" />
                   <p className='text-xs text-center px-5'>Ludmila de Oliveira Agra, aluna do 2° ano do curso técnico integrado em eletrotécnica do IFCE - Campus Juazeiro do Norte. Bolsista de Astronomia e Astrofísica e participante do Comitê Olímpico, ambos do Instituto IFCE e medalhista em olimpaidas voltadas as matérias de ciências.</p>
                 </div>
@@ -159,7 +160,7 @@ const App = () => {
         element={
           <>
             <div className='w-screen h-auto'>
-              <div className="bg-gradient-to-r from-purple-700 via-blue-700 to-emerald-500 h-20 w-full overflow-hidden">
+              <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
                 <div className={`pl-20 ${styles.flexCenter}`}>
                   <div className={`${styles.boxWidth}`}>
                     <NavBar />
@@ -182,7 +183,7 @@ const App = () => {
         element={
           <>
             <div className='w-screen h-auto mb-10'>
-              <div className="bg-gradient-to-r from-purple-700 via-blue-700 to-emerald-500 h-20 w-full overflow-hidden">
+              <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
                 <div className={`pl-20 ${styles.flexCenter}`}>
                   <div className={`${styles.boxWidth}`}>
                     <NavBar />
@@ -246,7 +247,7 @@ const App = () => {
         element={
           <>
             <div className='w-screen h-auto mb-10'>
-              <div className="bg-gradient-to-r from-purple-700 via-blue-700 to-emerald-500 h-20 w-full overflow-hidden">
+              <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
                 <div className={`pl-20 ${styles.flexCenter}`}>
                   <div className={`${styles.boxWidth}`}>
                     <NavBar />
