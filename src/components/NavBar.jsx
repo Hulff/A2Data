@@ -3,6 +3,7 @@ import { test, menu, close } from "../assets"
 import { navLinks } from "../constants";
 import { RiArrowGoBackFill } from "react-icons/ri"
 import { useNavigate } from "react-router-dom";
+import { FaUserPlus } from "react-icons/fa6";
 function NavBar() {
     const navigate = useNavigate();
     const [toggle, settoggle] = useState(false);
@@ -13,7 +14,7 @@ function NavBar() {
             }} src={test} alt="logo" className="w-auto h-16 " />
             <h1 onClick={() => {
                 navigate("/")
-            }}  className=" w-auto font-poppins px-2 text-sm sm:text-base text-white font-medium">Araripe Atmospheric Database</h1>
+            }} className=" w-auto font-poppins px-2 text-sm sm:text-base text-white font-medium">Araripe Atmospheric Database</h1>
             <ul className="list-none sm:flex hidden justify-end items-center flex-1">
                 {/* {navLinks.map((nav, index) => (
                     <li key={nav.id} className={`font-poppins font-normal cursor-pointer text-[16px] text-white ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}>
@@ -23,6 +24,11 @@ function NavBar() {
                     </li>
                 ))} */}
             </ul>
+            <div onClick={()=>{
+                navigate("/login")
+            }}  className="w-1/12 pr-2 flex justify-center items-center">
+                <FaUserPlus className="text-white text-2xl h-18" />
+            </div>
 
             <div className="sm:hidden flex flex-1 justify-end items-center">
                 <RiArrowGoBackFill onClick={() => {

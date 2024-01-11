@@ -163,3 +163,20 @@ html,body {
   overflow: hidden;
   line-height: 0;
 }
+@keyframes bgPositionAnimation {
+  0% {
+    background-position: 0 0;
+    /* Left */
+  }
+
+
+  100% {
+    background-position: 100% 0;
+    /* Right */
+  }
+}
+.moveBg {
+  background-position: 0 0;
+  transition: background-position 0.5s linear;
+  animation: bgPositionAnimation 10s infinite alternate;
+}
