@@ -16,7 +16,7 @@ export default {
         poppins: ["Poppins", "sans-serif"],
       },
       animation: {
-        'bounce-s': 'bounce 2s infinite',
+        'bounce-s': 'bounce 4s infinite linear',
       }
     },
     screens: {

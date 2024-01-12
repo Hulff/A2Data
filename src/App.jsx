@@ -12,15 +12,18 @@ import { NavBar, Welcome, About, ButtonsLinks, A2data } from "./components";
 import { googleLogin } from './services/firebase';
 const App = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [btnFunc, setBtnFunc] = useState([]);
+  const hiddenElem = useRef()
   useEffect(() => {
     const callback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("show");
         } else {
-          entry.target.classList.remove("show");
-
+          if (entry.target.id == "paramDiv") {
+            hiddenElem.current.forEach((el) => el.classList.remove("show"));
+          }
         }
       });
     };
@@ -34,7 +37,9 @@ const App = () => {
         ...document.querySelectorAll(".hidden-right"),
         ...document.querySelectorAll(".hidden-left"),
       ];
-
+      hiddenElem.current = hiddenElements
+      const paramDiv = document.querySelectorAll(".param-div")
+      paramDiv.forEach((el) => observer.observe(el));
       hiddenElements.forEach((el) => observer.observe(el));
     };
 
@@ -81,15 +86,15 @@ const App = () => {
               </div>
               {/* video */}
               <div className='mt-36 w-full flex justify-center'>
-                <h2 className='md:w-1/2 w-full sm:text-xl text-md w-3/5 sm:px-0.5 md:rounded-xl py-2 rounded text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-medium'>Vídeo introdutório do
+                <h2 className='md:w-1/2 w-full sm:text-xl text-lg w-3/5 sm:px-0.5 md:rounded-xl py-2 text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-bold'>Vídeo introdutório do
                   projeto A²Database</h2>
               </div>
               <div className="bg-[url('https://i.ibb.co/rv1NFyg/chapada.png')] bg-cover py-20 text-white mt-[-8px] md:mt-2 mb-36 flex sm:flex-row flex-col items-center justify-center">
                 <iframe className="w-4/5 h-64 sm:w-1/2 sm:h-80 md:w-1/3 " src="https://www.youtube.com/embed/JjqCCSWpVyc?si=87FOTVUbZNRsxMIt" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
               </div>
               {/*nossa missao*/}
-              <div className='w-full flex justify-center'>
-                <h2 className='md:w-1/2 w-full sm:text-xl text-md w-3/5 sm:px-0.5 md:rounded-xl py-2 rounded text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-medium'>Pelo o que Lutamos ?</h2>
+              <div id='paramDiv' className='param-div w-full flex justify-center'>
+                <h2 className='md:w-1/2 w-full sm:text-2xl text-xl w-3/5 sm:px-0.5 md:rounded-xl py-2 text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-bold'>Pelo o que Lutamos ?</h2>
               </div>
               <div className="mt-[-8px] md:mt-2 moveBg md:mx-16 bg-[url('https://i.ibb.co/QdyXpX3/2-BFDD731-475-C-4-E2-F-B00-E-3-DB16-AE692-C2.jpg')] pt-2  bg-cover  justify-end w-auto flex flex-col items-start md:h-[60vh] h-[40vh] transition-all mb-36">
                 <div className=' mt-5 flex flex-col sm:flex-row flex-wrap sm:items-end items-center justify-center'>
@@ -98,7 +103,7 @@ const App = () => {
               </div>
               {/*Noticias*/}
               <div className='md:mb-3 w-full flex justify-center'>
-                <h2 className='md:w-1/2 w-full sm:text-xl text-md w-3/5 sm:px-0.5 md:rounded-xl py-2 text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-medium'>Notícias</h2>
+                <h2 className='md:w-1/2 w-full sm:text-3xl text-xl w-3/5 sm:px-0.5 md:rounded-xl py-2 text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-bold'>Notícias</h2>
               </div>
               <div onClick={() => {
                 navigate('/O_Araripe_esta_em_chamas')
@@ -106,7 +111,7 @@ const App = () => {
                 <p className='h-full w-full  md:px-8 md:font-bold sm:text-med text-white md:text-5xl sm:text-5xl font-bold items-end text-3xl px-6 py-6 text-start flex bg-[#00000099]'>Clique aqui para acessar as noticias sobre a Chapada do Araripe</p>
               </div>
               {/* contatos */}
-              <div className=' h-1/2 sm:mb-20  flex sm:flex-row flex-wrap flex-col items-start justify-center  '>
+              <div className=' h-1/2 mb-44 flex sm:flex-row flex-wrap flex-col items-start justify-center  '>
                 <div className=' transition-all duration-700 md:hidden-bottom sm:hidden-left hidden-right flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
                   <h3 className='font-bold'>Orientador</h3>
                   <img src='https://i.ibb.co/WkMLxHg/download.png' className="w-1/3 h-30 rounded-full mb-2" />
@@ -136,8 +141,7 @@ const App = () => {
                 </div>
               </div>
               <footer className="mt-10 flex flex-wrap items-stretch justify-center flex-col sm:justify-start sm:flex-row bg-gradient-to-r from-purple-700 via-blue-700 to-emerald-500 h-fit w-full overflow-hidden">
-
-                <h2 className='animate-bounce-s flex items-center justify-center w-full py-2 mt-4 text-center text-white font-medium text-xl'><FaPhoneAlt className="mr-2 rotate-12" />Contatos </h2>
+                <h2 className='animate-bounce-s duration-500 flex items-center justify-center w-full py-2 mt-4 text-center text-white font-medium text-xl'><FaPhoneAlt className="mr-2 rotate-12" />Contatos </h2>
                 <ul className='md:w-full md:grid-cols-4 md:grid-rows-1  sm:w-auto w-full h-fit mb-5 px-7  text-center sm:text-start sm:grid-rows-4 sm:grid-cols-1 grid-rows-2 grid-cols-2  sm:gap-1 text-white grid h-10'>
                   <li className='mb-2 font-medium'>(88) 98814-6230</li>
                   <li className='mb-2 font-medium'>(88) 99362-8012</li>
