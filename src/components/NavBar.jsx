@@ -3,8 +3,8 @@ import { test, menu, close } from "../assets"
 import { navLinks } from "../constants";
 import { RiArrowGoBackFill } from "react-icons/ri"
 import { useNavigate } from "react-router-dom";
-import { FaUserPlus } from "react-icons/fa6";
-function NavBar() {
+import { FaUserPlus, FaUserGear } from "react-icons/fa6";
+function NavBar({ user }) {
     const navigate = useNavigate();
     const [toggle, settoggle] = useState(false);
     return (
@@ -24,11 +24,26 @@ function NavBar() {
                     </li>
                 ))} */}
             </ul>
-            <div onClick={()=>{
-                navigate("/login")
-            }}  className="w-1/12 pr-2 flex justify-center items-center">
-                <FaUserPlus className="text-white text-2xl h-18" />
-            </div>
+            {
+                user ? (
+                    <>
+                        <div onClick={() => {
+                            navigate("/Account")
+                        }} className="w-1/12 pr-2 flex justify-center items-center">
+                            <FaUserGear className="text-white text-2xl h-18" />
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <div onClick={() => {
+                            navigate("/login")
+                        }} className="w-1/12 pr-2 flex justify-center items-center">
+                            <FaUserPlus className="text-white text-2xl h-18" />
+                        </div>
+                    </>
+                )
+            }
+
 
             <div className="sm:hidden flex flex-1 justify-end items-center">
                 <RiArrowGoBackFill onClick={() => {

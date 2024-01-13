@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider,createUserWithEmailAndPassword,signInWithEmailAndPassword ,signInWithPopup} from "firebase/auth";
+import { getAuth, GoogleAuthProvider,createUserWithEmailAndPassword,signOut,signInWithEmailAndPassword ,signInWithPopup,onAuthStateChanged} from "firebase/auth";
 import { getFirestore, collection, getDocs, onSnapshot, where, orderBy, limit, query } from "firebase/firestore";
 
 // Add a new document in collection "cities"
@@ -19,6 +19,31 @@ export const db = getFirestore(app)
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider()
 
+export async function handleUser(setFunction) {
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            // User is signed in, see docs for a list of available properties
+            // https://firebase.google.com/docs/reference/js/auth.user
+            const uid = user.uid;
+            console.log(user)
+            setFunction(user)
+            // ...
+        } else {
+            // User is signed out
+            console.log("no user")
+
+            // ...
+        }
+    });
+}
+export async function singOutUser(setFunction) {
+    signOut(auth).then(() => {
+        console.log("singed out")
+        setFunction(null)
+    }).catch((error) => {
+        // An error happened.
+    });
+}
 export async function getData(serial) {
     try {
         const q = query(collection(db, "sensors", "data", serial), orderBy("serverTime", "desc"), limit(1));
@@ -84,32 +109,36 @@ export async function getHistData(serial, startDate, endDate, m, y) {
     }
 }
 
-export async function register(email,password) {
+export async function register(email,password,setFunction) {
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed up 
             const user = userCredential.user;
+            setFunction(user)
             // ...
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            // ..
+            console.log(errorMessage)
+
         });
 }
-export async function login(email, password) {
+export async function login(email,password,setFunction) {
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
+            setFunction(user)
             // ...
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
+            console.log(errorMessage)
         });
 }
-export async function googleLogin() {
+export async function googleLogin(setFunction) {
     signInWithPopup(auth, provider)
         .then((result) => {
             // This gives you a Google Access Token. You can use it to access the Google API.
@@ -117,6 +146,7 @@ export async function googleLogin() {
             const token = credential.accessToken;
             // The signed-in user info.
             const user = result.user;
+            setFunction(user)
             // IdP data available using getAdditionalUserInfo(result)
             // ...
         }).catch((error) => {
