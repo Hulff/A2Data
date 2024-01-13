@@ -277,7 +277,7 @@ const App = () => {
                     <h3 onClick={() => {
                       divLogin.current.classList.add("hideLogin")
                       divRegister.current.classList.add("showRegister")
-                    }} className='cursor-pointer text-[#666666]'>Não tem uma conta? clique aqui</h3>
+                    }} className='mb-3 cursor-pointer text-[#666666]'>Não tem uma conta? clique aqui</h3>
                     <label className='w-10/12 px-1 font-medium'>
                       E-mail
                     </label>
@@ -311,7 +311,7 @@ const App = () => {
                     <h3 onClick={() => {
                       divLogin.current.classList.remove("hideLogin")
                       divRegister.current.classList.remove("showRegister")
-                    }} className='cursor-pointer text-[#666666]'>Já tem uma conta? clique aqui</h3>
+                    }} className='mb-3 cursor-pointer text-[#666666]'>Já tem uma conta? clique aqui</h3>
                     <label className='w-10/12 px-1 font-medium'>
                       E-mail
                     </label>
