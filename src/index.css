@@ -180,3 +180,11 @@ html,body {
   transition: background-position 0.5s linear;
   animation: bgPositionAnimation 10s infinite alternate;
 }
+.hideLogin {
+  transform: translateX(-105%);
+  opacity: 0;
+}
+.showRegister {
+  transform: translateX(-105%);
+  opacity: 1;
+}
