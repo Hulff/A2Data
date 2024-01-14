@@ -6,6 +6,13 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      keyframes: {
+        spinColor: {
+          '0%': { transform: 'rotate(0deg)', color: 'blue' },
+          '50%': { transform: 'rotate(180deg)', color: 'purple' },
+          '100%': { transform: 'rotate(360deg)', color: 'blue' },
+        }
+      },
       colors: {
         primary: "#00040f",
         secondary: "#00f6ff",
@@ -17,6 +24,7 @@ export default {
       },
       animation: {
         'bounce-s': 'bounce 4s infinite linear',
+        'spin-color': "spinColor 0.6s infinite linear"
       }
     },
     screens: {
@@ -44,8 +52,8 @@ export default {
           opacity: "0",
         },
         ".show": {
-          transform: "translate3d(0, 0, 0)!important" ,
-          opacity:" 1!important",
+          transform: "translate3d(0, 0, 0)!important",
+          opacity: " 1!important",
         },
       });
     }),

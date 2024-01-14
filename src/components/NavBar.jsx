@@ -36,7 +36,7 @@ function NavBar({ user }) {
                 ) : (
                     <>
                         <div onClick={() => {
-                            navigate("/login")
+                            navigate("/Login")
                         }} className="w-1/12 pr-2 flex justify-center items-center">
                             <FaUserPlus className="text-white text-2xl h-18" />
                         </div>

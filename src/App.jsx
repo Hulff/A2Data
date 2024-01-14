@@ -7,16 +7,18 @@ import {
   useParams,
 } from "react-router-dom";
 import { FaPhoneAlt } from "react-icons/fa";
+import { AiOutlineUser } from "react-icons/ai";
+import { VscLoading } from "react-icons/vsc";
 import { FcGoogle } from "react-icons/fc";
 import { styles, layout } from "./style";
 import { NavBar, Welcome, About, ButtonsLinks, A2data } from "./components";
 import { googleLogin, handleUser, login, register, singOutUser } from './services/firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import Account from './components/Account';
 const App = () => {
   const [user, setUser] = useState()
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
-  const [btnFunc, setBtnFunc] = useState([]);
   const emailInput = useRef()
   const passInput = useRef()
   const emailLoginInput = useRef()
@@ -60,27 +62,35 @@ const App = () => {
     };
   }, [location.pathname]); // Observa a mudança na rota
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault(); // Impede o comportamento padrão do envio do formulário
 
     // Restante do seu código de manipulação do formulário
-    login(emailLoginInput.current.value, passLoginInput.current.value, setUser)
+    await login(emailLoginInput.current.value, passLoginInput.current.value, setUser)
   };
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault(); // Impede o comportamento padrão do envio do formulário
-
     // Restante do seu código de manipulação do formulário
-    register(emailInput.current.value, passInput.current.value, setUser)
+    await register(emailInput.current.value, passInput.current.value, setUser)
   };
-
   useEffect(() => {
-    handleUser(setUser)
+    const fetchData = async () => {
+      try {
+        await handleUser(setUser);
+      } catch (error) {
+        console.error('Error in useEffect:', error);
+      } finally {
+        setLoading(false)
+      }
+    };
+    fetchData();
   }, []);
-  // singOutUser(setUser)
+
+  // singOutUser(setUser)  
   useEffect(() => {
-    if (location.pathname == "/login" && user) {
+    if (location.pathname == "/Login" && user) {
       navigate("/Account")
-    } else if (location.pathname == "/account" && !user) {
+    } else if (location.pathname == "/Account" && !user) {
       navigate("/Login")
     }
   }, [user]);
@@ -277,21 +287,44 @@ const App = () => {
         path="/Account"
         element={
           <>
-            <div className='w-screen h-auto mb-10'>
-              <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
-                <div className={`pl-20 ${styles.flexCenter}`}>
-                  <div className={`${styles.boxWidth}`}>
-                    <NavBar user={user} />
-                  </div>
-                </div>
+            {
+              user ? (
+                <>
+                  {loading ? (
+                    // You can show a loading spinner or message here
+                    <div className='w-screen h-auto mb-10'>
+                      <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
+                        <div className={`pl-10 ${styles.flexCenter}`}>
+                          <div className={`${styles.boxWidth}`}>
+                            <NavBar user={user} />
+                          </div>
+                        </div>
+                      </div>
+                      <div className='w-full text-center flex justify-center items-center h-[50vh]'>
+                        <VscLoading className='animate-spin-color text-7xl ' />
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <div className='w-screen h-auto mb-10'>
+                        <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
+                          <div className={`pl-10 ${styles.flexCenter}`}>
+                            <div className={`${styles.boxWidth}`}>
+                              <NavBar user={user} />
+                            </div>
+                          </div>
+                        </div>
+                        <Account user={user}/>
+                      </div>
+                    </>
+                  )}
+                </>
+              ) : (
+                <>
 
-                <div className={`${styles.paddingX}`}>
-                  <div className={`${layout.sectionImg}`}>
-                    <Welcome />
-                  </div>
-                </div>
-              </div>
-            </div>
+                </>
+              )
+            }
           </>
         }
       />
@@ -304,74 +337,92 @@ const App = () => {
                 <></>
               ) : (
                 <>
-                  <div className='w-screen h-auto mb-10'>
-                    <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
-                      <div className={`pl-10 ${styles.flexCenter}`}>
-                        <div className={`${styles.boxWidth}`}>
-                          <NavBar user={user} />
+                  {loading ? (
+                    // You can show a loading spinner or message here
+                    <div className='w-screen h-auto mb-10'>
+                      <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
+                        <div className={`pl-10 ${styles.flexCenter}`}>
+                          <div className={`${styles.boxWidth}`}>
+                            <NavBar user={user} />
+                          </div>
                         </div>
+                      </div>
+                      <div className='w-full text-center flex justify-center items-center h-[50vh]'>
+                        <VscLoading className='animate-spin-color text-7xl ' />
                       </div>
                     </div>
-                    <div className='w-[200%] flex justify-center mt-10 '>
-                      <div ref={divLogin} className='duration-500 transition-all ml-[1%] w-[80%] my flex flex-row items-center shadow-lg rounded justify-center'>
-                        <form onSubmit={handleLogin} className='flex flex-col items-center justify-center sm:w-1/2 w-full py-10 md:pb-36'>
-                          <h2 className='font-bold text-2xl w-full text-center mb-2'>
-                            Login
-                          </h2>
-                          <h3 onClick={() => {
-                            divLogin.current.classList.add("hideLogin")
-                            divRegister.current.classList.add("showRegister")
-                          }} className='mb-3 cursor-pointer text-[#666666]'>Não tem uma conta? clique aqui</h3>
-                          <label className='w-10/12 px-1 font-medium'>
-                            E-mail
-                          </label>
-                          <input ref={emailLoginInput} className='border-b-2 w-10/12 my-2 pb-2 px-1 focus:outline-none' type='text' placeholder='Digite seu e-mail' />
-                          <label className='w-10/12 px-1 font-medium'>
-                            Senha
-                          </label>
-                          <input ref={passLoginInput} className='border-b-2 w-10/12 my-2 pb-2 px-1 focus:outline-none' type='password' placeholder='Digite sua senha' />
-                          <button type='submit' className=' text-white bg-gradient-to-r transition-all from-purple-800 to-blue-800 font-semibold  md:w-1/4 md:hover:w-1/3 w-1/2 justify-center text-center items-center rounded-md flex  sm:text-base sm:w-1/2  text-med h-auto hover:brightness-75 sm:hover:w-5/12 hover:w-7/12 md:hover:w-1/5 my-3 py-2'>
-                            Fazer Login
-                          </button>
-                          <button className='text-3xl shadow-md transition-all border md:w-1/4 md:hover:w-1/3 w-1/2 justify-center text-center items-center rounded-md flex sm:text-2xl  sm:w-1/2  text-med h-auto hover:brightness-75 sm:hover:w-5/12 hover:w-7/12 md:hover:w-1/5 my-3 py-2'>
-                            <FcGoogle onClick={() => { googleLogin(setUser) }} />
-                          </button>
-                        </form>
-                        <div className="sm:border sm:w-1/2 sm:h-full sm:bg-[url('https://imgs.search.brave.com/hPNKeylLu6eW523kMHlmy8faMioiLax0LVHsLYsrLmI/rs:fit:860:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy8w/LzAyL0FyYXJpcGVf/TWFuYWtpbl8oMSku/anBn')] bg-cover bg-top w-[0%]">
+                  ) : (
+                    <>
+                      <div className='w-screen h-auto mb-10 '>
+                        <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
+                          <div className={`pl-10 ${styles.flexCenter}`}>
+                            <div className={`${styles.boxWidth}`}>
+                              <NavBar user={user} />
+                            </div>
+                          </div>
+                        </div>
+                        <div className='w-[200%] flex justify-center mt-10 '>
+                          <div ref={divLogin} className='duration-500 transition-all ml-[1%] w-[80%] my flex flex-row items-center shadow-lg rounded justify-center'>
+                            <form onSubmit={handleLogin} className='flex flex-col items-center justify-center sm:w-1/2 w-full py-10 md:pb-36'>
+                              <h2 className='font-bold text-2xl w-full text-center mb-2'>
+                                Login
+                              </h2>
+                              <h3 onClick={() => {
+                                divLogin.current.classList.add("hideLogin")
+                                divRegister.current.classList.add("showRegister")
+                              }} className='mb-3 cursor-pointer text-[#666666]'>Não tem uma conta? clique aqui</h3>
+                              <label className='w-10/12 px-1 font-medium'>
+                                E-mail
+                              </label>
+                              <input ref={emailLoginInput} autoComplete="username" className='border-b-2 w-10/12 my-2 pb-2 px-1 focus:outline-none' type='text' placeholder='Digite seu e-mail' />
+                              <label className='w-10/12 px-1 font-medium'>
+                                Senha
+                              </label>
+                              <input ref={passLoginInput} autoComplete="current-password" className='border-b-2 w-10/12 my-2 pb-2 px-1 focus:outline-none' type='password' placeholder='Digite sua senha' />
+                              <button type='submit' className=' text-white bg-gradient-to-r transition-all from-purple-800 to-blue-800 font-semibold  md:w-1/4 md:hover:w-1/3 w-1/2 justify-center text-center items-center rounded-md flex  sm:text-base sm:w-1/2  text-med h-auto hover:brightness-75 sm:hover:w-5/12 hover:w-7/12 md:hover:w-1/5 my-3 py-2'>
+                                Fazer Login
+                              </button>
+                              <button className='text-3xl shadow-md transition-all border md:w-1/4 md:hover:w-1/3 w-1/2 justify-center text-center items-center rounded-md flex sm:text-2xl  sm:w-1/2  text-med h-auto hover:brightness-75 sm:hover:w-5/12 hover:w-7/12 md:hover:w-1/5 my-3 py-2'>
+                                <FcGoogle onClick={() => { googleLogin(setUser) }} />
+                              </button>
+                            </form>
+                            <div className="sm:border sm:w-1/2 sm:h-full sm:bg-[url('https://imgs.search.brave.com/hPNKeylLu6eW523kMHlmy8faMioiLax0LVHsLYsrLmI/rs:fit:860:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy8w/LzAyL0FyYXJpcGVf/TWFuYWtpbl8oMSku/anBn')] bg-cover bg-top w-[0%]">
+                            </div>
+                          </div>
+                          <div ref={divRegister} className='opacity-0 duration-500 transition-all ml-[3%] w-[80%] flex flex-row items-center shadow-lg rounded justify-center'>
+                            <div className="sm:border sm:w-1/2 sm:h-full sm:bg-[url('https://imgs.search.brave.com/jY_u_SnTn1TPmS3oedx_XJbVn8MkmkATONWAAB-S-YA/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/Zm9uZGF0aW9uZW5z/ZW1ibGUub3JnL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDE5LzA5/LzEtQ0FQQS0yLmpw/Zw')] bg-cover bg-[14%]">
+                            </div>
+                            <form onSubmit={handleRegister} className='flex flex-col items-center justify-center sm:w-1/2 w-full py-10 md:pb-36'>
+                              <h2 onClick={() => {
+                                divLogin.current.classList.remove("hideLogin")
+                                divRegister.current.classList.remove("showRegister")
+                              }} className='font-bold text-2xl w-full text-center mb-2'>
+                                Cadastro
+                              </h2>
+                              <h3 onClick={() => {
+                                divLogin.current.classList.remove("hideLogin")
+                                divRegister.current.classList.remove("showRegister")
+                              }} className='mb-3 cursor-pointer text-[#666666]'>Já tem uma conta? clique aqui</h3>
+                              <label className='w-10/12 px-1 font-medium'>
+                                E-mail
+                              </label>
+                              <input ref={emailInput} autoComplete="username" className='border-b-2 w-10/12 my-2 pb-2 px-1 focus:outline-none' type='text' placeholder='Digite seu e-mail' />
+                              <label className='w-10/12 px-1 font-medium'>
+                                Senha
+                              </label>
+                              <input ref={passInput} autoComplete="current-password" className='border-b-2 w-10/12 my-2 pb-2 px-1 focus:outline-none' type='password' placeholder='Digite sua senha' />
+                              <button type='submit' className='transition-all text-white bg-gradient-to-r from-purple-800 to-blue-800 font-semibold  md:w-1/4 md:hover:w-1/3 w-1/2 justify-center text-center items-center rounded-md flex  sm:text-base sm:w-1/2  text-med h-auto hover:brightness-75 sm:hover:w-5/12 hover:w-7/12 md:hover:w-1/5 my-3 py-2'>
+                                Concluir Cadastro
+                              </button>
+                              <button className='text-3xl shadow-md transition-all border md:w-1/4 md:hover:w-1/3 w-1/2 justify-center text-center items-center rounded-md flex sm:text-2xl  sm:w-1/2  text-med h-auto hover:brightness-75 sm:hover:w-5/12 hover:w-7/12 md:hover:w-1/5 my-3 py-2'>
+                                <FcGoogle onClick={() => { googleLogin(setUser) }} />
+                              </button>
+                            </form>
+                          </div>
                         </div>
                       </div>
-                      <div ref={divRegister} className='opacity-0 duration-500 transition-all ml-[3%] w-[80%] flex flex-row items-center shadow-lg rounded justify-center'>
-                        <div className="sm:border sm:w-1/2 sm:h-full sm:bg-[url('https://imgs.search.brave.com/jY_u_SnTn1TPmS3oedx_XJbVn8MkmkATONWAAB-S-YA/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/Zm9uZGF0aW9uZW5z/ZW1ibGUub3JnL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDE5LzA5/LzEtQ0FQQS0yLmpw/Zw')] bg-cover bg-[14%]">
-                        </div>
-                        <form onSubmit={handleRegister} className='flex flex-col items-center justify-center sm:w-1/2 w-full py-10 md:pb-36'>
-                          <h2 onClick={() => {
-                            divLogin.current.classList.remove("hideLogin")
-                            divRegister.current.classList.remove("showRegister")
-                          }} className='font-bold text-2xl w-full text-center mb-2'>
-                            Cadastro
-                          </h2>
-                          <h3 onClick={() => {
-                            divLogin.current.classList.remove("hideLogin")
-                            divRegister.current.classList.remove("showRegister")
-                          }} className='mb-3 cursor-pointer text-[#666666]'>Já tem uma conta? clique aqui</h3>
-                          <label className='w-10/12 px-1 font-medium'>
-                            E-mail
-                          </label>
-                          <input ref={emailInput} className='border-b-2 w-10/12 my-2 pb-2 px-1 focus:outline-none' type='text' placeholder='Digite seu e-mail' />
-                          <label className='w-10/12 px-1 font-medium'>
-                            Senha
-                          </label>
-                          <input ref={passInput} className='border-b-2 w-10/12 my-2 pb-2 px-1 focus:outline-none' type='password' placeholder='Digite sua senha' />
-                          <button type='submit' className='transition-all text-white bg-gradient-to-r from-purple-800 to-blue-800 font-semibold  md:w-1/4 md:hover:w-1/3 w-1/2 justify-center text-center items-center rounded-md flex  sm:text-base sm:w-1/2  text-med h-auto hover:brightness-75 sm:hover:w-5/12 hover:w-7/12 md:hover:w-1/5 my-3 py-2'>
-                            Concluir Cadastro
-                          </button>
-                          <button className='text-3xl shadow-md transition-all border md:w-1/4 md:hover:w-1/3 w-1/2 justify-center text-center items-center rounded-md flex sm:text-2xl  sm:w-1/2  text-med h-auto hover:brightness-75 sm:hover:w-5/12 hover:w-7/12 md:hover:w-1/5 my-3 py-2'>
-                            <FcGoogle onClick={() => { googleLogin(setUser) }} />
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
+                    </>
+                  )}
                 </>
               )
             }

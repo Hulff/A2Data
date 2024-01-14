@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider,createUserWithEmailAndPassword,signOut,signInWithEmailAndPassword ,signInWithPopup,onAuthStateChanged} from "firebase/auth";
+import { v4 as uuid } from "uuid";
+import { getAuth, GoogleAuthProvider, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, signInWithPopup, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, collection, getDocs, onSnapshot, where, orderBy, limit, query } from "firebase/firestore";
 
 // Add a new document in collection "cities"
@@ -19,21 +20,20 @@ export const db = getFirestore(app)
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider()
 
-export async function handleUser(setFunction) {
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            // User is signed in, see docs for a list of available properties
-            // https://firebase.google.com/docs/reference/js/auth.user
-            const uid = user.uid;
-            console.log(user)
-            setFunction(user)
-            // ...
-        } else {
-            // User is signed out
-            console.log("no user")
-
-            // ...
-        }
+export function handleUser(setFunction) {
+    return new Promise((resolve, reject) => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in
+                setFunction(user);
+                console.log(user);
+                resolve(user);  // Resolve the Promise when user is signed in
+            } else {
+                // User is signed out
+                setFunction(null);
+                reject('User is signed out');  // Reject the Promise when user is signed out
+            }
+        });
     });
 }
 export async function singOutUser(setFunction) {
@@ -109,54 +109,50 @@ export async function getHistData(serial, startDate, endDate, m, y) {
     }
 }
 
-export async function register(email,password,setFunction) {
-    createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed up 
-            const user = userCredential.user;
-            setFunction(user)
-            // ...
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorMessage)
+export async function register(email, password, setFunction) {
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        setFunction(user);
+        // Additional code if needed after user registration
+    } catch (error) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(errorMessage);
+        // Handle the error if needed
+    }
+}
 
-        });
+export async function login(email, password, setFunction) {
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        setFunction(user);
+        // Additional code if needed after user login
+    } catch (error) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(errorMessage);
+        // Handle the error if needed
+    }
 }
-export async function login(email,password,setFunction) {
-    signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            setFunction(user)
-            // ...
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorMessage)
-        });
-}
+
 export async function googleLogin(setFunction) {
-    signInWithPopup(auth, provider)
-        .then((result) => {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
-            // The signed-in user info.
-            const user = result.user;
-            setFunction(user)
-            // IdP data available using getAdditionalUserInfo(result)
-            // ...
-        }).catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-            const email = error.customData.email;
-            // The AuthCredential type that was used.
-            const credential = GoogleAuthProvider.credentialFromError(error);
-            // ...
-        });
+    try {
+        const result = await signInWithPopup(auth, provider);
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+        setFunction(user);
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+    } catch (error) {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.customData?.email; // Ensure customData is available before accessing email.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.error(errorMessage);
+        // ...
+    }
 }
