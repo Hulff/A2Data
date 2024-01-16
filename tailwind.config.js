@@ -11,6 +11,12 @@ export default {
           '0%': { transform: 'rotate(0deg)', color: 'blue' },
           '50%': { transform: 'rotate(180deg)', color: 'purple' },
           '100%': { transform: 'rotate(360deg)', color: 'blue' },
+        },
+        wiggle: {
+          '0%,100%': { transform:'translateX(0px)',color: 'blue' },
+          '25%': { transform: 'translateX(1%)',color: 'purple' },
+          '75%': { transform: 'translateX(-1%)', color: 'blue' },
+
         }
       },
       colors: {
@@ -24,7 +30,8 @@ export default {
       },
       animation: {
         'bounce-s': 'bounce 4s infinite linear',
-        'spin-color': "spinColor 0.6s infinite linear"
+        'spin-color': "spinColor 0.6s infinite linear",
+        'wiggle': "wiggle 1s infinite linear"
       }
     },
     screens: {

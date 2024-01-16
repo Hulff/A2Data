@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { v4 as uuid } from "uuid";
 import { getAuth, GoogleAuthProvider, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, signInWithPopup, onAuthStateChanged } from "firebase/auth";
-import { getFirestore, collection, getDocs, onSnapshot, where, orderBy, limit, query } from "firebase/firestore";
+import { getFirestore, collection, setDoc, doc, getDocs, getDoc, onSnapshot, where, orderBy, limit, query } from "firebase/firestore";
 
 // Add a new document in collection "cities"
 
@@ -35,6 +35,42 @@ export function handleUser(setFunction) {
             }
         });
     });
+}
+export async function getUserData(id, userEmail) {
+    try {
+        const q = doc(db, "users", id);
+        const docSnap = await getDoc(q);
+        if (docSnap.exists()) {
+            return docSnap.data()
+        } else {
+            console.log("No such document!");
+            let data = {
+                email: userEmail,
+                sensors: []
+            }
+            await setDoc(doc(db, "users", id), data);
+            return data
+
+        }
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return null;
+    }
+} export async function editUserData(id, data) {
+    try {
+        const q = doc(db, "users", id);
+        const docSnap = await getDoc(q);
+        if (docSnap.exists()) {
+            console.log("Document data:", docSnap.data());
+            console.log("New Document data:", data);
+            await setDoc(doc(db, "users", id), data);
+        } else {
+            console.log("No such document!");
+        }
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return null;
+    }
 }
 export async function singOutUser(setFunction) {
     signOut(auth).then(() => {

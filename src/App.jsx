@@ -12,10 +12,11 @@ import { VscLoading } from "react-icons/vsc";
 import { FcGoogle } from "react-icons/fc";
 import { styles, layout } from "./style";
 import { NavBar, Welcome, About, ButtonsLinks, A2data } from "./components";
-import { googleLogin, handleUser, login, register, singOutUser } from './services/firebase';
+import { getUserData, googleLogin, handleUser, login, register, singOutUser } from './services/firebase';
 import Account from './components/Account';
 const App = () => {
   const [user, setUser] = useState()
+  const [userData, setUserData] = useState()
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
@@ -79,8 +80,6 @@ const App = () => {
         await handleUser(setUser);
       } catch (error) {
         console.error('Error in useEffect:', error);
-      } finally {
-        setLoading(false)
       }
     };
     fetchData();
@@ -88,12 +87,32 @@ const App = () => {
 
   // singOutUser(setUser)  
   useEffect(() => {
-    if (location.pathname == "/Login" && user) {
-      navigate("/Account")
-    } else if (location.pathname == "/Account" && !user) {
-      navigate("/Login")
+    if (location.pathname === "/Login" && user) {
+      navigate("/Account");
+    } else if (location.pathname === "/Account" && !user) {
+      navigate("/Login");
+    }
+    const fetchData = async () => {
+      try {
+        const userDbData = await getUserData(user.uid, user.email);
+        setUserData(userDbData);
+        console.log(userDbData)
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+        // Handle the error as needed, for example, show a message to the user.
+      } finally {
+        setLoading(false)
+
+      }
+    };
+    if (user) {
+      fetchData();
+    } else {
+      setLoading(false)
+
     }
   }, [user]);
+
 
   return (
 
@@ -314,7 +333,7 @@ const App = () => {
                             </div>
                           </div>
                         </div>
-                        <Account user={user}/>
+                        <Account user={user} userData={userData} setData={setUserData} />
                       </div>
                     </>
                   )}
