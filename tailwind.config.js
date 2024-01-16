@@ -13,9 +13,21 @@ export default {
           '100%': { transform: 'rotate(360deg)', color: 'blue' },
         },
         wiggle: {
-          '0%,100%': { transform:'translateX(0px)',color: 'blue' },
-          '25%': { transform: 'translateX(1%)',color: 'purple' },
+          '0%,100%': { transform: 'translateX(0px)', color: 'blue' },
+          '25%': { transform: 'translateX(1%)', color: 'purple' },
           '75%': { transform: 'translateX(-1%)', color: 'blue' },
+
+        }
+        ,
+        appear: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' }
+
+        }
+        ,
+        disappear: {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' }
 
         }
       },
@@ -31,7 +43,9 @@ export default {
       animation: {
         'bounce-s': 'bounce 4s infinite linear',
         'spin-color': "spinColor 0.6s infinite linear",
-        'wiggle': "wiggle 1s infinite linear"
+        'wiggle': "wiggle 1s infinite linear",
+        'appear': "appear 0.3s linear",
+        'disappear': "disappear 0.4s linear",
       }
     },
     screens: {

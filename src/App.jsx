@@ -87,9 +87,9 @@ const App = () => {
 
   // singOutUser(setUser)  
   useEffect(() => {
-    if (location.pathname === "/Login" && user) {
+    if (location.pathname === "/Login" && user && !loading) {
       navigate("/Account");
-    } else if (location.pathname === "/Account" && !user) {
+    } else if (location.pathname === "/Account" && !user && !loading) {
       navigate("/Login");
     }
     const fetchData = async () => {
