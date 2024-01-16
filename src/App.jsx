@@ -123,10 +123,8 @@ const App = () => {
           <>
             <div className='w-screen h-auto'>
               <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
-                <div className={`pl-20 ${styles.flexCenter}`}>
-                  <div className={`${styles.boxWidth}`}>
-                    <NavBar user={user} />
-                  </div>
+                <div className={`pl-2 w-full`}>
+                  <NavBar user={user} />
                 </div>
 
                 <div className={`${styles.paddingX}`}>
@@ -221,10 +219,8 @@ const App = () => {
           <>
             <div className='w-screen h-auto'>
               <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
-                <div className={`pl-20 ${styles.flexCenter}`}>
-                  <div className={`${styles.boxWidth}`}>
-                    <NavBar user={user} />
-                  </div>
+                <div className={`pl-5 ${styles.flexCenter}`}>
+                  <NavBar user={user} />
                 </div>
 
                 <div className={`${styles.paddingX}`}>
@@ -244,10 +240,8 @@ const App = () => {
           <>
             <div className='w-screen h-auto mb-10'>
               <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
-                <div className={`pl-20 ${styles.flexCenter}`}>
-                  <div className={`${styles.boxWidth}`}>
-                    <NavBar user={user} />
-                  </div>
+                <div className={`pl-2 w-full`}>
+                  <NavBar user={user} />
                 </div>
 
                 <div className={`${styles.paddingX}`}>
@@ -313,10 +307,8 @@ const App = () => {
                     // You can show a loading spinner or message here
                     <div className='w-screen h-auto mb-10'>
                       <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
-                        <div className={`pl-10 ${styles.flexCenter}`}>
-                          <div className={`${styles.boxWidth}`}>
-                            <NavBar user={user} />
-                          </div>
+                        <div className={`pl-2 w-full`}>
+                          <NavBar user={user} />
                         </div>
                       </div>
                       <div className='w-full text-center flex justify-center items-center h-[50vh]'>
@@ -327,10 +319,8 @@ const App = () => {
                     <>
                       <div className='w-screen h-auto mb-10'>
                         <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
-                          <div className={`pl-10 ${styles.flexCenter}`}>
-                            <div className={`${styles.boxWidth}`}>
-                              <NavBar user={user} />
-                            </div>
+                          <div className={`pl-2 w-full`}>
+                            <NavBar user={user} />
                           </div>
                         </div>
                         <Account user={user} userData={userData} setData={setUserData} />
@@ -360,10 +350,8 @@ const App = () => {
                     // You can show a loading spinner or message here
                     <div className='w-screen h-auto mb-10'>
                       <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
-                        <div className={`pl-10 ${styles.flexCenter}`}>
-                          <div className={`${styles.boxWidth}`}>
-                            <NavBar user={user} />
-                          </div>
+                        <div className={`pl-2 w-full`}>
+                          <NavBar user={user} />
                         </div>
                       </div>
                       <div className='w-full text-center flex justify-center items-center h-[50vh]'>
@@ -374,10 +362,8 @@ const App = () => {
                     <>
                       <div className='w-screen h-auto mb-10 '>
                         <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
-                          <div className={`pl-10 ${styles.flexCenter}`}>
-                            <div className={`${styles.boxWidth}`}>
-                              <NavBar user={user} />
-                            </div>
+                          <div className={`pl-2 w-full`}>
+                            <NavBar user={user} />
                           </div>
                         </div>
                         <div className='w-[200%] flex justify-center mt-10 '>

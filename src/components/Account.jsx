@@ -68,7 +68,7 @@ const Account = ({ user, userData, setData }) => {
                         user ? (user.email) : (<></>)
                     }</h3>
                     <h3 className='text-gray-400 w-10/12 px-1 ml-2'>{
-                        user ? (converterParaDataBr(user.metadata.createdAt)) : (<></>)
+                        user ? (`Criado em ${converterParaDataBr(user.metadata.createdAt)}`) : (<></>)
                     }</h3>
                     <h3 className='w-full border-b-2 px-3 text-lg font-medium my-3'>Sensores</h3>
                     <form onSubmit={addData} className='h-26 flex sm:flex-row flex-col sm:justify-center items-center space-x-3 justify-top sm:px-2 w-full my-2'>
