@@ -123,16 +123,13 @@ const App = () => {
         element={
           <>
             <div className='w-screen h-auto '>
-              <div className='fixed bg-white h-28  z-[2] w-full
-              '></div>
-              <div className="bg-[#d1d3d4] rounded-t-3xl mt-2 z-[4] items-center flex fixed h-24 w-full overflow-hidden">
+              <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-3 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
                 <div className={`pl-2 justify-center flex w-full`}>
                   <NavBar user={user} />
                 </div>
               </div>
-              <div className='fixed bg-[rgb(62,64,149)] z-[3] h-1 mt-[6.8rem] w-full
+              <div className='relative bg-[rgb(62,64,149)] z-[3] h-1 mt-1 w-full
               '></div>
-              <div className='h-24'></div>
               {/* botões */}
               <div className='h-1/3 pt-10'>
                 <About />
@@ -239,17 +236,22 @@ const App = () => {
                   </h1>
                 </div>
                 <div className='w-full  sm:border-l-2 pl-3 sm:border-white flex ss:flex-row flex-col  items-center justify-center'>
-                  <ul className='mt-3 font-bebas  md:grid-rows-1 w-full sm:w-4/12  w-full ss:w-4/12 h-fit   text-center ss:grid-rows-4 ss:grid-cols-1 grid-rows-2 grid-cols-2 text-xl  text-[rgb(62,64,149)] grid h-10'>
+                  <ul className='mt-3 font-bebas  md:grid-rows-1 w-full sm:w-4/12  w-full ss:w-4/12 h-fit   text-center ss:grid-rows-4 ss:grid-cols-1 grid-rows-2 grid-cols-2 text-xl lg:text-3xl  md:text-2xl   text-[rgb(62,64,149)] grid h-10'>
                     <li className='mb-2  font-medium'>(85) 99649-7276</li>
                     <li className='mb-2   font-medium'>(88) 99676-2171</li>
                     <li className='mb-2  font-medium'>(88) 99362-8012</li>
                     <li className='mb-2   font-medium'>(88) 98814-6230</li>
                   </ul>
-                  <ul className='mt-1 ss:mt-2 w-auto font-bebas md:w-full  md:grid-rows-1 sm:w-auto h-fit text-start sm:grid-rows-4 sm:grid-cols-1 grid-rows-4 grid-cols-1  ss:gap-1 text-xl text-[rgb(62,64,149)] grid h-10'>
-                    <li className='mb-1 font-medium'>rodrigo.almeida@ifce.edu.br</li>
-                    <li className='mb-1 font-medium'>pedro.hugo@aluno.ufca.edu.br</li>
-                    <li className='mb-1 font-medium'>oliveira.agra08@aluno.ifce.edu.br</li>
-                    <li className='mb-1 font-medium'>natanael.jose62@aluno.ifce.edu.br</li>
+                  <ul className='mt-1 ss:mt-2 w-auto font-bebas md:w-auto  md:grid-rows-1 sm:w-auto h-fit text-start sm:grid-rows-4 sm:grid-cols-1 grid-rows-4 grid-cols-1  ss:gap-1 text-xl lg:text-3xl md:text-2xl text-[rgb(62,64,149)] grid h-10'>
+                    <li className='mb-1 font-medium'>
+                      <a href="mailto:rodrigo.almeida@ifce.edu.br" target="_blank" rel="noopener noreferrer">rodrigo.almeida@ifce.edu.br</a>
+                    </li>
+                    <li className='mb-1 font-medium'>
+                      <a href="mailto:pedro.hugo@aluno.ufca.edu.br" target="_blank" rel="noopener noreferrer">pedro.hugo@aluno.ufca.edu.br</a></li>
+                    <li className='mb-1 font-medium'>
+                      <a href="mailto:oliveira.agra08@aluno.ifce.edu.br" target="_blank" rel="noopener noreferrer">oliveira.agra08@aluno.ifce.edu.br</a></li>
+                    <li className='mb-1 font-medium'>
+                      <a href="mailto:natanael.jose62@aluno.ifce.edu.br" target="_blank" rel="noopener noreferrer">natanael.jose62@aluno.ifce.edu.br</a></li>
                   </ul>
                 </div>
               </footer>
@@ -262,16 +264,13 @@ const App = () => {
         element={
           <>
             <div className='w-screen h-auto'>
-              <div className='fixed bg-white h-28  z-[2] w-full
-              '></div>
-              <div className="bg-[#d1d3d4] rounded-t-3xl mt-2 z-[4] items-center flex fixed h-24 w-full overflow-hidden">
+              <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-3 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
                 <div className={`pl-2 justify-center flex w-full`}>
                   <NavBar user={user} />
                 </div>
               </div>
-              <div className='fixed bg-[rgb(62,64,149)] z-[3] h-1 mt-[6.8rem] w-full
+              <div className='relative bg-[rgb(62,64,149)] z-[3] h-1 mt-1 w-full
               '></div>
-              <div className='h-24'></div>
               <A2data></A2data>
             </div>
           </>
@@ -282,16 +281,13 @@ const App = () => {
         element={
           <>
             <div className='w-screen h-auto mb-10'>
-              <div className='fixed bg-white h-28  z-[2] w-full
-              '></div>
-              <div className="bg-[#d1d3d4] rounded-t-3xl mt-2 z-[4] items-center flex fixed h-24 w-full overflow-hidden">
+              <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-3 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
                 <div className={`pl-2 justify-center flex w-full`}>
                   <NavBar user={user} />
                 </div>
               </div>
-              <div className='fixed bg-[rgb(62,64,149)] z-[3] h-1 mt-[6.8rem] w-full
+              <div className='relative bg-[rgb(62,64,149)] z-[3] h-1 mt-1 w-full
               '></div>
-              <div className='h-24'></div>
               {/*noticia 1 */}
               <div className=' mt-8 flex flex-col items-center justify-center'>
                 <div className='mb-5 w-full flex justify-start'>
@@ -348,16 +344,13 @@ const App = () => {
                   {loading ? (
                     // You can show a loading spinner or message here
                     <div className='w-screen h-auto mb-10'>
-                      <div className='fixed bg-white h-28  z-[2] w-full
-              '></div>
-                      <div className="bg-[#d1d3d4] rounded-t-3xl mt-2 z-[4] items-center flex fixed h-24 w-full overflow-hidden">
+                      <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-3 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
                         <div className={`pl-2 justify-center flex w-full`}>
                           <NavBar user={user} />
                         </div>
                       </div>
-                      <div className='fixed bg-[rgb(62,64,149)] z-[3] h-1 mt-[6.8rem] w-full
-              '></div>
-                      <div className='h-24'></div>
+                      <div className='relative bg-[rgb(62,64,149)] z-[3] h-1 mt-1 w-full
+                  '></div>
                       <div className='w-full text-center flex justify-center items-center h-[50vh]'>
                         <VscLoading className='animate-spin-color text-7xl ' />
                       </div>
@@ -365,16 +358,13 @@ const App = () => {
                   ) : (
                     <>
                       <div className='w-screen h-auto mb-10'>
-                        <div className='fixed bg-white h-28  z-[2] w-full
-              '></div>
-                        <div className="bg-[#d1d3d4] rounded-t-3xl mt-2 z-[4] items-center flex fixed h-24 w-full overflow-hidden">
+                        <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-3 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
                           <div className={`pl-2 justify-center flex w-full`}>
                             <NavBar user={user} />
                           </div>
                         </div>
-                        <div className='fixed bg-[rgb(62,64,149)] z-[3] h-1 mt-[6.8rem] w-full
-              '></div>
-                        <div className='h-24'></div>
+                        <div className='relative bg-[rgb(62,64,149)] z-[3] h-1 mt-1 w-full
+                  '></div>
                         <Account user={user} userData={userData} setData={setUserData} />
                       </div>
                     </>
@@ -401,16 +391,13 @@ const App = () => {
                   {loading ? (
                     // You can show a loading spinner or message here
                     <div className='w-screen h-auto mb-10'>
-                      <div className='fixed bg-white h-28  z-[2] w-full
-              '></div>
-                      <div className="bg-[#d1d3d4] rounded-t-3xl mt-2 z-[4] items-center flex fixed h-24 w-full overflow-hidden">
+                      <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-3 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
                         <div className={`pl-2 justify-center flex w-full`}>
                           <NavBar user={user} />
                         </div>
                       </div>
-                      <div className='fixed bg-[rgb(62,64,149)] z-[3] h-1 mt-[6.8rem] w-full
-              '></div>
-                      <div className='h-24'></div>
+                      <div className='relative bg-[rgb(62,64,149)] z-[3] h-1 mt-1 w-full
+                  '></div>
                       <div className='w-full text-center flex justify-center items-center h-[50vh]'>
                         <VscLoading className='animate-spin-color text-7xl ' />
                       </div>
@@ -418,16 +405,13 @@ const App = () => {
                   ) : (
                     <>
                       <div className='w-screen h-auto mb-10 '>
-                        <div className='fixed bg-white h-28  z-[2] w-full
-              '></div>
-                        <div className="bg-[#d1d3d4] rounded-t-3xl mt-2 z-[4] items-center flex fixed h-24 w-full overflow-hidden">
+                        <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-3 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
                           <div className={`pl-2 justify-center flex w-full`}>
                             <NavBar user={user} />
                           </div>
                         </div>
-                        <div className='fixed bg-[rgb(62,64,149)] z-[3] h-1 mt-[6.8rem] w-full
-              '></div>
-                        <div className='h-24'></div>
+                        <div className='relative bg-[rgb(62,64,149)] z-[3] h-1 mt-1 w-full
+                  '></div>
                         <div className='w-[200%] flex justify-center mt-10 '>
                           <div ref={divLogin} className='duration-500 transition-all ml-[1%] w-[80%] my flex flex-row items-center shadow-lg rounded justify-center'>
                             <form onSubmit={handleLogin} className='flex flex-col items-center justify-center sm:w-1/2 w-full py-10 md:pb-36'>

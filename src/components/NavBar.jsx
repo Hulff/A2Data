@@ -11,14 +11,14 @@ function NavBar({ user }) {
 
     return (
         <nav className="w-full flex justify-between items-center navbar">
-            <div className=" w-auto flex items-end">
+            <div className=" w-[80%] flex items-end">
                 <div className=" w-auto flex items-end"> <img onClick={() => {
                     navigate("/")
                 }} src={logo} alt="logo" className="w-auto h-12 xs:h-16 sm:h-20 cursor-pointer" /></div>
 
                 <h1 onClick={() => {
                     navigate("/")
-                }} className=" cursor-pointer w-auto font-bebas pl-2 text-md xs:text-xl  sm:text-2xl sm:leading-6 xs:leading-5  leading-4 text-[rgb(62,64,149)] ">Banco de Dados<br />
+                }} className=" cursor-pointer w-auto font-bebas pl-2 text-lg xs:text-xl ss:text-2xl sm:text-3xl sm:leading-7 lg:text-4xl lg:leading-8 ss:leading-6 xs:leading-5  leading-4 text-[rgb(62,64,149)] ">Banco de Dados<br />
                     Atmosféricos do araripe
                 </h1></div>
             <div className="w-[20%] h-full flex items-end  justify-center sm:w-[10%] md:w-[8%]">
@@ -36,7 +36,7 @@ function NavBar({ user }) {
                             <div onClick={() => {
                                 navigate("/Login")
                             }} className="w-auto cursor-pointer flex justify-center items-center">
-                                <FaUserPlus className="text-[rgb(62,64,149)] text-2xl h-18" />
+                                <FaUserPlus className="text-[rgb(62,64,149)] lg:text-4xl sm:text-3xl text-2xl h-18" />
                             </div>
                         </>
                     )
