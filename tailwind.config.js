@@ -39,6 +39,7 @@ export default {
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
+        bebas: ["Bebas Neue", "sans-serif"],
       },
       animation: {
         'bounce-s': 'bounce 4s infinite linear',
@@ -49,7 +50,7 @@ export default {
       }
     },
     screens: {
-      xs: "480px",
+      xs: "370px",
       ss: "620px",
       sm: "768px",
       md: "1060px",

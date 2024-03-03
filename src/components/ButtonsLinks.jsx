@@ -1,13 +1,22 @@
 import {
     useNavigate,
 } from "react-router-dom";
+import { logo } from "../assets";
 const ButtonsLinks = () => {
     const navigate = useNavigate()
     return (<>
-        <div className=" w-full h-11 flex flex-row mt-5 items-stretch justify-evenly">
-            <button onClick={()=>{
-                navigate("/A2Data")
-            }} className="transition-all text-white bg-gradient-to-r from-purple-800 to-blue-800 font-semibold  md:w-1/4 md:hover:w-1/3 w-1/2 justify-center text-center items-center rounded-md flex  sm:text-lg sm:w-1/3  text-med h-auto hover:brightness-75 sm:hover:w-5/12 hover:w-7/12 md:hover:w-1/5  ">A²Database</button>
+        <div className=" w-full h-20 flex flex-row mt-5 items-stretch justify-evenly">
+            <div className=" w-full h-full flex flex-row  items-center justify-center ">
+                <div onClick={() => {
+                    navigate("/A2Data")
+                }} className=" transition-all cursor-pointer rounded-lg sm:w-[220px] w-2/5 xs:w-4/12  pr-4 pl-4 h-full flex flex-row items-center justify-center  bg-[#d1d3d4]">
+                    <img className="w-[70%] h-[70%]" src={logo}></img>
+                </div>
+                <button onClick={() => {
+                    navigate("/A2Data")
+                }} className="transition-all ml-[-5%] md:ml-[-1.5%]  w-auto px-3 relative z-[1] py-5 h-[30%] text-white bg-[rgb(62,64,149)] font-semibold   justify-center text-center items-center rounded-md flex  text-sm h-auto hover:brightness-75  ">
+                    Acessar o Banco de Dados</button>
+            </div>
         </div>
     </>);
 }

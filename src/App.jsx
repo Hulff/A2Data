@@ -14,6 +14,7 @@ import { styles, layout } from "./style";
 import { NavBar, Welcome, About, ButtonsLinks, A2data } from "./components";
 import { getUserData, googleLogin, handleUser, login, register, singOutUser } from './services/firebase';
 import Account from './components/Account';
+import { logo } from './assets';
 const App = () => {
   const [user, setUser] = useState()
   const [userData, setUserData] = useState()
@@ -121,29 +122,34 @@ const App = () => {
         path="/"
         element={
           <>
-            <div className='w-screen h-auto'>
-              <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
-                <div className={`pl-2 w-full`}>
+            <div className='w-screen h-auto '>
+              <div className='fixed bg-white h-28  z-[2] w-full
+              '></div>
+              <div className="bg-[#d1d3d4] rounded-t-3xl mt-2 z-[4] items-center flex fixed h-24 w-full overflow-hidden">
+                <div className={`pl-2 justify-center flex w-full`}>
                   <NavBar user={user} />
                 </div>
-
-                <div className={`${styles.paddingX}`}>
-                  <div className={`${layout.sectionImg}`}>
-                    <Welcome />
-                  </div>
-                </div>
               </div>
+              <div className='fixed bg-[rgb(62,64,149)] z-[3] h-1 mt-[6.8rem] w-full
+              '></div>
+              <div className='h-24'></div>
               {/* botões */}
               <div className='h-1/3 pt-10'>
                 <About />
                 <ButtonsLinks />
               </div>
               {/* video */}
-              <div className='mt-36 w-full flex justify-center'>
-                <h2 className='md:w-1/2 w-full sm:text-xl text-lg w-3/5 sm:px-0.5 md:rounded-xl py-2 text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-bold'>Vídeo introdutório do
-                  projeto A²Database</h2>
+              <div className='mt-36 w-full flex p justify-center'>
+                <div className='flex w-full pl-1 pb-1 items-baseline'>
+                  <div className=" transition-all cursor-pointer rounded-t-lg w-1/5 pr-4 pl-4 h-full flex flex-row items-center justify-center  bg-[#d1d3d4]">
+                    <img className="h-[70%]" src={logo}></img>
+                  </div>
+                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-xl text-lg w-3/5 sm:px-0.5 md:rounded-xl pl-2 py-1 text-[rgb(62,64,149)] font-light font-bebas '>Apresentação do Projeto</h2>
+                </div>
               </div>
-              <div className="bg-[url('https://i.ibb.co/rv1NFyg/chapada.png')] bg-cover py-20 text-white mt-[-8px] md:mt-2 mb-36 flex sm:flex-row flex-col items-center justify-center">
+              <div className='relative mb-1 bg-[rgb(62,64,149)] z-[3]  h-1 w-full
+              '></div>
+              <div className="bg-[url('https://i.ibb.co/rv1NFyg/chapada.png')] bg-cover py-20 text-white md:mt-2 mb-36 flex sm:flex-row flex-col items-center justify-center">
                 <iframe className="w-4/5 h-64 sm:w-1/2 sm:h-80 md:w-1/3 " src="https://www.youtube.com/embed/JjqCCSWpVyc?si=87FOTVUbZNRsxMIt" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
               </div>
               {/*nossa missao*/}

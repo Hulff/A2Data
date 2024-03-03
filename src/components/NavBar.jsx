@@ -1,20 +1,26 @@
 import { useState } from "react";
-import { test, menu, close } from "../assets"
+import { logo, menu, close } from "../assets"
 import { navLinks } from "../constants";
 import { RiArrowGoBackFill } from "react-icons/ri"
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FaUserPlus, FaUserGear } from "react-icons/fa6";
 function NavBar({ user }) {
     const navigate = useNavigate();
+    const location = useLocation();
     const [toggle, settoggle] = useState(false);
+
     return (
-        <nav className="w-full flex justify-between items-center pt-2 navbar">
-            <div className=" w-auto flex items-center"> <img onClick={() => {
-                navigate("/")
-            }} src={test} alt="logo" className="w-auto h-16 cursor-pointer" />
+        <nav className="w-full flex justify-between items-center navbar">
+            <div className=" w-auto flex items-end">
+                <div className=" w-auto flex items-end"> <img onClick={() => {
+                    navigate("/")
+                }} src={logo} alt="logo" className="w-auto h-12 xs:h-16 sm:h-20 cursor-pointer" /></div>
+
                 <h1 onClick={() => {
                     navigate("/")
-                }} className=" cursor-pointer w-auto font-poppins pl-2 text-sm sm:text-base text-white font-medium">Araripe Atmospheric Database</h1></div>
+                }} className=" cursor-pointer w-auto font-bebas pl-2 text-md xs:text-xl  sm:text-2xl sm:leading-6 xs:leading-5  leading-4 text-[rgb(62,64,149)] ">Banco de Dados<br />
+                    Atmosféricos do araripe
+                </h1></div>
             <div className="w-auto flex sm:mr-4 mr-2">
                 {
                     user ? (
@@ -22,27 +28,37 @@ function NavBar({ user }) {
                             <div onClick={() => {
                                 navigate("/Account")
                             }} className="w-auto cursor-pointer flex justify-center items-center">
-                                <FaUserGear className="text-white text-xl h-18" />
+                                <FaUserGear className="text-[rgb(62,64,149)] text-xl h-18" />
                             </div>
                         </>
                     ) : (
                         <>
                             <div onClick={() => {
                                 navigate("/Login")
-                                }} className="w-auto cursor-pointer flex justify-center items-center">
-                                <FaUserPlus className="text-white text-xl h-18" />
+                            }} className="w-auto cursor-pointer flex justify-center items-center">
+                                <FaUserPlus className="text-[rgb(62,64,149)] text-xl h-18" />
                             </div>
                         </>
                     )
                 }
 
 
-                <div className="sm:hidden w-auto  cursor-pointer ml-5 flex justify-center items-center">
-                    <RiArrowGoBackFill onClick={() => {
-                        navigate(-1)
-                    }} className="text-white font-medium text-lg"></RiArrowGoBackFill>
+                {location.pathname === "/" ? (
+                    <></>
+                ) : (
+                    <>
+                        <div className="sm:hidden w-auto  cursor-pointer ml-5 flex justify-center items-center">
+                            <RiArrowGoBackFill
+                                onClick={
+                                    () => {
+                                        navigate(-1);
+                                    }}
+                                className="text-[rgb(62,64,149)] font-medium text-lg"
+                            />
+                        </div>
+                    </>
+                )}
 
-                </div>
             </div>
         </nav>
     )
