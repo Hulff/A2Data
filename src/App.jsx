@@ -139,7 +139,7 @@ const App = () => {
                 <ButtonsLinks />
               </div>
               {/* video */}
-              <div className='mt-36 w-full flex p justify-center'>
+              <div className='mt-64 w-full flex p justify-center'>
                 <div className='flex w-full pl-1 pb-1 items-baseline'>
                   <div className=" transition-all cursor-pointer rounded-t-lg w-1/5 pr-4 pl-4 h-full flex flex-row items-center justify-center  bg-[#d1d3d4]">
                     <img className="h-[70%]" src={logo}></img>
@@ -147,31 +147,55 @@ const App = () => {
                   <h2 className='md:w-1/2 w-[80%] h-auto sm:text-xl text-lg w-3/5 sm:px-0.5 md:rounded-xl pl-2 py-1 text-[rgb(62,64,149)] font-light font-bebas '>Apresentação do Projeto</h2>
                 </div>
               </div>
-              <div className='relative mb-1 bg-[rgb(62,64,149)] z-[3]  h-1 w-full
+              <div className='relative  bg-[rgb(62,64,149)] z-[3]  h-1 w-full
               '></div>
               <div className="bg-[url('https://i.ibb.co/rv1NFyg/chapada.png')] bg-cover py-20 text-white md:mt-2 mb-36 flex sm:flex-row flex-col items-center justify-center">
                 <iframe className="w-4/5 h-64 sm:w-1/2 sm:h-80 md:w-1/3 " src="https://www.youtube.com/embed/JjqCCSWpVyc?si=87FOTVUbZNRsxMIt" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
               </div>
               {/*nossa missao*/}
-              <div id='paramDiv' className='param-div w-full flex justify-center'>
-                <h2 className='md:w-1/2 w-full sm:text-2xl text-xl w-3/5 sm:px-0.5 md:rounded-xl py-2 text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-bold'>Pelo o que Lutamos ?</h2>
+              <div id="paramDiv" className='param-div mt-56 w-full flex p justify-center'>
+                <div className='flex w-full pl-1 pb-1 items-baseline'>
+                  <div className=" transition-all cursor-pointer rounded-t-lg w-1/5 pr-4 pl-4 h-full flex flex-row items-center justify-center  bg-[#d1d3d4]">
+                    <img className="h-[70%]" src={logo}></img>
+                  </div>
+                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-xl text-lg w-3/5 sm:px-0.5 md:rounded-xl pl-2 py-1 text-[rgb(62,64,149)] font-light font-bebas '>Propósito do Projeto</h2>
+                </div>
               </div>
+              <div className='relative mb-1 bg-[rgb(62,64,149)] z-[3]  h-1 w-full
+              '></div>
               <div className="mt-[-8px] md:mt-2 moveBg md:mx-16 bg-[url('https://i.ibb.co/QdyXpX3/2-BFDD731-475-C-4-E2-F-B00-E-3-DB16-AE692-C2.jpg')] pt-2  bg-cover  justify-end w-auto flex flex-col items-start md:h-[60vh] h-[40vh] transition-all mb-36">
                 <div className=' mt-5 flex flex-col sm:flex-row flex-wrap sm:items-end items-center justify-center'>
                   <p className=' xl:text-xl md:text-base md:font-semibold sm:text-med text-white font-bold text-xs sm:w-4/5 px-3 py-2 rounded text-justify bg-[#0000007a]'>Somos coletivamente responsáveis por enfrentar e mitigar as mudanças climáticas em nosso planeta, um dos principais desafios do século 21. A destruição da cobertura vegetal, através de queimadas, libera dióxido de carbono (CO2) e Compostos Orgânicos Voláteis (VOCs), diminuindo a absorção de CO2 e intensificando o efeito estufa. A Floresta Nacional do Araripe-Apodi é uma das primeiras áreas protegidas do Brasil, desempenhando papel fundamental na preservação de espécies nativas, na manutenção de fontes de água no semiárido e na prevenção da desertificação no Nordeste.</p>
                 </div>
               </div>
               {/*Noticias*/}
-              <div className='md:mb-3 w-full flex justify-center'>
-                <h2 className='md:w-1/2 w-full sm:text-3xl text-xl w-3/5 sm:px-0.5 md:rounded-xl py-2 text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-bold'>Notícias</h2>
+              <div className='mt-56 w-full flex p justify-center'>
+                <div className='flex w-full pl-1 pb-1 items-baseline'>
+                  <div className=" transition-all cursor-pointer rounded-t-lg w-1/5 pr-4 pl-4 h-full flex flex-row items-center justify-center  bg-[#d1d3d4]">
+                    <img className="h-[70%]" src={logo}></img>
+                  </div>
+                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-xl text-lg w-3/5 sm:px-0.5 md:rounded-xl pl-2 py-1 text-[rgb(62,64,149)] font-light font-bebas '>Notícias</h2>
+                </div>
               </div>
+              <div className='relative  bg-[rgb(62,64,149)] z-[3]  h-1 w-full
+              '></div>
               <div onClick={() => {
                 navigate('/O_Araripe_esta_em_chamas')
               }} className="cursor-pointer mt-[-2px] pt-[2px] moveBg md:mx-16 bg-[url('https://imgs.search.brave.com/I5ZRKVhEJE9zCwzf7yhB-CNu1BsQd8HtHgdbZUr0WSw/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/YWxsYWJvdXRiaXJk/cy5vcmcvbmV3cy93/cC1jb250ZW50L3Vw/bG9hZHMvMjAxOC8w/My9maXJlLTEyODB4/ODIxLmpwZw')]  bg-cover  justify-end w-auto flex flex-col items-start md:h-[60vh] h-[50vh] transition-all mb-36">
                 <p className='h-full w-full  md:px-8 md:font-bold sm:text-med text-white md:text-5xl sm:text-5xl font-bold items-end text-3xl px-6 py-6 text-start flex bg-[#00000099]'>Clique aqui para acessar as noticias sobre a Chapada do Araripe</p>
               </div>
               {/* contatos */}
-              <div className=' h-1/2 mb-44 flex sm:flex-row flex-wrap flex-col items-start justify-center  '>
+              <div className='mt-56 w-full flex p justify-center'>
+                <div className='flex w-full pl-1 pb-1 items-baseline'>
+                  <div className=" transition-all cursor-pointer rounded-t-lg w-1/5 pr-4 pl-4 h-full flex flex-row items-center justify-center  bg-[#d1d3d4]">
+                    <img className="h-[70%]" src={logo}></img>
+                  </div>
+                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-xl text-lg w-3/5 sm:px-0.5 md:rounded-xl pl-2 py-1 text-[rgb(62,64,149)] font-light font-bebas '>Equipe</h2>
+                </div>
+              </div>
+              <div className='relative  bg-[rgb(62,64,149)] z-[3]  h-1 w-full
+              '></div>
+              <div className=' h-1/2 mb-44 mt-24 flex sm:flex-row flex-wrap flex-col items-start justify-center  '>
                 <div className=' transition-all duration-700 md:hidden-bottom sm:hidden-left hidden-right flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
                   <h3 className='font-bold'>Orientador</h3>
                   <img src='https://i.ibb.co/WkMLxHg/download.png' className="w-1/3 h-30 rounded-full mb-2" />
