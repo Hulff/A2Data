@@ -230,17 +230,17 @@ const App = () => {
               '></div>
               <footer className="flex min-h-fit mt-1 mb-6 py-4 px-4 rounded-b-3xl sm:flex-nowrap flex-wrap items-center justify-start sm:justify-start sm:flex-row bg-[#d1d3d4] md:h-[15rem] h-[19rem] w-full overflow-hidden">
                 <div className=" w-full flex items-end justify-center">
-                  <div className=" w-auto flex items-end"> <img src={logo} alt="logo" className="w-auto h-14 xs:h-16 sm:h-20 md:h-32 cursor-pointer" /></div>
-                  <h1 className=" cursor-pointer w-auto font-bebas pl-2 text-lg xs:text-xl  sm:text-2xl md:text-5xl md:leading-12 sm:leading-6 xs:leading-5  leading-4 text-[rgb(62,64,149)] ">Banco de Dados<br />
+                  <div className=" w-auto flex items-end"> <img src={logo} alt="logo" className="w-auto h-14 xs:h-16 sm:h-20 md:h-28 lg:h-32 cursor-pointer" /></div>
+                  <h1 className=" cursor-pointer w-auto font-bebas pl-2 text-lg xs:text-2xl  sm:text-[1.55rem] md:text-4xl lg:text-5xl `md:leading-12 sm:leading-6 xs:leading-5  leading-4 text-[rgb(62,64,149)] ">Banco de Dados<br />
                     Atmosféricos do araripe
                   </h1>
                 </div>
                 <div className='w-full  sm:border-l-2 pl-3 sm:border-white flex ss:flex-row flex-col  items-center justify-center'>
-                  <ul className='mt-3 font-bebas  md:grid-rows-1 w-full sm:w-4/12  w-full ss:w-4/12 h-fit   text-center ss:grid-rows-4 ss:grid-cols-1 grid-rows-2 grid-cols-2 text-xl lg:text-3xl  md:text-2xl   text-[rgb(62,64,149)] grid h-10'>
-                    <li className='mb-2  font-medium'>(85) 99649-7276</li>
-                    <li className='mb-2   font-medium'>(88) 99676-2171</li>
-                    <li className='mb-2  font-medium'>(88) 99362-8012</li>
-                    <li className='mb-2   font-medium'>(88) 98814-6230</li>
+                  <ul className='mt-3 font-bebas  md:grid-rows-1 w-auto sm:w-4/12 ss:w-4/12 h-fit   text-center ss:grid-rows-4 ss:grid-cols-1 grid-rows-2 grid-cols-2 text-xl lg:text-3xl  md:text-2xl   text-[rgb(62,64,149)] grid h-10'>
+                    <li className='mb-2 px-3 ss:px-1  font-light'>(85) 99649-7276</li>
+                    <li className='mb-2 px-3 ss:px-1   font-light'>(88) 99676-2171</li>
+                    <li className='mb-2 px-3 ss:px-1  font-light'>(88) 99362-8012</li>
+                    <li className='mb-2 px-3 ss:px-1   font-light'>(88) 98814-6230</li>
                   </ul>
                   <ul className='mt-1 ss:mt-2 w-auto font-bebas md:w-auto  md:grid-rows-1 sm:w-auto h-fit text-start sm:grid-rows-4 sm:grid-cols-1 grid-rows-4 grid-cols-1  ss:gap-1 text-xl lg:text-3xl md:text-2xl text-[rgb(62,64,149)] grid h-10'>
                     <li className='mb-1 font-medium'>
