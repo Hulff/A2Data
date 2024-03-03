@@ -141,10 +141,10 @@ const App = () => {
               {/* video */}
               <div className='mt-64 w-full flex p justify-center'>
                 <div className='flex w-full pl-1 pb-1 items-baseline'>
-                  <div className=" transition-all cursor-pointer rounded-t-lg w-1/5 pr-4 pl-4 h-full flex flex-row items-center justify-center  bg-[#d1d3d4]">
-                    <img className="h-[70%]" src={logo}></img>
+                  <div className=" transition-all cursor-pointer rounded-t-lg sm:w-[13%] lg:w-[7%] pr-4 pl-4 h-full flex flex-row items-center justify-center  bg-[#d1d3d4]">
+                    <img className="h-10 xs:h-10 " src={logo}></img>
                   </div>
-                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-xl text-lg w-3/5 sm:px-0.5 md:rounded-xl pl-2 py-1 text-[rgb(62,64,149)] font-light font-bebas '>Apresentação do Projeto</h2>
+                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-3xl text-lg xs:text-2xl  w-3/5 sm:pl-5  md:rounded-xl pl-3 py-1 text-[rgb(62,64,149)] font-light font-bebas '>Apresentação do Projeto</h2>
                 </div>
               </div>
               <div className='relative  bg-[rgb(62,64,149)] z-[3]  h-1 w-full
@@ -155,10 +155,10 @@ const App = () => {
               {/*nossa missao*/}
               <div id="paramDiv" className='param-div mt-56 w-full flex p justify-center'>
                 <div className='flex w-full pl-1 pb-1 items-baseline'>
-                  <div className=" transition-all cursor-pointer rounded-t-lg w-1/5 pr-4 pl-4 h-full flex flex-row items-center justify-center  bg-[#d1d3d4]">
-                    <img className="h-[70%]" src={logo}></img>
+                  <div className=" transition-all cursor-pointer rounded-t-lg sm:w-[13%] lg:w-[7%] pr-4 pl-4 h-full flex flex-row items-center justify-center  bg-[#d1d3d4]">
+                    <img className="h-10 xs:h-10" src={logo}></img>
                   </div>
-                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-xl text-lg w-3/5 sm:px-0.5 md:rounded-xl pl-2 py-1 text-[rgb(62,64,149)] font-light font-bebas '>Propósito do Projeto</h2>
+                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-3xl text-lg xs:text-2xl w-3/5 sm:pl-5 pl-3 md:rounded-xl py-1 text-[rgb(62,64,149)] font-light font-bebas '>Propósito do Projeto</h2>
                 </div>
               </div>
               <div className='relative mb-1 bg-[rgb(62,64,149)] z-[3]  h-1 w-full
@@ -171,10 +171,10 @@ const App = () => {
               {/*Noticias*/}
               <div className='mt-56 w-full flex p justify-center'>
                 <div className='flex w-full pl-1 pb-1 items-baseline'>
-                  <div className=" transition-all cursor-pointer rounded-t-lg w-1/5 pr-4 pl-4 h-full flex flex-row items-center justify-center  bg-[#d1d3d4]">
-                    <img className="h-[70%]" src={logo}></img>
+                  <div className=" transition-all cursor-pointer rounded-t-lg sm:w-[13%] lg:w-[7%] pr-4 pl-4 h-full flex flex-row items-center justify-center  bg-[#d1d3d4]">
+                    <img className="h-10 xs:h-10" src={logo}></img>
                   </div>
-                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-xl text-lg w-3/5 sm:px-0.5 md:rounded-xl pl-2 py-1 text-[rgb(62,64,149)] font-light font-bebas '>Notícias</h2>
+                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-3xl text-lg xs:text-2xl w-3/5 sm:pl-5 pl-3  md:rounded-xl py-1 text-[rgb(62,64,149)] font-light font-bebas '>Notícias</h2>
                 </div>
               </div>
               <div className='relative  bg-[rgb(62,64,149)] z-[3]  h-1 w-full
@@ -187,10 +187,10 @@ const App = () => {
               {/* contatos */}
               <div className='mt-56 w-full flex p justify-center'>
                 <div className='flex w-full pl-1 pb-1 items-baseline'>
-                  <div className=" transition-all cursor-pointer rounded-t-lg w-1/5 pr-4 pl-4 h-full flex flex-row items-center justify-center  bg-[#d1d3d4]">
-                    <img className="h-[70%]" src={logo}></img>
+                  <div className=" transition-all cursor-pointer rounded-t-lg sm:w-[13%] lg:w-[7%] pr-4 pl-4 h-full flex flex-row items-center justify-center  bg-[#d1d3d4]">
+                    <img className="h-10 xs:h-10" src={logo}></img>
                   </div>
-                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-xl text-lg w-3/5 sm:px-0.5 md:rounded-xl pl-2 py-1 text-[rgb(62,64,149)] font-light font-bebas '>Equipe</h2>
+                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-3xl text-lg xs:text-2xl w-3/5 sm:pl-5 pl-3  md:rounded-xl py-1 text-[rgb(62,64,149)] font-light font-bebas '>Equipe</h2>
                 </div>
               </div>
               <div className='relative  bg-[rgb(62,64,149)] z-[3]  h-1 w-full
@@ -221,23 +221,37 @@ const App = () => {
                 <div className=' transition-all duration-700 md:hidden-bottom sm:hidden-right hidden-bottom flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
                   <h3 className='font-bold'>Estudante</h3>
                   <img src='https://i.ibb.co/7nfx90x/download.png' className="w-1/3 h-30 rounded-full mb-2" />
-                  <p className='text-xs text-center px-5'>Ludmila de Oliveira Agra, aluna do 2° ano do curso técnico integrado em eletrotécnica do IFCE - Campus Juazeiro do Norte. Bolsista de Astronomia e Astrofísica e participante do Comitê Olímpico, ambos do Instituto IFCE e medalhista em olimpaidas voltadas as matérias de ciências.</p>
+                  <p className='text-xs text-center px-5'>Ludmila de Oliveira Agra, aluna do 3° ano do curso técnico integrado em eletrotécnica do IFCE - Campus Juazeiro do Norte. Bolsista de Astronomia e Astrofísica e participante do Comitê Olímpico, ambos do Instituto IFCE e medalhista em olimpaidas voltadas as matérias de ciências.</p>
                 </div>
               </div>
-              <footer className="mt-10 flex flex-wrap items-stretch justify-center flex-col sm:justify-start sm:flex-row bg-gradient-to-r from-purple-700 via-blue-700 to-emerald-500 h-fit w-full overflow-hidden">
-                <h2 className='animate-bounce-s duration-500 flex items-center justify-center w-full py-2 mt-4 text-center text-white font-medium text-xl'><FaPhoneAlt className="mr-2 rotate-12" />Contatos </h2>
-                <ul className='md:w-full md:grid-cols-4 md:grid-rows-1  sm:w-auto w-full h-fit mb-5 px-7  text-center sm:text-start sm:grid-rows-4 sm:grid-cols-1 grid-rows-2 grid-cols-2  sm:gap-1 text-white grid h-10'>
-                  <li className='mb-2 font-medium'>(88) 98814-6230</li>
-                  <li className='mb-2 font-medium'>(88) 99362-8012</li>
-                  <li className='mb-2 font-medium'>(85) 99649-7276</li>
-                  <li className='mb-2 font-medium'>(88) 99676-2171</li>
-                </ul>
-                <ul className='md:w-full md:grid-cols-4 md:grid-rows-1 sm:w-auto h-max mb-5 px-7  text-start sm:grid-rows-4 sm:grid-cols-1 grid-rows-4 grid-cols-1  sm:gap-1 text-white grid h-10'>
-                  <li className='mb-2 font-medium'>natanael.jose62@aluno.ifce.edu.br</li>
-                  <li className='mb-2 font-medium'>oliveira.agra08@aluno.ifce.edu.br</li>
-                  <li className='mb-2 font-medium'>rodrigo.almeida@ifce.edu.br</li>
-                  <li className='mb-2 font-medium'>pedro.hugo@aluno.ufca.edu.br</li>
-                </ul>
+              <div className='mt-56 w-full flex justify-center'>
+                <div className='flex w-full pl-1 items-baseline'>
+                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-3xl text-lg xs:text-2xl pl-6 w-3/5 sm:pl-5  pl-3md:rounded-xl  text-[rgb(62,64,149)] font-light font-bebas '>Contatos</h2>
+                </div>
+              </div>
+              <div className='relative  bg-[rgb(62,64,149)] z-[3]  h-1 w-full
+              '></div>
+              <footer className="flex min-h-fit mt-1 mb-6 py-4 px-4 rounded-b-3xl sm:flex-nowrap flex-wrap items-center justify-start sm:justify-start sm:flex-row bg-[#d1d3d4] md:h-[15rem] h-[19rem] w-full overflow-hidden">
+                <div className=" w-full flex items-end justify-center">
+                  <div className=" w-auto flex items-end"> <img src={logo} alt="logo" className="w-auto h-14 xs:h-16 sm:h-20 md:h-32 cursor-pointer" /></div>
+                  <h1 className=" cursor-pointer w-auto font-bebas pl-2 text-lg xs:text-xl  sm:text-2xl md:text-5xl md:leading-12 sm:leading-6 xs:leading-5  leading-4 text-[rgb(62,64,149)] ">Banco de Dados<br />
+                    Atmosféricos do araripe
+                  </h1>
+                </div>
+                <div className='w-full  sm:border-l-2 pl-3 sm:border-white flex ss:flex-row flex-col  items-center justify-center'>
+                  <ul className='mt-3 font-bebas  md:grid-rows-1 w-full sm:w-4/12  w-full ss:w-4/12 h-fit   text-center ss:grid-rows-4 ss:grid-cols-1 grid-rows-2 grid-cols-2 text-xl  text-[rgb(62,64,149)] grid h-10'>
+                    <li className='mb-2  font-medium'>(85) 99649-7276</li>
+                    <li className='mb-2   font-medium'>(88) 99676-2171</li>
+                    <li className='mb-2  font-medium'>(88) 99362-8012</li>
+                    <li className='mb-2   font-medium'>(88) 98814-6230</li>
+                  </ul>
+                  <ul className='mt-1 ss:mt-2 w-auto font-bebas md:w-full  md:grid-rows-1 sm:w-auto h-fit text-start sm:grid-rows-4 sm:grid-cols-1 grid-rows-4 grid-cols-1  ss:gap-1 text-xl text-[rgb(62,64,149)] grid h-10'>
+                    <li className='mb-1 font-medium'>rodrigo.almeida@ifce.edu.br</li>
+                    <li className='mb-1 font-medium'>pedro.hugo@aluno.ufca.edu.br</li>
+                    <li className='mb-1 font-medium'>oliveira.agra08@aluno.ifce.edu.br</li>
+                    <li className='mb-1 font-medium'>natanael.jose62@aluno.ifce.edu.br</li>
+                  </ul>
+                </div>
               </footer>
             </div>
           </>
@@ -248,17 +262,16 @@ const App = () => {
         element={
           <>
             <div className='w-screen h-auto'>
-              <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
-                <div className={`pl-5 ${styles.flexCenter}`}>
+              <div className='fixed bg-white h-28  z-[2] w-full
+              '></div>
+              <div className="bg-[#d1d3d4] rounded-t-3xl mt-2 z-[4] items-center flex fixed h-24 w-full overflow-hidden">
+                <div className={`pl-2 justify-center flex w-full`}>
                   <NavBar user={user} />
                 </div>
-
-                <div className={`${styles.paddingX}`}>
-                  <div className={`${layout.sectionImg}`}>
-                    <Welcome />
-                  </div>
-                </div>
               </div>
+              <div className='fixed bg-[rgb(62,64,149)] z-[3] h-1 mt-[6.8rem] w-full
+              '></div>
+              <div className='h-24'></div>
               <A2data></A2data>
             </div>
           </>
@@ -269,19 +282,18 @@ const App = () => {
         element={
           <>
             <div className='w-screen h-auto mb-10'>
-              <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
-                <div className={`pl-2 w-full`}>
+              <div className='fixed bg-white h-28  z-[2] w-full
+              '></div>
+              <div className="bg-[#d1d3d4] rounded-t-3xl mt-2 z-[4] items-center flex fixed h-24 w-full overflow-hidden">
+                <div className={`pl-2 justify-center flex w-full`}>
                   <NavBar user={user} />
                 </div>
-
-                <div className={`${styles.paddingX}`}>
-                  <div className={`${layout.sectionImg}`}>
-                    <Welcome />
-                  </div>
-                </div>
               </div>
+              <div className='fixed bg-[rgb(62,64,149)] z-[3] h-1 mt-[6.8rem] w-full
+              '></div>
+              <div className='h-24'></div>
               {/*noticia 1 */}
-              <div className=' mt-5 flex flex-col items-center justify-center'>
+              <div className=' mt-8 flex flex-col items-center justify-center'>
                 <div className='mb-5 w-full flex justify-start'>
                   <h2 className='ml-5 xl:ml-12 sm:text-xl text-md xl:w-1/6 md:w-1/4 sm:w-1/3 w-3/5 sm:px-0.5  py-2 rounded-2xl text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-medium'>O Araripe está em chamas!</h2>
                 </div>
@@ -336,11 +348,16 @@ const App = () => {
                   {loading ? (
                     // You can show a loading spinner or message here
                     <div className='w-screen h-auto mb-10'>
-                      <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
-                        <div className={`pl-2 w-full`}>
+                      <div className='fixed bg-white h-28  z-[2] w-full
+              '></div>
+                      <div className="bg-[#d1d3d4] rounded-t-3xl mt-2 z-[4] items-center flex fixed h-24 w-full overflow-hidden">
+                        <div className={`pl-2 justify-center flex w-full`}>
                           <NavBar user={user} />
                         </div>
                       </div>
+                      <div className='fixed bg-[rgb(62,64,149)] z-[3] h-1 mt-[6.8rem] w-full
+              '></div>
+                      <div className='h-24'></div>
                       <div className='w-full text-center flex justify-center items-center h-[50vh]'>
                         <VscLoading className='animate-spin-color text-7xl ' />
                       </div>
@@ -348,11 +365,16 @@ const App = () => {
                   ) : (
                     <>
                       <div className='w-screen h-auto mb-10'>
-                        <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
-                          <div className={`pl-2 w-full`}>
+                        <div className='fixed bg-white h-28  z-[2] w-full
+              '></div>
+                        <div className="bg-[#d1d3d4] rounded-t-3xl mt-2 z-[4] items-center flex fixed h-24 w-full overflow-hidden">
+                          <div className={`pl-2 justify-center flex w-full`}>
                             <NavBar user={user} />
                           </div>
                         </div>
+                        <div className='fixed bg-[rgb(62,64,149)] z-[3] h-1 mt-[6.8rem] w-full
+              '></div>
+                        <div className='h-24'></div>
                         <Account user={user} userData={userData} setData={setUserData} />
                       </div>
                     </>
@@ -379,11 +401,16 @@ const App = () => {
                   {loading ? (
                     // You can show a loading spinner or message here
                     <div className='w-screen h-auto mb-10'>
-                      <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
-                        <div className={`pl-2 w-full`}>
+                      <div className='fixed bg-white h-28  z-[2] w-full
+              '></div>
+                      <div className="bg-[#d1d3d4] rounded-t-3xl mt-2 z-[4] items-center flex fixed h-24 w-full overflow-hidden">
+                        <div className={`pl-2 justify-center flex w-full`}>
                           <NavBar user={user} />
                         </div>
                       </div>
+                      <div className='fixed bg-[rgb(62,64,149)] z-[3] h-1 mt-[6.8rem] w-full
+              '></div>
+                      <div className='h-24'></div>
                       <div className='w-full text-center flex justify-center items-center h-[50vh]'>
                         <VscLoading className='animate-spin-color text-7xl ' />
                       </div>
@@ -391,11 +418,16 @@ const App = () => {
                   ) : (
                     <>
                       <div className='w-screen h-auto mb-10 '>
-                        <div className="bg-gradient-to-r from-purple-800 to-blue-800  h-20 w-full overflow-hidden">
-                          <div className={`pl-2 w-full`}>
+                        <div className='fixed bg-white h-28  z-[2] w-full
+              '></div>
+                        <div className="bg-[#d1d3d4] rounded-t-3xl mt-2 z-[4] items-center flex fixed h-24 w-full overflow-hidden">
+                          <div className={`pl-2 justify-center flex w-full`}>
                             <NavBar user={user} />
                           </div>
                         </div>
+                        <div className='fixed bg-[rgb(62,64,149)] z-[3] h-1 mt-[6.8rem] w-full
+              '></div>
+                        <div className='h-24'></div>
                         <div className='w-[200%] flex justify-center mt-10 '>
                           <div ref={divLogin} className='duration-500 transition-all ml-[1%] w-[80%] my flex flex-row items-center shadow-lg rounded justify-center'>
                             <form onSubmit={handleLogin} className='flex flex-col items-center justify-center sm:w-1/2 w-full py-10 md:pb-36'>

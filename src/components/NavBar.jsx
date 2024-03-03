@@ -21,14 +21,14 @@ function NavBar({ user }) {
                 }} className=" cursor-pointer w-auto font-bebas pl-2 text-md xs:text-xl  sm:text-2xl sm:leading-6 xs:leading-5  leading-4 text-[rgb(62,64,149)] ">Banco de Dados<br />
                     Atmosféricos do araripe
                 </h1></div>
-            <div className="w-auto flex sm:mr-4 mr-2">
+            <div className="w-[20%] h-full flex items-end  justify-center sm:w-[10%] md:w-[8%]">
                 {
                     user ? (
                         <>
                             <div onClick={() => {
                                 navigate("/Account")
                             }} className="w-auto cursor-pointer flex justify-center items-center">
-                                <FaUserGear className="text-[rgb(62,64,149)] text-xl h-18" />
+                                <FaUserGear className="text-[rgb(62,64,149)] text-2xl h-18" />
                             </div>
                         </>
                     ) : (
@@ -36,29 +36,11 @@ function NavBar({ user }) {
                             <div onClick={() => {
                                 navigate("/Login")
                             }} className="w-auto cursor-pointer flex justify-center items-center">
-                                <FaUserPlus className="text-[rgb(62,64,149)] text-xl h-18" />
+                                <FaUserPlus className="text-[rgb(62,64,149)] text-2xl h-18" />
                             </div>
                         </>
                     )
                 }
-
-
-                {location.pathname === "/" ? (
-                    <></>
-                ) : (
-                    <>
-                        <div className="sm:hidden w-auto  cursor-pointer ml-5 flex justify-center items-center">
-                            <RiArrowGoBackFill
-                                onClick={
-                                    () => {
-                                        navigate(-1);
-                                    }}
-                                className="text-[rgb(62,64,149)] font-medium text-lg"
-                            />
-                        </div>
-                    </>
-                )}
-
             </div>
         </nav>
     )
