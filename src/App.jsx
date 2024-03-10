@@ -212,13 +212,13 @@ const App = () => {
                 </div>
                 <div className=' transition-all duration-700 md:hidden-bottom sm:hidden-left hidden-right flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
                   <h3 className='font-bold'>Estudante</h3>
-                  <img src="https://i.ibb.co/rp2Rwjb/image.png" className="w-1/3 h-30 rounded-full mb-2" />
-                  <p className='text-xs text-center px-5'>Natanael José Maciel Isidoro é aluno do 3° ano do curso técnico integrado em eletrotécnica do IFCE - Campus Juazeiro do Norte. É bolsista do Comitê Olímpico Institucional do IFCE, sendo medalhista nas mais diversas áreas.</p>
+                  <img src="https://i.ibb.co/kJR1pdb/oie-3p-CQUf-Jxl-KJs.jpg" className="w-1/3 h-30 rounded-full mb-2" />
+                  <p className='text-xs text-center px-5'>Natanael José Maciel Isidoro é um ex-aluno do curso técnico integrado em Eletrotécnica do IFCE - Campus Juazeiro do Norte. Ele foi bolsista do Comitê Olímpico Institucional do IFCE, e conquistou medalhas em diversas áreas.</p>
                 </div>
                 <div className=' transition-all duration-700 md:hidden-bottom sm:hidden-right hidden-bottom flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
                   <h3 className='font-bold'>Estudante</h3>
-                  <img src='https://i.ibb.co/7nfx90x/download.png' className="w-1/3 h-30 rounded-full mb-2" />
-                  <p className='text-xs text-center px-5'>Ludmila de Oliveira Agra, aluna do 3° ano do curso técnico integrado em eletrotécnica do IFCE - Campus Juazeiro do Norte. Bolsista de Astronomia e Astrofísica e participante do Comitê Olímpico, ambos do Instituto IFCE e medalhista em olimpaidas voltadas as matérias de ciências.</p>
+                  <img src='https://i.ibb.co/R4gsyBQ/lud.jpg' className="w-1/3 h-30 rounded-full mb-2" />
+                  <p className='text-xs text-center px-5'>Ludmila de Oliveira Agra, aluna do 3° ano do curso técnico integrado em eletrotécnica do IFCE - Campus Juazeiro do Norte. Bolsista CNPq/MCTI Junior em Astronomia e Astrofísica, participante do Comitê Olímpico Institucional do Instituto IFCE e medalhista em olimpíadas científicas a nível nacional e internacional voltadas as matérias de ciências exatas.</p>
                 </div>
               </div>
               <div className='mt-56 w-full flex justify-center'>
