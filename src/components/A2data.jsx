@@ -6,7 +6,7 @@ import { AiOutlineSearch } from "react-icons/ai"
 import { BiLoaderAlt } from "react-icons/bi"
 import { TbFileExport } from "react-icons/tb"
 import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
-const A2Data = () => {
+const A2Data = ({ lang }) => {
     const [state, setState] = useState(null)
     const [id, setId] = useState('0');
     const [histId, setHistId] = useState('');
@@ -145,7 +145,18 @@ const A2Data = () => {
                             </>
                         ) : (
                             <>
-                                <h2 className='font-medium my-4'>Inicie uma busca</h2>
+                                <h2 className='font-medium my-4'>
+                                    {
+                                        lang ? (
+                                            <>
+                                                Start a search
+
+                                            </>) : (
+                                            <>
+                                                Inicie uma busca
+                                            </>)
+                                    }
+                                </h2>
                                 <input className='animate-pulse pl-2 my-3 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
                                 <input className='animate-pulse pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
                                 <input className='animate-pulse pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
@@ -161,7 +172,7 @@ const A2Data = () => {
                 <div className='mb-10 w-full flex items-center flex-col '>
                     <label className='min-h-fit backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)]  mb-2 flex items-center text-white bg-gradient-to-r from-purple-800 to-blue-800  rounded-md py-1 pl-3 '>
                         <AiOutlineSearch className='text-xl' />
-                        <input placeholder='Insira o Id do sensor'
+                        <input placeholder={lang ? 'Enter sensor Id' : 'Insira o Id do sensor'}
                             className='  font-medium bg-transparent focus-visible:outline-0 w-full placeholder:text-white text-white pl-2 py-1  text-md '
                             onChange={(e) => {
                                 setId(e.currentTarget.value)
@@ -182,7 +193,18 @@ const A2Data = () => {
                                             removeListener.current = null; // reseta a referência
                                         }
                                         setState(null);
-                                    }}><BiLoaderAlt className='text-xl font-medium align-self-center ml-5 animate-spin cols-span-3 ' /><p className=''>Parar</p></button>
+                                    }}><BiLoaderAlt className='text-xl font-medium align-self-center ml-5 animate-spin cols-span-3 ' /><p className=''>
+                                        {
+                                            lang ? (
+                                                <>
+                                                    Stop
+
+                                                </>) : (
+                                                <>
+                                                    Parar
+                                                </>)
+                                        }
+                                    </p></button>
                             </>
                         ) : (
                             <>
@@ -209,7 +231,18 @@ const A2Data = () => {
                                         removeListener.current = unsubscribe;
                                         setState(true);
                                     }}
-                                >Buscar</button>
+                                >
+                                    {
+                                        lang ? (
+                                            <>
+                                                Search
+
+                                            </>) : (
+                                            <>
+                                                Buscar
+                                            </>)
+                                    }
+                                </button>
                             </>
                         )
                     }
@@ -225,7 +258,7 @@ const A2Data = () => {
                                 {
                                     histData.map((obj, index) => (
                                         <div className='rounded-xl my-3 flex flex-col items-center pt-4 py-3 w-11/12 bg-gradient-to-r from-blue-900 to-purple-900' key={index}>
-                                            <h2 className='mb-1 font-medium w-8/12 text-start'>Dado Nº {index + 1}</h2>
+                                            <h2 className='mb-1 font-medium w-8/12 text-start'>{lang ? 'Data' : 'Dado'} nº {index + 1}</h2>
                                             {Object.keys(obj)
                                                 .sort()
                                                 .filter((key) => key !== "serverTime")
@@ -258,7 +291,18 @@ const A2Data = () => {
                             </>
                         ) : (
                             <>
-                                <h2 className='font-medium my-4' >Histórico</h2>
+                                <h2 className='font-medium my-4' >
+                                    {
+                                        lang ? (
+                                            <>
+                                                Historic
+
+                                            </>) : (
+                                            <>
+                                                Histórico
+                                            </>)
+                                    }
+                                </h2>
                                 <input className='animate-pulse pl-2 my-3 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
                                 <input className='animate-pulse pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
                                 <input className='animate-pulse pl-2 my-1 focus-visible:outline-0 border-white border-2 rounded-lg bg-transparent'></input>
@@ -275,7 +319,7 @@ const A2Data = () => {
                 <div className='mb-20 w-full flex items-center md:justify-evenly md:flex-row flex-wrap flex-col '>
                     <label className=' md:mx-[25%] backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] mb-2 flex items-center text-white bg-gradient-to-r from-blue-800 to-purple-800  rounded-md py-1 pl-3 '>
                         <AiOutlineSearch className='text-xl' />
-                        <input placeholder='Insira o Id do sensor'
+                        <input placeholder={lang ? 'Enter sensor Id' : 'Insira o Id do sensor'}
                             className='  font-medium bg-transparent focus-visible:outline-0 w-fit placeholder:text-white text-white pl-2 py-1  text-md '
                             onChange={(e) => {
                                 setHistId(e.currentTarget.value)
@@ -291,7 +335,18 @@ const A2Data = () => {
                                             console.log(e.target.value)
                                             setYOp(e.target.value)
                                         }} className='font-medium bg-transparent focus-visible:outline-0 w-11/12  placeholder:text-white text-white px-2 py-1 text-md'>
-                                            <option className='text-black' defaultValue="" disabled selected hidden>Escolha um ano</option>
+                                            <option className='text-black' defaultValue="" disabled selected hidden>
+                                                {
+                                                    lang ? (
+                                                        <>
+                                                            choose a year
+
+                                                        </>) : (
+                                                        <>
+                                                            Escolha um ano
+                                                        </>)
+                                                }
+                                            </option>
                                             {Object.keys(years).map((key) => (
                                                 <option className='text-black' value={key} key={key}>{key}</option>
                                             ))}
@@ -309,7 +364,18 @@ const A2Data = () => {
                                                     eDaySelect.current.selectedIndex = 0
                                                     sDaySelect.current.selectedIndex = 0
                                                 }} className='font-medium bg-transparent focus-visible:outline-0 w-11/12  placeholder:text-white text-white px-2 py-1 text-md'>
-                                                    <option className='text-black' defaultValue="" disabled selected hidden>Escolha um mês</option>
+                                                    <option className='text-black' defaultValue="" disabled selected hidden>
+                                                        {
+                                                            lang ? (
+                                                                <>
+                                                                    choose a month
+
+                                                                </>) : (
+                                                                <>
+                                                                    Escolha um mês
+                                                                </>)
+                                                        }
+                                                    </option>
                                                     {Object.keys(years[`${yearOpt}`]).map((key) => (
                                                         <option className='text-black' value={key} key={key}>{key}</option>
                                                     ))}
@@ -324,7 +390,16 @@ const A2Data = () => {
                                                             setEday(null)
                                                             eDaySelect.current.selectedIndex = 0
                                                         }} className='font-medium bg-transparent focus-visible:outline-0 w-11/12  placeholder:text-white text-white px-2 py-1 text-md'>
-                                                            <option className='text-black' defaultValue="" disabled selected hidden>Dia de Inicio</option>
+                                                            <option className='text-black' defaultValue="" disabled selected hidden>{
+                                                                lang ? (
+                                                                    <>
+                                                                        choose a start day
+
+                                                                    </>) : (
+                                                                    <>
+                                                                        Escolha o dia de início
+                                                                    </>)
+                                                            }</option>
                                                             {years[`${yearOpt}`][`${monthOpt}`]
                                                                 .map(Number)
                                                                 .sort((a, b) => a - b)
@@ -344,7 +419,16 @@ const A2Data = () => {
                                                                     console.log(e.target.value)
                                                                     setEday(e.target.value)
                                                                 }} className='font-medium bg-transparent focus-visible:outline-0 w-11/12 placeholder:text-white text-white px-2 py-1 text-md'>
-                                                                    <option className='text-black' defaultValue="" disabled selected hidden>Dia final</option>
+                                                                    <option className='text-black' defaultValue="" disabled selected hidden>{
+                                                                        lang ? (
+                                                                            <>
+                                                                                choose a end day
+
+                                                                            </>) : (
+                                                                            <>
+                                                                                Escolha o dia final
+                                                                            </>)
+                                                                    }</option>
                                                                     {years[`${yearOpt}`][`${monthOpt}`]
                                                                         .map(Number)
                                                                         .sort((a, b) => a - b)
@@ -385,7 +469,16 @@ const A2Data = () => {
                                 <button
                                     className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)]  md:w-3/12  w-1/2 font-medium text-white rounded-md bg-gradient-to-r from-blue-800 to-purple-800 py-2'
                                     onClick={getHist}
-                                >Concluir busca</button>
+                                >{
+                                        lang ? (
+                                            <>
+                                                Complete the search
+
+                                            </>) : (
+                                            <>
+                                                Concluir a busca
+                                            </>)
+                                    }</button>
                             </>
                         ) : (
                             <>
@@ -404,7 +497,16 @@ const A2Data = () => {
                                             <button
                                                 className=' backdrop-blur-lg shadow-[0_0_10px_1px_rgba(0,0,0,.25)] md:w-3/12 w-1/2 font-medium text-white rounded-md bg-gradient-to-r from-blue-800 to-purple-800 py-2'
                                                 onClick={getYOptions}
-                                            >Iniciar busca</button>
+                                            >{
+                                                    lang ? (
+                                                        <>
+                                                            Start a search
+
+                                                        </>) : (
+                                                        <>
+                                                            Inicie uma busca
+                                                        </>)
+                                                }</button>
                                         </>
                                     )
                                 }

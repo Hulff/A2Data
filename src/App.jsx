@@ -16,7 +16,8 @@ import { getUserData, googleLogin, handleUser, login, register, singOutUser } fr
 import Account from './components/Account';
 import { logo } from './assets';
 const App = () => {
-  const [user, setUser] = useState()
+  const [user, setUser] = useState();
+  const [lang, setLang] = useState(false);
   const [userData, setUserData] = useState()
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -85,6 +86,11 @@ const App = () => {
     };
     fetchData();
   }, []);
+  useEffect(() => {
+    if (["en", "en-US"].includes(navigator.language)) {
+      setLang(true);
+    }
+  }, []);
 
   // singOutUser(setUser)  
   useEffect(() => {
@@ -125,15 +131,15 @@ const App = () => {
             <div className='w-screen h-auto '>
               <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-3 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
                 <div className={`pl-2 justify-center flex w-full`}>
-                  <NavBar user={user} />
+                  <NavBar user={user} lang={lang} />
                 </div>
               </div>
               <div className='relative bg-[rgb(62,64,149)] z-[3] h-1 mt-1 w-full
               '></div>
               {/* botões */}
               <div className='h-1/3 pt-10'>
-                <About />
-                <ButtonsLinks />
+                <About lang={lang} />
+                <ButtonsLinks lang={lang} />
               </div>
               {/* video */}
               <div className='mt-64 w-full flex p justify-center'>
@@ -141,7 +147,14 @@ const App = () => {
                   <div className=" transition-all cursor-pointer rounded-t-lg sm:w-[13%] lg:w-[7%] pr-4 pl-4 h-full flex flex-row items-center justify-center  bg-[#d1d3d4]">
                     <img className="h-10 xs:h-10 " src={logo}></img>
                   </div>
-                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-3xl text-lg xs:text-2xl  w-3/5 sm:pl-5  md:rounded-xl pl-3 py-1 text-[rgb(62,64,149)] font-light font-bebas '>Apresentação do Projeto</h2>
+                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-3xl text-lg xs:text-2xl  w-3/5 sm:pl-5  md:rounded-xl pl-3 py-1 text-[rgb(62,64,149)] font-light font-bebas '>
+                    {lang ? (
+                      <>
+                        Project presentation
+                      </>
+                    ) : (<>
+                      Apresentação do Projeto
+                    </>)}</h2>
                 </div>
               </div>
               <div className='relative  bg-[rgb(62,64,149)] z-[3]  h-1 w-full
@@ -155,14 +168,31 @@ const App = () => {
                   <div className=" transition-all cursor-pointer rounded-t-lg sm:w-[13%] lg:w-[7%] pr-4 pl-4 h-full flex flex-row items-center justify-center  bg-[#d1d3d4]">
                     <img className="h-10 xs:h-10" src={logo}></img>
                   </div>
-                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-3xl text-lg xs:text-2xl w-3/5 sm:pl-5 pl-3 md:rounded-xl py-1 text-[rgb(62,64,149)] font-light font-bebas '>Propósito do Projeto</h2>
+                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-3xl text-lg xs:text-2xl w-3/5 sm:pl-5 pl-3 md:rounded-xl py-1 text-[rgb(62,64,149)] font-light font-bebas '>
+                    {lang ? (
+                      <>
+                        Project Purpose
+                      </>
+                    ) : (<>
+                      Propósito do Projeto
+                    </>)}</h2>
                 </div>
               </div>
               <div className='relative mb-1 bg-[rgb(62,64,149)] z-[3]  h-1 w-full
               '></div>
               <div className="mt-[-8px] md:mt-2 moveBg md:mx-16 bg-[url('https://i.ibb.co/QdyXpX3/2-BFDD731-475-C-4-E2-F-B00-E-3-DB16-AE692-C2.jpg')] pt-2  bg-cover  justify-end w-auto flex flex-col items-start md:h-[60vh] h-[40vh] transition-all mb-36">
                 <div className=' mt-5 flex flex-col sm:flex-row flex-wrap sm:items-end items-center justify-center'>
-                  <p className=' xl:text-xl md:text-base md:font-semibold sm:text-med text-white font-bold text-xs sm:w-4/5 px-3 py-2 rounded text-justify bg-[#0000007a]'>Somos coletivamente responsáveis por enfrentar e mitigar as mudanças climáticas em nosso planeta, um dos principais desafios do século 21. A destruição da cobertura vegetal, através de queimadas, libera dióxido de carbono (CO2) e Compostos Orgânicos Voláteis (VOCs), diminuindo a absorção de CO2 e intensificando o efeito estufa. A Floresta Nacional do Araripe-Apodi é uma das primeiras áreas protegidas do Brasil, desempenhando papel fundamental na preservação de espécies nativas, na manutenção de fontes de água no semiárido e na prevenção da desertificação no Nordeste.</p>
+                  <p className=' xl:text-xl md:text-base md:font-semibold sm:text-med text-white font-bold text-xs sm:w-4/5 px-3 py-2 rounded text-justify bg-[#0000007a]'>
+                    {lang ? (
+                      <>
+                        We are collectively responsible for confronting and mitigating climate change on our planet, one of the major challenges of the 21st century. The destruction of vegetation cover, through wildfires, releases carbon dioxide (CO2) and Volatile Organic Compounds (VOCs), reducing CO2 absorption and intensifying the greenhouse effect. The Araripe-Apodi National Forest is one of Brazil's first protected areas, playing a fundamental role in preserving native species, maintaining water sources in the semiarid region, and preventing desertification in the Northeast.
+                      </>
+                    ) : (
+                      <>
+                        Somos coletivamente responsáveis por enfrentar e mitigar as mudanças climáticas em nosso planeta, um dos principais desafios do século 21. A destruição da cobertura vegetal, através de queimadas, libera dióxido de carbono (CO2) e Compostos Orgânicos Voláteis (VOCs), diminuindo a absorção de CO2 e intensificando o efeito estufa. A Floresta Nacional do Araripe-Apodi é uma das primeiras áreas protegidas do Brasil, desempenhando papel fundamental na preservação de espécies nativas, na manutenção de fontes de água no semiárido e na prevenção da desertificação no Nordeste.
+
+                      </>)}
+                  </p>
                 </div>
               </div>
               {/*Noticias*/}
@@ -171,7 +201,16 @@ const App = () => {
                   <div className=" transition-all cursor-pointer rounded-t-lg sm:w-[13%] lg:w-[7%] pr-4 pl-4 h-full flex flex-row items-center justify-center  bg-[#d1d3d4]">
                     <img className="h-10 xs:h-10" src={logo}></img>
                   </div>
-                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-3xl text-lg xs:text-2xl w-3/5 sm:pl-5 pl-3  md:rounded-xl py-1 text-[rgb(62,64,149)] font-light font-bebas '>Notícias</h2>
+                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-3xl text-lg xs:text-2xl w-3/5 sm:pl-5 pl-3  md:rounded-xl py-1 text-[rgb(62,64,149)] font-light font-bebas '>
+                    {lang ? (
+                      <>
+                        News
+                      </>
+                    ) : (
+                      <>
+                        Notícias
+                      </>)}
+                  </h2>
                 </div>
               </div>
               <div className='relative  bg-[rgb(62,64,149)] z-[3]  h-1 w-full
@@ -179,7 +218,16 @@ const App = () => {
               <div onClick={() => {
                 navigate('/O_Araripe_esta_em_chamas')
               }} className="cursor-pointer mt-[-2px] pt-[2px] moveBg md:mx-16 bg-[url('https://imgs.search.brave.com/I5ZRKVhEJE9zCwzf7yhB-CNu1BsQd8HtHgdbZUr0WSw/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/YWxsYWJvdXRiaXJk/cy5vcmcvbmV3cy93/cC1jb250ZW50L3Vw/bG9hZHMvMjAxOC8w/My9maXJlLTEyODB4/ODIxLmpwZw')]  bg-cover  justify-end w-auto flex flex-col items-start md:h-[60vh] h-[50vh] transition-all mb-36">
-                <p className='h-full w-full  md:px-8 md:font-bold sm:text-med text-white md:text-5xl sm:text-5xl font-bold items-end text-3xl px-6 py-6 text-start flex bg-[#00000099]'>Clique aqui para acessar as noticias sobre a Chapada do Araripe</p>
+                <p className='h-full w-full  md:px-8 md:font-bold sm:text-med text-white md:text-5xl sm:text-5xl font-bold items-end text-3xl px-6 py-6 text-start flex bg-[#00000099]'>
+                  {lang ? (
+                    <>
+                      Click here to access news about Chapada do Araripe
+                    </>
+                  ) : (
+                    <>
+                      Clique aqui para acessar as noticias sobre a Chapada do Araripe
+                    </>)}
+                </p>
               </div>
               {/* contatos */}
               <div className='mt-56 w-full flex p justify-center'>
@@ -194,36 +242,118 @@ const App = () => {
               '></div>
               <div className=' h-1/2 mb-44 mt-24 flex sm:flex-row flex-wrap flex-col items-start justify-center  '>
                 <div className=' transition-all duration-700 md:hidden-bottom sm:hidden-left hidden-right flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
-                  <h3 className='font-bold'>Orientador</h3>
+                  <h3 className='font-bold'>
+                    {lang ? (
+                      <>
+                        Advisor
+                      </>
+                    ) : (<>
+                      Orientador
+                    </>)}
+                  </h3>
                   <img src='https://i.ibb.co/WkMLxHg/download.png' className="w-1/3 h-30 rounded-full mb-2" />
                   <p className='text-xs text-center px-5'>
-                    Rodrigo Queiros de Almeida é doutor em Física e professor de Física
-                    do IFCE. Tem experiência em projetos de pesquisa, olimpíadas
-                    científicas, torneios de conhecimento e coordena o Comitê Olímpico
-                    Institucional do IFCE (COI- IFCE).
+                    {lang ? (
+                      <>
+                        Rodrigo Queiros de Almeida is a PhD in Physics and professor of Physics
+                        from IFCE. He has experience in research projects, Olympics
+                        scientific events, knowledge tournaments and coordinates the Olympic Committee
+                        IFCE Institutional (COI- IFCE).
+                      </>
+                    ) : (<>
+                      Rodrigo Queiros de Almeida é doutor em Física e professor de Física
+                      do IFCE. Tem experiência em projetos de pesquisa, olimpíadas
+                      científicas, torneios de conhecimento e coordena o Comitê Olímpico
+                      Institucional do IFCE (COI- IFCE).
+                    </>)}
                   </p>
                 </div>
                 <div className=' transition-all duration-700 md:hidden-bottom sm:hidden-right hidden-left flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
-                  <h3 className='font-bold'>Co-Orientador</h3>
+                  <h3 className='font-bold'>
+                    {lang ? (
+                      <>
+                        Co-supervision
+                      </>
+                    ) : (
+                      <>
+                        Co-Orientador
+                      </>)}
+                  </h3>
                   <img src='https://i.ibb.co/Yp6dTcj/Imagem-do-Whats-App-de-2023-10-29-s-19-10-18-00d25fd2.jpg' className="w-1/3 h-30 rounded-full mb-2" />
                   <p className='text-xs text-center px-5'>
-                    Pedro Hugo Ursulino Fernandes é um ex-aluno do curso técnico de eletrotécnica do IFCE - Campus Juazeiro do Norte. Atualmente, está cursando Ciências da Computação na UFCA. Durante seus estudos, ele se dedicou à programação, abrangendo tanto o desenvolvimento frontend, com tecnologias como HTML5,CSS e React , quanto o backend, utilizando Javascript e Node.js. Pedro Hugo adquiriu suas habilidades por meio de fóruns, sites e vídeos no YouTube.
+                    {lang ? (
+                      <>
+                        Pedro Hugo Ursulino Fernandes is a former student of the electrical engineering technical course at IFCE - Campus Juazeiro do Norte. He is currently studying Computer Science at UFCA. During his studies, he dedicated himself to programming, covering both frontend development, with technologies such as HTML5, CSS and React, and backend, using Javascript and Node.js. Pedro Hugo acquired his skills through forums, websites and YouTube videos.
+                      </>
+                    ) : (<>
+                      Pedro Hugo Ursulino Fernandes é um ex-aluno do curso técnico de eletrotécnica do IFCE - Campus Juazeiro do Norte. Atualmente, está cursando Ciências da Computação na UFCA. Durante seus estudos, ele se dedicou à programação, abrangendo tanto o desenvolvimento frontend, com tecnologias como HTML5,CSS e React , quanto o backend, utilizando Javascript e Node.js. Pedro Hugo adquiriu suas habilidades por meio de fóruns, sites e vídeos no YouTube.
+
+                    </>)}
                   </p>
                 </div>
                 <div className=' transition-all duration-700 md:hidden-bottom sm:hidden-left hidden-right flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
-                  <h3 className='font-bold'>Estudante</h3>
+                  <h3 className='font-bold'>
+                    {lang ? (
+                      <>
+                        Student
+                      </>
+                    ) : (
+                      <>
+                        Estudante
+                      </>)
+                    }</h3>
                   <img src="https://i.ibb.co/kJR1pdb/oie-3p-CQUf-Jxl-KJs.jpg" className="w-1/3 h-30 rounded-full mb-2" />
-                  <p className='text-xs text-center px-5'>Natanael José Maciel Isidoro é um ex-aluno do curso técnico integrado em Eletrotécnica do IFCE - Campus Juazeiro do Norte. Ele foi bolsista do Comitê Olímpico Institucional do IFCE, e conquistou medalhas em diversas áreas.</p>
+                  <p className='text-xs text-center px-5'>=
+                    {lang ? (
+                      <>
+                        Natanael José Maciel Isidoro is a former student of the integrated technical course in Electrotechnics at IFCE - Campus Juazeiro do Norte. He was a scholarship holder of the IFCE Institutional Olympic Committee, and won medals in several areas.
+                      </>
+                    ) : (
+                      <>
+                        Natanael José Maciel Isidoro é um ex-aluno do curso técnico integrado em Eletrotécnica do IFCE - Campus Juazeiro do Norte. Ele foi bolsista do Comitê Olímpico Institucional do IFCE, e conquistou medalhas em diversas áreas.
+                      </>)
+                    }
+                  </p>
                 </div>
                 <div className=' transition-all duration-700 md:hidden-bottom sm:hidden-right hidden-bottom flex flex-col items-center my-3 sm:w-2/5 md:w-1/5'>
-                  <h3 className='font-bold'>Estudante</h3>
+                  <h3 className='font-bold'>
+                    {lang ? (
+                      <>
+                        Student
+                      </>
+                    ) : (
+                      <>
+                        Estudante
+                      </>)
+                    }
+                  </h3>
                   <img src='https://i.ibb.co/R4gsyBQ/lud.jpg' className="w-1/3 h-30 rounded-full mb-2" />
-                  <p className='text-xs text-center px-5'>Ludmila de Oliveira Agra, aluna do 3° ano do curso técnico integrado em eletrotécnica do IFCE - Campus Juazeiro do Norte. Bolsista CNPq/MCTI Junior em Astronomia e Astrofísica, participante do Comitê Olímpico Institucional do Instituto IFCE e medalhista em olimpíadas científicas a nível nacional e internacional voltadas as matérias de ciências exatas.</p>
+                  <p className='text-xs text-center px-5'>
+                    {lang ? (
+                      <>
+                        Ludmila de Oliveira Agra, 3rd year student of the integrated technical course in electrical engineering at IFCE - Campus Juazeiro do Norte. CNPq/MCTI Junior Scholarship in Astronomy and Astrophysics, participant of the Institutional Olympic Committee of the IFCE Institute and medalist in scientific Olympiads at national and international level focused on exact science subjects.
+                      </>
+                    ) : (
+                      <>
+                        Ludmila de Oliveira Agra, aluna do 3° ano do curso técnico integrado em eletrotécnica do IFCE - Campus Juazeiro do Norte. Bolsista CNPq/MCTI Junior em Astronomia e Astrofísica, participante do Comitê Olímpico Institucional do Instituto IFCE e medalhista em olimpíadas científicas a nível nacional e internacional voltadas as matérias de ciências exatas.
+                      </>)
+                    }
+                  </p>
                 </div>
               </div>
               <div className='mt-56 w-full flex justify-center'>
                 <div className='flex w-full pl-1 items-baseline'>
-                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-3xl text-lg xs:text-2xl pl-6 w-3/5 sm:pl-5  pl-3md:rounded-xl  text-[rgb(62,64,149)] font-light font-bebas '>Contatos</h2>
+                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-3xl text-lg xs:text-2xl pl-6 w-3/5 sm:pl-5  pl-3md:rounded-xl  text-[rgb(62,64,149)] font-light font-bebas '>
+                    {lang ? (
+                      <>
+                        Contacts
+                      </>
+                    ) : (
+                      <>
+                        Contatos
+                      </>)
+                    }
+                  </h2>
                 </div>
               </div>
               <div className='relative  bg-[rgb(62,64,149)] z-[3]  h-1 w-full
@@ -231,8 +361,17 @@ const App = () => {
               <footer className="flex min-h-fit mt-1 mb-6 py-4 px-4 rounded-b-3xl sm:flex-nowrap flex-wrap items-center justify-start sm:justify-start sm:flex-row bg-[#d1d3d4] md:h-[15rem] h-[19rem] w-full overflow-hidden">
                 <div className=" w-full flex items-end justify-center">
                   <div className=" w-auto flex items-end"> <img src={logo} alt="logo" className="w-auto h-14 xs:h-16 sm:h-20 md:h-28 lg:h-32 cursor-pointer" /></div>
-                  <h1 className=" cursor-pointer w-auto font-bebas pl-2 text-lg xs:text-2xl  sm:text-[1.55rem] md:text-4xl lg:text-5xl `md:leading-12 sm:leading-6 xs:leading-5  leading-4 text-[rgb(62,64,149)] ">Banco de Dados<br />
-                    Atmosféricos do araripe
+                  <h1 className=" cursor-pointer w-auto font-bebas pl-2 text-lg xs:text-2xl  sm:text-[1.55rem] md:text-4xl lg:text-5xl `md:leading-12 sm:leading-6 xs:leading-5  leading-4 text-[rgb(62,64,149)] ">
+                    {lang ? (
+                      <>
+                        Araripe Atmospheric <br />Database
+                      </>
+                    ) : (
+                      <>
+                        Banco de Dados<br />
+                        Atmosféricos do araripe
+                      </>)
+                    }
                   </h1>
                 </div>
                 <div className='w-full  sm:border-l-2 pl-3 sm:border-white flex ss:flex-row flex-col  items-center justify-center'>
@@ -271,7 +410,7 @@ const App = () => {
               </div>
               <div className='relative bg-[rgb(62,64,149)] z-[3] h-1 mt-1 w-full
               '></div>
-              <A2data></A2data>
+              <A2data lang={lang}></A2data>
             </div>
           </>
         }
@@ -291,25 +430,71 @@ const App = () => {
               {/*noticia 1 */}
               <div className=' mt-8 flex flex-col items-center justify-center'>
                 <div className='mb-5 w-full flex justify-start'>
-                  <h2 className='ml-5 xl:ml-12 sm:text-xl text-md xl:w-1/6 md:w-1/4 sm:w-1/3 w-3/5 sm:px-0.5  py-2 rounded-2xl text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-medium'>O Araripe está em chamas!</h2>
+                  <h2 className='ml-5 xl:ml-12 sm:text-xl text-md xl:w-1/6 md:w-1/4 sm:w-1/3 w-3/5 sm:px-0.5  py-2 rounded-2xl text-center bg-gradient-to-r from-purple-800 to-blue-800 text-white font-medium'>
+                    {
+                      lang ? (
+                        <>
+                          Araripe is burning!
+                        </>) : (
+                        <>
+                          O Araripe está em chamas!
+                        </>)
+                    }
+                  </h2>
                 </div>
                 <div className=' flex py-3 justify-center w-full bg-red-600 text-white'>
-                  <p className='indent-2 font-medium med:xl sm:text-lg md:text-xl text-xs w-4/5 text-justify'> A situação ambiental da Chapada do Araripe torna-se mais alarmante a cada dia que se passa , aqui estão algumas das mais preocupantes e recentes notícias deploráveis do estado de  nossa floresta.</p>
+                  <p className='indent-2 font-medium med:xl sm:text-lg md:text-xl text-xs w-4/5 text-justify'>
+                    {
+                      lang ? (
+                        <>
+                          The environmental situation of Chapada do Araripe becomes more alarming with each passing day, here are some of the most worrying and recent deplorable news about the state of our forest.
+                        </>) : (
+                        <>
+                          A situação ambiental da Chapada do Araripe torna-se mais alarmante a cada dia que se passa , aqui estão algumas das mais preocupantes e recentes notícias deploráveis do estado de  nossa floresta.
+                        </>)
+                    }
+                  </p>
                 </div>
                 <div className='mb-5 sm:flex-row justify-center w-full flex flex-col items-center'>
                   <img className=' xl:w-1/3 rounded-2xl pt-2 md:w-1/4 sm:w-1/2 sm:px-3  w-11/12' src='
                   https://s2-g1.glbimg.com/v48XBGXCLRSuaHUsUAKuEVQ7d_0=/0x0:1040x780/1008x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2020/A/H/AcDMmMSHirwwgF6vZw0g/incendio-fogo.jpeg'></img>
                   <div className='md:w-1/3 sm:w-1/2 w-full flex flex-col items-center'>
                     <p className='mb-3 mt-2 w-11/12 sm:text-xl align-start text-lg font-medium text-black'>
-                      Área atingida por incêndio na Floresta Nacional do Araripe pode levar até 30 anos para ser recuperada no Ceará <br />
+                      {
+                        lang ? (
+                          <>
+                            Area hit by fire in the Araripe National Forest could take up to 30 years to recover in Ceará <br />
+                          </>) : (
+                          <>
+                            Área atingida por incêndio na Floresta Nacional do Araripe pode levar até 30 anos para ser recuperada no Ceará <br />
+                          </>)
+                      }
                     </p>
                     <p className='mb-3 w-11/12 sm:text-lg align-start text-sm text-black'>
-                      Equipes do Corpo de Bombeiros, ICMBio, Ibama e voluntários atuaram para debelar as chamas. Fogo também impactou produção de pequi. <br />
+                      {
+                        lang ? (
+                          <>
+                            Teams from the Fire Department, ICMBio, Ibama and volunteers worked to put out the flames. Fire also impacted pequi production.
+
+                          </>) : (
+                          <>
+                            Equipes do Corpo de Bombeiros, ICMBio, Ibama e voluntários atuaram para debelar as chamas. Fogo também impactou produção de pequi. <br />
+                          </>)
+                      }
                     </p>
                   </div>
                 </div>
                 <a className='bg-gradient-to-r from-purple-800 to-blue-800 text-white px-3 rounded-xl py-2 md:animate-none animate-bounce-s font-medium sm:text-lg text-md' target='blank' href='https://g1.globo.com/ce/ceara/noticia/2020/01/04/area-atingida-por-incendio-na-floresta-nacional-do-araripe-pode-levar-ate-30-anos-para-ser-recuperada-no-ceara.ghtml'>
-                  clique aqui para acessar a noticia
+                  {
+                    lang ? (
+                      <>
+                        click here for more info
+
+                      </>) : (
+                      <>
+                        clique aqui para acessar a noticia
+                      </>)
+                  }
                 </a>
               </div>
               {/*noticia 2 */}
@@ -319,15 +504,42 @@ const App = () => {
                   https://s02.video.glbimg.com/x720/11992225.jpg'></img>
                   <div className='md:w-1/3 sm:w-1/2 w-full flex flex-col items-center'>
                     <p className='mb-3 mt-2 w-11/12 sm:text-xl align-start text-lg font-medium text-black'>
-                      Incêndio no Ceará dura cinco dias e cobre cidades de fumaça<br />
+                      {
+                        lang ? (
+                          <>
+                            Fire in Ceará lasts five days and covers cities in smoke<br />
+
+                          </>) : (
+                          <>
+                            Incêndio no Ceará dura cinco dias e cobre cidades de fumaça<br />
+                          </>)
+                      } 
                     </p>
                     <p className='mb-3 w-11/12 sm:text-lg align-start text-sm text-black'>
-                      Incêndio atinge vegetação em Caririaçu e cidades vizinhas, na região Cariri.<br />
+                      {
+                        lang ? (
+                          <>
+                            Fire affects vegetation in Caririaçu and neighboring cities, in the Cariri region.<br />
+
+                          </>) : (
+                          <>
+                            Incêndio atinge vegetação em Caririaçu e cidades vizinhas, na região Cariri.<br />
+                          </>)
+                      } 
                     </p>
                   </div>
                 </div>
                 <a className='bg-gradient-to-r from-purple-800 to-blue-800 text-white px-3 rounded-xl py-2 md:animate-none animate-bounce-s font-medium sm:text-lg text-md' target='blank' href='https://g1.globo.com/ce/ceara/noticia/2023/10/02/incendio-no-ceara-dura-cinco-dias-e-cobre-cidades-de-fumaca.ghtml'>
-                  clique aqui para acessar a noticia
+                  {
+                    lang ? (
+                      <>
+                        click here for more info
+
+                      </>) : (
+                      <>
+                        clique aqui para acessar a noticia
+                      </>)
+                  }
                 </a>
               </div>
             </div>
@@ -365,7 +577,7 @@ const App = () => {
                         </div>
                         <div className='relative bg-[rgb(62,64,149)] z-[3] h-1 mt-1 w-full
                   '></div>
-                        <Account user={user} userData={userData} setData={setUserData} />
+                        <Account lang={lang} user={user} userData={userData} setData={setUserData} />
                       </div>
                     </>
                   )}
@@ -421,17 +633,27 @@ const App = () => {
                               <h3 onClick={() => {
                                 divLogin.current.classList.add("hideLogin")
                                 divRegister.current.classList.add("showRegister")
-                              }} className='mb-3 cursor-pointer text-[#666666]'>Não tem uma conta? clique aqui</h3>
+                              }} className='mb-3 cursor-pointer text-[#666666]'>
+                                {lang ? (
+                                  <>
+                                    Don't have an account? Click here
+                                  </>
+                                ) : (
+                                  <>
+                                    Não tem uma conta? clique aqui
+                                  </>)
+                                }
+                              </h3>
                               <label className='w-10/12 px-1 font-medium'>
                                 E-mail
                               </label>
-                              <input ref={emailLoginInput} autoComplete="username" className='border-b-2 w-10/12 my-2 pb-2 px-1 focus:outline-none' type='text' placeholder='Digite seu e-mail' />
+                              <input ref={emailLoginInput} autoComplete="username" className='border-b-2 w-10/12 my-2 pb-2 px-1 focus:outline-none' type='text' placeholder={lang ? 'Type your e-mail' : 'digite seu e-mail'} />
                               <label className='w-10/12 px-1 font-medium'>
                                 Senha
                               </label>
-                              <input ref={passLoginInput} autoComplete="current-password" className='border-b-2 w-10/12 my-2 pb-2 px-1 focus:outline-none' type='password' placeholder='Digite sua senha' />
+                              <input ref={passLoginInput} autoComplete="current-password" className='border-b-2 w-10/12 my-2 pb-2 px-1 focus:outline-none' type='password' placeholder={lang ? 'Type your password' : "digite a senha"} />
                               <button type='submit' className=' text-white bg-gradient-to-r transition-all from-purple-800 to-blue-800 font-semibold  md:w-1/4 md:hover:w-1/3 w-1/2 justify-center text-center items-center rounded-md flex  sm:text-base sm:w-1/2  text-med h-auto hover:brightness-75 sm:hover:w-5/12 hover:w-7/12 md:hover:w-1/5 my-3 py-2'>
-                                Fazer Login
+                                Login
                               </button>
                               <button className='text-3xl shadow-md transition-all border md:w-1/4 md:hover:w-1/3 w-1/2 justify-center text-center items-center rounded-md flex sm:text-2xl  sm:w-1/2  text-med h-auto hover:brightness-75 sm:hover:w-5/12 hover:w-7/12 md:hover:w-1/5 my-3 py-2'>
                                 <FcGoogle onClick={() => { googleLogin(setUser) }} />
@@ -457,13 +679,21 @@ const App = () => {
                               <label className='w-10/12 px-1 font-medium'>
                                 E-mail
                               </label>
-                              <input ref={emailInput} autoComplete="username" className='border-b-2 w-10/12 my-2 pb-2 px-1 focus:outline-none' type='text' placeholder='Digite seu e-mail' />
+                              <input ref={emailInput} autoComplete="username" className='border-b-2 w-10/12 my-2 pb-2 px-1 focus:outline-none' type='text' placeholder={lang ? 'Type your e-mail' : 'digite seu e-mail'} />
                               <label className='w-10/12 px-1 font-medium'>
                                 Senha
                               </label>
-                              <input ref={passInput} autoComplete="current-password" className='border-b-2 w-10/12 my-2 pb-2 px-1 focus:outline-none' type='password' placeholder='Digite sua senha' />
+                              <input ref={passInput} autoComplete="current-password" className='border-b-2 w-10/12 my-2 pb-2 px-1 focus:outline-none' type='password' placeholder={lang ? 'Type your password' : "digite a senha"} />
                               <button type='submit' className='transition-all text-white bg-gradient-to-r from-purple-800 to-blue-800 font-semibold  md:w-1/4 md:hover:w-1/3 w-1/2 justify-center text-center items-center rounded-md flex  sm:text-base sm:w-1/2  text-med h-auto hover:brightness-75 sm:hover:w-5/12 hover:w-7/12 md:hover:w-1/5 my-3 py-2'>
-                                Concluir Cadastro
+                                {lang ? (
+                                  <>
+                                    Register
+                                  </>
+                                ) : (
+                                  <>
+                                    Concluir Cadastro
+                                  </>)
+                                }
                               </button>
                               <button className='text-3xl shadow-md transition-all border md:w-1/4 md:hover:w-1/3 w-1/2 justify-center text-center items-center rounded-md flex sm:text-2xl  sm:w-1/2  text-med h-auto hover:brightness-75 sm:hover:w-5/12 hover:w-7/12 md:hover:w-1/5 my-3 py-2'>
                                 <FcGoogle onClick={() => { googleLogin(setUser) }} />

@@ -2,7 +2,7 @@ import {
     useNavigate,
 } from "react-router-dom";
 import { logo } from "../assets";
-const ButtonsLinks = () => {
+const ButtonsLinks = ({ lang }) => {
     const navigate = useNavigate()
     return (<>
         <div className=" w-full h-20 flex flex-row mt-5 items-stretch justify-evenly">
@@ -15,7 +15,13 @@ const ButtonsLinks = () => {
                 <button onClick={() => {
                     navigate("/A2Data")
                 }} className="transition-all ml-[-5%] sm:ml-[-3%]   w-auto px-3 relative z-[1] md:py-7 py-5 h-[30%] text-white bg-[rgb(62,64,149)] font-semibold   justify-center text-center items-center rounded-md flex lg:text-xl md:text-lg sm:text-base  text-xs hover:brightness-75  ">
-                    Acessar o Banco de Dados</button>
+                    {lang ? (
+                        <>
+                            Access Database
+                        </>
+                    ) : (<>
+                        Acessar o Banco de Dados
+                    </>)}</button>
             </div>
         </div>
     </>);

@@ -4,11 +4,17 @@ import { FaRegTrashCan } from "react-icons/fa6";
 import { RiPencilLine } from "react-icons/ri";
 import { editUserData } from '../services/firebase';
 import { VscLoading } from 'react-icons/vsc';
-const Account = ({ user, userData, setData }) => {
+const Account = ({ user, userData, setData, lang }) => {
     const converterParaDataBr = (timestamp) => {
         const data = new Date(parseFloat(timestamp));
         const opcoes = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZone: 'America/Sao_Paulo' };
-        const formatoData = new Intl.DateTimeFormat('pt-BR', opcoes);
+        let formatoData
+        if (lang) {
+            formatoData = new Intl.DateTimeFormat('en', opcoes);
+        } else {
+            formatoData = new Intl.DateTimeFormat('pt-BR', opcoes);
+        }
+
         return formatoData.format(data);
     }
     const addData = async (e) => {
@@ -68,12 +74,35 @@ const Account = ({ user, userData, setData }) => {
                         user ? (user.email) : (<></>)
                     }</h3>
                     <h3 className='text-gray-400 w-10/12 px-1 ml-2'>{
-                        user ? (`Criado em ${converterParaDataBr(user.metadata.createdAt)}`) : (<></>)
+                        user ? (<>
+                            {
+                                lang ? (<>
+                                    Created at {converterParaDataBr(user.metadata.createdAt)}
+                                </>) : (<>
+                                    Criado em {converterParaDataBr(user.metadata.createdAt)}</>)
+                            }</>
+                        ) : (<></>)
                     }</h3>
-                    <h3 className='w-full border-b-2 px-3 text-lg font-medium my-3'>Sensores</h3>
+                    <h3 className='w-full border-b-2 px-3 text-lg font-medium my-3'>
+                        {lang ? (
+                            <>
+                                Sensors
+                            </>
+                        ) : (<>
+                            Sensores
+                        </>)}
+                    </h3>
                     <form onSubmit={addData} className='h-26 flex sm:flex-row flex-col sm:justify-center items-center space-x-3 justify-top sm:px-2 w-full my-2'>
-                        <input className='outline-none sm:w-2/3 w-10/12 border-2 sm:text-lg rounded px-2 py-2' placeholder='Digite o codigo que deseja usar' />
-                        <button type='submit' className='transition-all sm:w-1/4 text-white bg-gradient-to-r from-purple-800 to-blue-800 font-semibold  md:w-1/4 md:hover:w-1/3 w-1/2 justify-center text-center items-center rounded-md flex  sm:text-lg sm:w-1/3 text-sm h-auto hover:brightness-75 sm:hover:w-5/12 hover:w-7/12 md:hover:w-1/5 sm:py-2 py-1 my-4  '>Adicionar sensor</button>
+                        <input className='outline-none sm:w-2/3 w-10/12 border-2 sm:text-lg rounded px-2 py-2' placeholder={lang ? "Type the sensor code" : 'Digite o codigo que deseja usar'} />
+                        <button type='submit' className='transition-all sm:w-1/4 text-white bg-gradient-to-r from-purple-800 to-blue-800 font-semibold  md:w-1/4 md:hover:w-1/3 w-1/2 justify-center text-center items-center rounded-md flex  sm:text-lg sm:w-1/3 text-sm h-auto hover:brightness-75 sm:hover:w-5/12 hover:w-7/12 md:hover:w-1/5 sm:py-2 py-1 my-4  '>
+                            {lang ? (
+                                <>
+                                    Add Sensors
+                                </>
+                            ) : (<>
+                                Adicionar Sensor
+                            </>)}
+                        </button>
                     </form>
                     <ul className='overflow-y-scroll overflow-x-clip ulSensors  ml-[10%] rounded w-[80%] flex-col border-gray-300 border-[1px] p-2 h-[30vh] shadow-lg'>
                         {userData && userData.sensors ? (
