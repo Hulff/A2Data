@@ -235,7 +235,16 @@ const App = () => {
                   <div className=" transition-all cursor-pointer rounded-t-lg sm:w-[13%] lg:w-[7%] pr-4 pl-4 h-full flex flex-row items-center justify-center  bg-[#d1d3d4]">
                     <img className="h-10 xs:h-10" src={logo}></img>
                   </div>
-                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-3xl text-lg xs:text-2xl w-3/5 sm:pl-5 pl-3  md:rounded-xl py-1 text-[rgb(62,64,149)] font-light font-bebas '>Equipe</h2>
+                  <h2 className='md:w-1/2 w-[80%] h-auto sm:text-3xl text-lg xs:text-2xl w-3/5 sm:pl-5 pl-3  md:rounded-xl py-1 text-[rgb(62,64,149)] font-light font-bebas '>
+                    {lang ? (
+                      <>
+                        Team
+                      </>
+                    ) : (
+                      <>
+                        Equipe
+                      </>)
+                    }Equipe</h2>
                 </div>
               </div>
               <div className='relative  bg-[rgb(62,64,149)] z-[3]  h-1 w-full
@@ -405,7 +414,8 @@ const App = () => {
             <div className='w-screen h-auto'>
               <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-3 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
                 <div className={`pl-2 justify-center flex w-full`}>
-                  <NavBar user={user} />
+                  <NavBar user={user} lang={lang} />
+
                 </div>
               </div>
               <div className='relative bg-[rgb(62,64,149)] z-[3] h-1 mt-1 w-full
@@ -422,7 +432,8 @@ const App = () => {
             <div className='w-screen h-auto mb-10'>
               <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-3 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
                 <div className={`pl-2 justify-center flex w-full`}>
-                  <NavBar user={user} />
+                  <NavBar user={user} lang={lang} />
+
                 </div>
               </div>
               <div className='relative bg-[rgb(62,64,149)] z-[3] h-1 mt-1 w-full
@@ -513,7 +524,7 @@ const App = () => {
                           <>
                             Incêndio no Ceará dura cinco dias e cobre cidades de fumaça<br />
                           </>)
-                      } 
+                      }
                     </p>
                     <p className='mb-3 w-11/12 sm:text-lg align-start text-sm text-black'>
                       {
@@ -525,7 +536,7 @@ const App = () => {
                           <>
                             Incêndio atinge vegetação em Caririaçu e cidades vizinhas, na região Cariri.<br />
                           </>)
-                      } 
+                      }
                     </p>
                   </div>
                 </div>
@@ -558,7 +569,8 @@ const App = () => {
                     <div className='w-screen h-auto mb-10'>
                       <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-3 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
                         <div className={`pl-2 justify-center flex w-full`}>
-                          <NavBar user={user} />
+                          <NavBar user={user} lang={lang} />
+
                         </div>
                       </div>
                       <div className='relative bg-[rgb(62,64,149)] z-[3] h-1 mt-1 w-full
@@ -572,7 +584,8 @@ const App = () => {
                       <div className='w-screen h-auto mb-10'>
                         <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-3 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
                           <div className={`pl-2 justify-center flex w-full`}>
-                            <NavBar user={user} />
+                            <NavBar user={user} lang={lang} />
+
                           </div>
                         </div>
                         <div className='relative bg-[rgb(62,64,149)] z-[3] h-1 mt-1 w-full
@@ -605,7 +618,8 @@ const App = () => {
                     <div className='w-screen h-auto mb-10'>
                       <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-3 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
                         <div className={`pl-2 justify-center flex w-full`}>
-                          <NavBar user={user} />
+                          <NavBar user={user} lang={lang} />
+
                         </div>
                       </div>
                       <div className='relative bg-[rgb(62,64,149)] z-[3] h-1 mt-1 w-full
@@ -619,7 +633,8 @@ const App = () => {
                       <div className='w-screen h-auto mb-10 '>
                         <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-3 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
                           <div className={`pl-2 justify-center flex w-full`}>
-                            <NavBar user={user} />
+                            <NavBar user={user} lang={lang} />
+
                           </div>
                         </div>
                         <div className='relative bg-[rgb(62,64,149)] z-[3] h-1 mt-1 w-full
