@@ -244,7 +244,7 @@ const App = () => {
                       <>
                         Equipe
                       </>)
-                    }Equipe</h2>
+                    }</h2>
                 </div>
               </div>
               <div className='relative  bg-[rgb(62,64,149)] z-[3]  h-1 w-full
