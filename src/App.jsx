@@ -324,7 +324,7 @@ const App = () => {
                       </>)
                     }</h3>
                   <img src="https://i.ibb.co/kJR1pdb/oie-3p-CQUf-Jxl-KJs.jpg" className="w-1/3 h-30 rounded-full mb-2" />
-                  <p className='text-xs text-center px-5'>=
+                  <p className='text-xs text-center px-5'>
                     {lang ? (
                       <>
                         Natanael José Maciel Isidoro is a former student of the integrated technical course in Electrotechnics at IFCE - Campus Juazeiro do Norte. He was a scholarship holder of the IFCE Institutional Olympic Committee, and won medals in several areas.
