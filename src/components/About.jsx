@@ -13,10 +13,10 @@ const About = ({lang}) => {
             <p className=" w-[90%] font-normal sm:text-base  md:text-xl text-center text-sm" >
                 {lang ? (
                     <>
-                        The website is aimed at democratically providing real-time and updated information on the environmental conditions in which the project is applied, as well as serving as an early warning system for the occurrence of nearby wildfires.
+                        This website is intended to provide free access to real and updated atmospheric data collected in the Araripe National Forest. In general, the project seeks to generate relevant information about environmental conditions, primarily focusing on air quality monitoring in the Forest. It can also be applied as an early warning system for the occurrence of wildfires near the inhabited region of Chapada do Araripe
                     </>
                 ) : (<>
-                    Website voltado para a disponibilização democrática de informações reais e atualizadas das  condições ambientais em que o projeto seja aplicado além de funcionar como um alerta prévio da  ocorrência de queimadas próximas.
+                        Este website é destinado à disponibilização gratuita de dados atmosféricos reais e atualizados coletados na Floresta Nacional do Araripe. De modo geral, o projeto busca gerar informações relevantes das condições ambientais, sob o escopo principal do monitoramento da qualidade do ar da Floresta, podendo ser aplicado como um sistema de alerta prévio da ocorrência de queimadas próximas a região habitada da Chapada do Araripe.
                 </>)}
             </p>
         </div >

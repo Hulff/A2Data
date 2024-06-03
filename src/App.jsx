@@ -4,17 +4,16 @@ import {
   Route,
   useNavigate,
   useLocation,
-  useParams,
 } from "react-router-dom";
-import { FaPhoneAlt } from "react-icons/fa";
-import { AiOutlineUser } from "react-icons/ai";
 import { VscLoading } from "react-icons/vsc";
 import { FcGoogle } from "react-icons/fc";
-import { styles, layout } from "./style";
 import { NavBar, Welcome, About, ButtonsLinks, A2data } from "./components";
 import { getUserData, googleLogin, handleUser, login, register, singOutUser } from './services/firebase';
 import Account from './components/Account';
 import { logo } from './assets';
+import { br } from './assets';
+import { usa } from './assets';
+
 const App = () => {
   const [user, setUser] = useState();
   const [lang, setLang] = useState(false);
@@ -86,6 +85,7 @@ const App = () => {
     };
     fetchData();
   }, []);
+
   useEffect(() => {
     if (["en", "en-US"].includes(navigator.language)) {
       setLang(true);
@@ -129,7 +129,19 @@ const App = () => {
         element={
           <>
             <div className='w-screen h-auto '>
-              <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-3 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
+              <div className='flex md:pr-3 pr-1 justify-end w-screem h-fit'>{
+                lang ? (<>
+                  <img onClick={()=>{
+                    setLang(false)
+                  }} className='cursor-pointer w-8 h-8' src={br}></img>
+
+                </>) : (<>
+                    <img onClick={() => {
+                      setLang(true)
+                    }} className=' cursor-pointer w-8 h-8' src={usa}></img>
+                </>)
+              }</div>
+              <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-1 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
                 <div className={`pl-2 justify-center flex w-full`}>
                   <NavBar user={user} lang={lang} />
                 </div>
