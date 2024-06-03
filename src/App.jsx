@@ -131,14 +131,14 @@ const App = () => {
             <div className='w-screen h-auto '>
               <div className='flex md:pr-3 pr-1 justify-end w-screem h-fit'>{
                 lang ? (<>
-                  <img onClick={()=>{
+                  <img onClick={() => {
                     setLang(false)
                   }} className='cursor-pointer w-8 h-8' src={br}></img>
 
                 </>) : (<>
-                    <img onClick={() => {
-                      setLang(true)
-                    }} className=' cursor-pointer w-8 h-8' src={usa}></img>
+                  <img onClick={() => {
+                    setLang(true)
+                  }} className=' cursor-pointer w-8 h-8' src={usa}></img>
                 </>)
               }</div>
               <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-1 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
@@ -424,7 +424,19 @@ const App = () => {
         element={
           <>
             <div className='w-screen h-auto'>
-              <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-3 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
+              <div className='flex md:pr-3 pr-1 justify-end w-screem h-fit'>{
+                lang ? (<>
+                  <img onClick={() => {
+                    setLang(false)
+                  }} className='cursor-pointer w-8 h-8' src={br}></img>
+
+                </>) : (<>
+                  <img onClick={() => {
+                    setLang(true)
+                  }} className=' cursor-pointer w-8 h-8' src={usa}></img>
+                </>)
+              }</div>
+              <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-1 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
                 <div className={`pl-2 justify-center flex w-full`}>
                   <NavBar user={user} lang={lang} />
 
@@ -442,7 +454,19 @@ const App = () => {
         element={
           <>
             <div className='w-screen h-auto mb-10'>
-              <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-3 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
+              <div className='flex md:pr-3 pr-1 justify-end w-screem h-fit'>{
+                lang ? (<>
+                  <img onClick={() => {
+                    setLang(false)
+                  }} className='cursor-pointer w-8 h-8' src={br}></img>
+
+                </>) : (<>
+                  <img onClick={() => {
+                    setLang(true)
+                  }} className=' cursor-pointer w-8 h-8' src={usa}></img>
+                </>)
+              }</div>
+              <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-1 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
                 <div className={`pl-2 justify-center flex w-full`}>
                   <NavBar user={user} lang={lang} />
 
@@ -579,6 +603,7 @@ const App = () => {
                   {loading ? (
                     // You can show a loading spinner or message here
                     <div className='w-screen h-auto mb-10'>
+
                       <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-3 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
                         <div className={`pl-2 justify-center flex w-full`}>
                           <NavBar user={user} lang={lang} />
@@ -594,7 +619,19 @@ const App = () => {
                   ) : (
                     <>
                       <div className='w-screen h-auto mb-10'>
-                        <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-3 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
+                        <div className='flex md:pr-3 pr-1 justify-end w-screem h-fit'>{
+                          lang ? (<>
+                            <img onClick={() => {
+                              setLang(false)
+                            }} className='cursor-pointer w-8 h-8' src={br}></img>
+
+                          </>) : (<>
+                            <img onClick={() => {
+                              setLang(true)
+                            }} className=' cursor-pointer w-8 h-8' src={usa}></img>
+                          </>)
+                        }</div>
+                        <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-1 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
                           <div className={`pl-2 justify-center flex w-full`}>
                             <NavBar user={user} lang={lang} />
 
@@ -628,7 +665,19 @@ const App = () => {
                   {loading ? (
                     // You can show a loading spinner or message here
                     <div className='w-screen h-auto mb-10'>
-                      <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-3 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
+                      <div className='flex md:pr-3 pr-1 justify-end w-screem h-fit'>{
+                        lang ? (<>
+                          <img onClick={() => {
+                            setLang(false)
+                          }} className='cursor-pointer w-8 h-8' src={br}></img>
+
+                        </>) : (<>
+                          <img onClick={() => {
+                            setLang(true)
+                          }} className=' cursor-pointer w-8 h-8' src={usa}></img>
+                        </>)
+                      }</div>
+                      <div className="bg-[#d1d3d4] pt-2 rounded-t-3xl mt-1 z-[4] items-center flex relative h-24 sm:h-28 w-full overflow-hidden">
                         <div className={`pl-2 justify-center flex w-full`}>
                           <NavBar user={user} lang={lang} />
 
